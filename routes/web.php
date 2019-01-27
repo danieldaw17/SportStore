@@ -11,6 +11,9 @@
 |
 */
 
+/**
+ * Configurar las rutas para la aplicacion SportStore
+ */
 Route::get('/', function () {
     return view('welcome');
 });
