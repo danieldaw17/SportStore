@@ -1,4 +1,4 @@
-@extends("layout")
+@extends("layouts.noadmin.layout")
 
 @section("styles")
 <link rel="stylesheet" type="text/css" href="{{ asset('css/login.css') }}">
