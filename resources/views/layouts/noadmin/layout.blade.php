@@ -12,18 +12,17 @@
 		@yield("styles")
 	</head>
 	<body>
-		{{-- Include header --}}
-		@include("inc/header")
-
 		<div class="container">
+			{{-- Include header --}}
+			@include("inc/header")
+
 			<div class="section">
 				@yield("content")
 			</div>
+
+			{{-- Include footer --}}
+			@include("inc/footer")
 		</div>
-
-		{{-- Include footer --}}
-		@include("inc/footer")
-
 		{{-- js --}}
 		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
 		<script src="{{ asset('js/popper.js') }}"></script>

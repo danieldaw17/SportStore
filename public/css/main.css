@@ -27,7 +27,6 @@ a, a:focus, a:hover {
 }
 
 .default-header {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -42,7 +41,7 @@ a, a:focus, a:hover {
 }
 
 .navbar-nav a:hover {
-  color: #8490ff;
+  color: white;
 }
 
 @media (max-width: 992px) {

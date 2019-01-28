@@ -2398,7 +2398,7 @@ tbody.collapse.show {
   float: left;
   min-width: 10rem;
   padding: 0.5rem 0;
-  margin: 0.125rem 0 0;
+  margin: 0.125rem 40px 0;
   font-size: 1rem;
   color: #212529;
   text-align: left;
@@ -2430,9 +2430,8 @@ tbody.collapse.show {
 }
 
 .dropdown-item:focus, .dropdown-item:hover {
-  color: #16181b;
+  color: white;
   text-decoration: none;
-  background-color: #f8f9fa;
 }
 
 .dropdown-item.active, .dropdown-item:active {
