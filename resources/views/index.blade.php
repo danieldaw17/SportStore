@@ -10,7 +10,6 @@ Home
 
 @section("content")
 {{-- START CAROUSEL --}}
-<div class="section">
 <div id="carouselIndex" class="carousel slide" data-ride="carousel">
 	<ol class="carousel-indicators">
 		<li data-target="#carouselIndex" data-slide-to="0" class="active">
@@ -146,7 +145,6 @@ Home
 	        <a href="services.html" class="btn btn-primary btn-lg" role="button">View all our products</a>
 	      </div>
 	    </div>
-    </div>
 {{-- END PRODUCTS --}}
 @stop
 

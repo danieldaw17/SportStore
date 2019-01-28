@@ -1799,11 +1799,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   text-decoration: none;
 }
 
-.btn:focus, .btn.focus {
-  outline: 0;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-}
-
 .btn.disabled, .btn:disabled {
   opacity: .65;
 }
@@ -1827,10 +1822,6 @@ fieldset[disabled] a.btn {
   color: #fff;
   background-color: #0069d9;
   border-color: #0062cc;
-}
-
-.btn-primary:focus, .btn-primary.focus {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
 }
 
 .btn-primary.disabled, .btn-primary:disabled {
@@ -4048,20 +4039,18 @@ tbody.collapse.show {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.75rem 1.25rem;
+  padding: 0.5rem 1rem;
   margin-bottom: -1px;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.125);
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
 .list-group-item:first-child {
   border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
 }
 
 .list-group-item:last-child {
   margin-bottom: 0;
-  border-bottom-right-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
 

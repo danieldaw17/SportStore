@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 		@yield("styles")
 		{{-- END CSS --}}
 	</head>
@@ -16,7 +17,7 @@
 			<header class="default-header">
 				<nav class="navbar navbar-expand-lg  navbar-light">
 					<div class="container">
-						  <a class="navbar-brand" href="index.html">
+						  <a class="navbar-brand" href="{{ asset('/') }}">
 						  	<img src="img/logo.png" alt="">
 						  	LOGO
 						  </a>
@@ -57,7 +58,7 @@
 							      </div>
 							    </li>
 							    <li><a href="#team">Supplements</a></li>								
-							    <li><a href="#" data-target="#"><img src="{{ asset('img/login.png') }}" alt="Login" title="Login" class="loginIMG"></a></li>
+							    <li><a href="{{ asset('/login') }}"><img src="{{ asset('img/login.png') }}" alt="Login" title="Login" class="loginIMG"></a></li>
 						    </ul>
 						  </div>						
 					</div>
@@ -65,7 +66,9 @@
 			</header>
 			{{-- END HEADER --}}
 			<div class="container">
-				@yield("content")
+				<div class="section">
+					@yield("content")
+				</div>
 			</div>
 			{{-- START FOOTER --}}
 			<footer class="probootstrap-footer">
