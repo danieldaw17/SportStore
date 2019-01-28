@@ -43,5 +43,32 @@
 
 .dropdown-menu {
 	background-color: #85C1E9;
-	border-top: none;
+	border: none;
+}
+
+.modal-header {
+	display: block;
+}
+
+.modal-footer {
+	display: block;
+}
+
+.dropdown a:focus {
+	color: white;
+}
+
+.input-group-prepend {
+	width: 48px;
+	height: 38px;
+	background-color: #85C1E9;
+}
+
+.modal-footer button {
+	background-color: #85C1E9;
+	color: white;
+}
+
+.register-text {
+	margin-bottom: 0%;
 }

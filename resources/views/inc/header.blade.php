@@ -40,8 +40,9 @@
 					</div>
 				</li>
 				<li><a href="#team">Supplements</a></li>			
-				<li><a href="{{ asset('/login') }}"><img src="{{ asset('img/login.png') }}" alt="Login" title="Login" class="loginIMG"></a></li>
+				<li><a href="#" data-toggle="modal" data-target="#exampleModal"><img src="{{ asset('img/login.png') }}" alt="Login" title="Login" class="loginIMG"></a></li>
 			</ul>
 		</div>
 	</nav>
 </header>
+@include("inc/modal/login")
