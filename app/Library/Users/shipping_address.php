@@ -18,6 +18,7 @@
 		function constructor($id, $roadType, $city, $province, $zipCode,
 			$country, $nif, $userName, $lastName, $user) {
 
+				$this->user = $user;
 				$this->id = $id;
 				$this->roadType = $roadType;
 				$this->city = $city;
@@ -27,7 +28,6 @@
 				$this->nif = $nif;
 				$this->userName = $userName;
 				$this->lastName = $lastName;
-				$this->user = $user;
 		}
 
 		function __GET($attribute) {
@@ -37,25 +37,47 @@
 					return $this->id;
 					break;
 
-				case 'name':
+				case 'roadType':
 					return $this->name;
 					break;
 
 				case 'lastName':
-					return $this->lastName;
+					return $this->roadType;
+					break;
+
+				case 'roadName':
+					return $this->roadName;
+					break;
+
+				case 'city':
+					return $this->city;
+					break;
+
+				case 'province':
+					return $this->province;
+					break;
+
+				case 'zipCode':
+					return $this->zipCode;
+					break;
+
+				case 'country':
+					return $this->country;
 					break;
 
 				case 'nif':
 					return $this->nif;
 					break;
 
-				case 'email':
-					return $this->email;
+				case 'userName':
+					return $this->userName;
 					break;
 
-				case 'user':
-					return $this->user;
+				case 'lastName':
+					return $this->lastName;
 					break;
+
+
 			}
 		}
 
