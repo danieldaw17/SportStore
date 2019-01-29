@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-01-2019 a las 18:24:45
+-- Tiempo de generación: 29-01-2019 a las 20:09:27
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -194,42 +194,28 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(10, '2019_01_28_151809_create_sub_categories_table', 1),
-(11, '2014_10_12_000000_create_users_table', 2),
-(12, '2014_10_12_100000_create_password_resets_table', 2),
-(13, '2019_01_28_151637_create_categories_table', 2),
-(14, '2019_01_28_151325_create_providers_table', 3),
-(15, '2019_01_28_151529_create_sports_table', 3),
-(16, '2019_01_28_153400_create_brands_table', 3),
-(17, '2019_01_28_152239_create_products_table', 4),
-(18, '2019_01_28_154824_create_images_table', 5),
-(19, '2019_01_28_160455_create_users_table', 6),
-(20, '2019_01_28_161010_create_users_information_table', 7),
-(21, '2019_01_28_161232_create_shipping_address_table', 8),
-(22, '2019_01_28_162814_create_billing_address_table', 9),
-(24, '2019_01_28_163015_create_invoices_table', 10),
-(25, '2019_01_28_163415_create_invoice_lines_table', 11),
-(26, '2019_01_28_164041_create_sizes_table', 12),
-(27, '2019_01_28_164421_create_clothes_table', 13),
-(28, '2019_01_28_165009_create_clothes_stock_table', 14),
-(29, '2019_01_28_165213_create_vehicles_table', 15),
-(30, '2019_01_28_165704_create_vehicles_stock_table', 16),
-(31, '2019_01_28_170151_create_accessories_table', 17),
-(32, '2019_01_28_170321_create_accessories_stock_table', 18),
-(33, '2019_01_28_170606_create_supplements_table', 19),
-(34, '2019_01_28_170738_create_supplements_stock_table', 20);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `password_resets`
---
-
-CREATE TABLE `password_resets` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+(1, '2019_01_28_153400_create_brands_table', 1),
+(2, '2019_01_28_151325_create_providers_table', 2),
+(3, '2019_01_28_151529_create_sports_table', 2),
+(4, '2019_01_28_151637_create_categories_table', 3),
+(5, '2019_01_28_152239_create_products_table', 4),
+(6, '2019_01_28_151809_create_sub_categories_table', 5),
+(7, '2019_01_28_154824_create_images_table', 6),
+(8, '2019_01_28_164041_create_sizes_table', 7),
+(9, '2019_01_28_164421_create_clothes_table', 8),
+(10, '2019_01_28_165009_create_clothes_stock_table', 9),
+(11, '2019_01_28_165213_create_vehicles_table', 10),
+(12, '2019_01_28_165704_create_vehicles_stock_table', 11),
+(13, '2019_01_28_170151_create_accessories_table', 12),
+(14, '2019_01_28_170321_create_accessories_stock_table', 13),
+(15, '2019_01_28_170606_create_supplements_table', 14),
+(16, '2019_01_28_170738_create_supplements_stock_table', 15),
+(17, '2019_01_28_160455_create_users_table', 16),
+(18, '2019_01_28_161010_create_users_information_table', 17),
+(19, '2019_01_28_161232_create_shipping_address_table', 18),
+(20, '2019_01_28_162814_create_billing_address_table', 18),
+(21, '2019_01_28_163015_create_invoices_table', 19),
+(22, '2019_01_28_163415_create_invoice_lines_table', 20);
 
 -- --------------------------------------------------------
 
@@ -326,9 +312,9 @@ CREATE TABLE `sports` (
 CREATE TABLE `sub_categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
-  `category` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `category` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -502,12 +488,6 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `password_resets`
---
-ALTER TABLE `password_resets`
-  ADD KEY `password_resets_email_index` (`email`);
-
---
 -- Indices de la tabla `products`
 --
 ALTER TABLE `products`
@@ -546,7 +526,8 @@ ALTER TABLE `sports`
 -- Indices de la tabla `sub_categories`
 --
 ALTER TABLE `sub_categories`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sub_categories_category_foreign` (`category`);
 
 --
 -- Indices de la tabla `supplements`
@@ -644,7 +625,7 @@ ALTER TABLE `invoice_lines`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -775,6 +756,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `shipping_address`
   ADD CONSTRAINT `shipping_address_user_foreign` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
+
+--
+-- Filtros para la tabla `sub_categories`
+--
+ALTER TABLE `sub_categories`
+  ADD CONSTRAINT `sub_categories_category_foreign` FOREIGN KEY (`category`) REFERENCES `categories` (`id`);
 
 --
 -- Filtros para la tabla `supplements`
