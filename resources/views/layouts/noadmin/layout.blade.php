@@ -4,10 +4,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield("title") | SportStore</title>
 		{{-- css --}}
-		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/style.min.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+		<link rel="stylesheet" href="{{ url('css/main.css') }}">
+		<link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ url('css/style.min.css') }}">
+		<link rel="stylesheet" href="{{ url('css/styles.css') }}">
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 		@yield("styles")
 	</head>
@@ -24,9 +24,9 @@
 			@include("inc/footer")
 		</div>
 		{{-- js --}}
-		<script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-		<script src="{{ asset('js/popper.js') }}"></script>
-		<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ url('js/jquery-3.3.1.min.js') }}"></script>
+		<script src="{{ url('js/popper.js') }}"></script>
+		<script src="{{ url('js/bootstrap.min.js') }}"></script>
 		@yield("js")
 	</body>
 </html>
