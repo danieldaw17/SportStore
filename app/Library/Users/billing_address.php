@@ -1,7 +1,7 @@
 <?php
 	namespace App\Library\users;
 
-	class shipping_address {
+	class billing_address {
 
 		private $id;
 		private $roadType;
@@ -78,6 +78,7 @@
 		}
 
 		function __SET($attribute, $newValue) {
+
 			switch($attribute) {
 				case 'id':
 					$this->id = $newValue;
