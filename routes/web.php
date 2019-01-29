@@ -54,13 +54,17 @@ Route::get('user/{id}/{name}',function($id,$name){
 })
 ->where(['id'=>'[0-9]+','name' => '[a-z]+']);
  */
-
+/*
 Route::get('user/profile', 'UserProfileController@show');
-
+ */
 /*Comentarios para la modificacion del routing
  *El codigo de abajo sirve para redireccionar una ruta con una variale
  *return \Redirect::route('/', $username)->with('message', 'State saved correctly!!!');
  *
  */
+Route::get('/user/{username}/userManagment', function () {
+    return ''
+
+});
 
 
