@@ -15,8 +15,8 @@
  * Configurar las rutas para la aplicacion SportStore
  */
 Route::get('/', function () {
+    return view('index');
 
-    return view('welcome');
 });
     //->where('username', '([a-zA-z0-9]+)');
 
