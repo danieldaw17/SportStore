@@ -62,9 +62,7 @@ Route::get('user/profile', 'UserProfileController@show');
  *return \Redirect::route('/', $username)->with('message', 'State saved correctly!!!');
  *
  */
-Route::get('/user/{username}/userManagment', function () {
-    return ''
 
-});
+
 
 
