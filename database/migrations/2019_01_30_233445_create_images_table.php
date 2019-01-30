@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessoriesTable extends Migration
+class CreateImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,14 @@ class CreateAccessoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('accessories', function (Blueprint $table) {
-			$table->integer('id')->unsigned();
-			$table->foreign('id')->references('id')->on('products');
-			$table->enum('gender', ['man', 'woman', 'unisex']);
+        Schema::create('images', function (Blueprint $table) {
+            $table->increments('id');
+			$table->string('name', 50);
+			$table->string('path', 50);
+
+			$table->integer('productId')->unsigned();
+			$table->foreign('productId')->references('id')->on('products');
+
             $table->timestamps();
         });
     }
@@ -28,6 +32,6 @@ class CreateAccessoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accessories');
+        Schema::dropIfExists('images');
     }
 }

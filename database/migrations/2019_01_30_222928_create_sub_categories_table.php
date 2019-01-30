@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSizesTable extends Migration
+class CreateSubCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateSizesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sizes', function (Blueprint $table) {
+        Schema::create('sub_categories', function (Blueprint $table) {
             $table->increments('id');
-			$table->enum('type', ['letter', 'number']);
-			$table->string('value');
-            $table->timestamps();
+			$table->string('name', 30);
+
+			$table->integer('categoryId')->unsigned();
+			$table->foreign('categoryId')->references('id')->on('categories');
+
+			$table->timestamps();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateSizesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sizes');
+        Schema::dropIfExists('sub_categories');
     }
 }

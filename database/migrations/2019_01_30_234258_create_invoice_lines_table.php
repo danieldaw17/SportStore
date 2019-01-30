@@ -16,18 +16,18 @@ class CreateInvoiceLinesTable extends Migration
         Schema::create('invoice_lines', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('line');
-			$table->integer('amount');
-			$table->float('basePrice');
-			$table->integer('category');
-			$table->integer('subcategory');
+			$table->integer('amount', 4);
+			$table->float('basePrice' 7,2);
+			$table->timestamps();
 
-			$table->integer('product')->unsigned();
-			$table->foreign('product')->references('id')->on('products');
+			$table->integer('productId')->unsigned();
+			$table->foreign('productId')->references('id')->on('products');
 
-			$table->integer('invoice')->unsigned();
-			$table->foreign('invoice')->references('id')->on('invoices');
+			$table->integer('invoiceId')->unsigned();
+			$table->foreign('invoiceId')->references('id')->on('invoices');
 
-            $table->timestamps();
+
+
         });
     }
 

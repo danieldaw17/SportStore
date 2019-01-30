@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAccessoriesStockTable extends Migration
+class CreateDeliveriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAccessoriesStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('accessories_stock', function (Blueprint $table) {
+        Schema::create('deliveries', function (Blueprint $table) {
             $table->increments('id');
-
-			$table->integer('amount');
-
-			$table->integer('product')->unsigned();
-			$table->foreign('product')->references('id')->on('products');
+			$table->string('name', 30);
+			$table->float('hoursMax', 7,2);
+			$table->float('price', 7,2);
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAccessoriesStockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accessories_stock');
+        Schema::dropIfExists('deliveries');
     }
 }

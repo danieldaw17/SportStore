@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateClothesStockTable extends Migration
+class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateClothesStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('clothes_stock', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('amount');
-
-			$table->integer('product')->unsigned();
-			$table->foreign('product')->references('id')->on('products');
-
-			$table->integer('size')->unsigned();
-			$table->foreign('size')->references('id')->on('sizes');
-
+			$table->string('nick', 20);
+			$table->string('password', 255);
+			$table->string('name', 25);
+			$table->string('lastName', 25);
+			$table->string('string', 9);
+			$table->string('role', 10);
+			$table->string('email', 255);
             $table->timestamps();
         });
     }
@@ -34,6 +33,6 @@ class CreateClothesStockTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clothes_stock');
+        Schema::dropIfExists('users');
     }
 }
