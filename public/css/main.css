@@ -49,6 +49,7 @@ a, a:focus, a:hover {
     margin-top: 10px;
   }
   .navbar-nav a {
+    float: left;
     padding: 0;
   }
   .navbar-nav li {

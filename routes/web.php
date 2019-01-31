@@ -15,6 +15,7 @@
  * Configurar las rutas para la aplicacion SportStore
  */
 Route::get('/', function () {
+
     return view('index');
 
 });
@@ -37,8 +38,12 @@ Route::get('/sign-up', function () {
 
 });
 Route::get('/sign-in', function () {
-    return "Pagina  de registro del usuario";
+    return view('partials.index');
+});
 
+Route::get('/product', function () {
+    return view('partials.product-detail');
+ visual-feature
 });
 Route::get('/user/{username}', function ($username) {
     //aqui tiene que estar la vista del usuario con su informacion
