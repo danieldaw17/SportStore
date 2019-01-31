@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2019 a las 15:24:26
+-- Tiempo de generación: 31-01-2019 a las 19:44:41
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -64,6 +64,7 @@ CREATE TABLE `brands` (
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL,
+  `imagePath` varchar(100) NOT NULL,
   `taxes` varchar(7) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -147,18 +148,18 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(53, '2019_01_30_222538_create_categories_table', 1),
-(54, '2019_01_30_222928_create_sub_categories_table', 1),
-(55, '2019_01_30_223836_create_brands_table', 1),
-(56, '2019_01_30_224031_create_deliveries_table', 1),
-(57, '2019_01_30_224240_create_sports_table', 1),
-(58, '2019_01_30_224920_create_users_table', 1),
-(59, '2019_01_30_225227_create_addresses_table', 1),
-(60, '2019_01_30_232152_create_products_table', 1),
-(61, '2019_01_30_233445_create_images_table', 1),
-(62, '2019_01_30_233738_create_stocks_table', 1),
-(63, '2019_01_30_234041_create_invoices_table', 1),
-(64, '2019_01_30_234258_create_invoice_lines_table', 1);
+(77, '2019_01_30_222538_create_categories_table', 1),
+(78, '2019_01_30_222928_create_sub_categories_table', 1),
+(79, '2019_01_30_223836_create_brands_table', 1),
+(80, '2019_01_30_224031_create_deliveries_table', 1),
+(81, '2019_01_30_224240_create_sports_table', 1),
+(82, '2019_01_30_224920_create_users_table', 1),
+(83, '2019_01_30_225227_create_addresses_table', 1),
+(84, '2019_01_30_232152_create_products_table', 1),
+(85, '2019_01_30_233445_create_images_table', 1),
+(86, '2019_01_30_233738_create_stocks_table', 1),
+(87, '2019_01_30_234041_create_invoices_table', 1),
+(88, '2019_01_30_234258_create_invoice_lines_table', 1);
 
 -- --------------------------------------------------------
 
@@ -218,6 +219,7 @@ CREATE TABLE `stocks` (
 CREATE TABLE `sub_categories` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(30) NOT NULL,
+  `imagePath` varchar(100) NOT NULL,
   `categoryId` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -385,7 +387,7 @@ ALTER TABLE `invoice_lines`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 
 --
 -- AUTO_INCREMENT de la tabla `products`

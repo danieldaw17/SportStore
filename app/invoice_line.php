@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class invoice_line extends Model
+class Invoice_line extends Model
 {
     //
 }
