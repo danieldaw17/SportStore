@@ -15,14 +15,17 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-			$table->integer('userId');
 			$table->enum('roadType', ['paseo', 'calle', 'avenida', 'callejon']);
-			$table->string('roadName', 70);
-			$table->string('city', 40);
-			$table->string('province', 40);
-			$table->integer('zipCode', 10);
-			$table->string('country', 25);
+			$table->string('roadName',70);
+			$table->string('city',40);
+			$table->string('province',40);
+			$table->integer('zipCode');
+			$table->string('country',25);
 			$table->enum('typeAddress', ['billing', 'shipping']);
+
+			$table->integer('userId')->unsigned();
+			$table->foreign('userId')->references('id')->on('users');
+
 			$table->timestamps();
         });
     }

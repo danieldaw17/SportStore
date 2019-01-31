@@ -16,18 +16,18 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
 			$table->string('name', 100);
-			$table->longText('description');
+			$table->text('description');
 			$table->string('shortDescription', 50);
 			$table->float('basePrice', 7,2);
-			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable();
-			$table->string('typeSupplement', 50)->nullable();
-			$table->float('volume', 7,2)->nullable();
-			$table->integer('shifts', 2)->nullable();
-			$table->integer('wheelsAmount', 1)->nullable();
-			$table->float('weight', 7,2)->nullable();
+			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable()->change();
+			$table->string('typeSupplement', 50)->nullable()->change();
+			$table->float('volume', 7,2)->nullable()->change();
+			$table->integer('shifts', 2)->nullable()->change();
+			$table->integer('wheelsAmount', 1)->nullable()->change();
+			$table->float('weight', 7,2)->nullable()->change();
 
 			$table->integer('subCategoryId')->unsigned();
-			$table->foreign('subCategoryId')->references('id')->on('subCategories');
+			$table->foreign('subCategoryId')->references('id')->on('sub_categories');
 
 			$table->integer('deliveryId')->unsigned();
 			$table->foreign('deliveryId')->references('id')->on('deliveries');

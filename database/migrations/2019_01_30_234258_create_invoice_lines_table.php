@@ -16,8 +16,8 @@ class CreateInvoiceLinesTable extends Migration
         Schema::create('invoice_lines', function (Blueprint $table) {
             $table->increments('id');
 			$table->integer('line');
-			$table->integer('amount', 4);
-			$table->float('basePrice' 7,2);
+			$table->integer('amount');
+			$table->float('basePrice', 7,2);
 			$table->timestamps();
 
 			$table->integer('productId')->unsigned();
