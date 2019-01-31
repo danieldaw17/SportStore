@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2019 a las 19:44:41
+-- Tiempo de generación: 31-01-2019 a las 20:49:09
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -111,7 +111,8 @@ CREATE TABLE `invoices` (
   `totalPrice` double(7,2) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `userId` int(10) UNSIGNED NOT NULL
+  `userId` int(10) UNSIGNED NOT NULL,
+  `deliveryId` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -148,18 +149,18 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(77, '2019_01_30_222538_create_categories_table', 1),
-(78, '2019_01_30_222928_create_sub_categories_table', 1),
-(79, '2019_01_30_223836_create_brands_table', 1),
-(80, '2019_01_30_224031_create_deliveries_table', 1),
-(81, '2019_01_30_224240_create_sports_table', 1),
-(82, '2019_01_30_224920_create_users_table', 1),
-(83, '2019_01_30_225227_create_addresses_table', 1),
-(84, '2019_01_30_232152_create_products_table', 1),
-(85, '2019_01_30_233445_create_images_table', 1),
-(86, '2019_01_30_233738_create_stocks_table', 1),
-(87, '2019_01_30_234041_create_invoices_table', 1),
-(88, '2019_01_30_234258_create_invoice_lines_table', 1);
+(89, '2019_01_30_222538_create_categories_table', 1),
+(90, '2019_01_30_222928_create_sub_categories_table', 1),
+(91, '2019_01_30_223836_create_brands_table', 1),
+(92, '2019_01_30_224031_create_deliveries_table', 1),
+(93, '2019_01_30_224240_create_sports_table', 1),
+(94, '2019_01_30_224920_create_users_table', 1),
+(95, '2019_01_30_225227_create_addresses_table', 1),
+(96, '2019_01_30_232152_create_products_table', 1),
+(97, '2019_01_30_233445_create_images_table', 1),
+(98, '2019_01_30_233738_create_stocks_table', 1),
+(99, '2019_01_30_234041_create_invoices_table', 1),
+(100, '2019_01_30_234258_create_invoice_lines_table', 1);
 
 -- --------------------------------------------------------
 
@@ -285,7 +286,8 @@ ALTER TABLE `images`
 --
 ALTER TABLE `invoices`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `invoices_userid_foreign` (`userId`);
+  ADD KEY `invoices_userid_foreign` (`userId`),
+  ADD KEY `invoices_deliveryid_foreign` (`deliveryId`);
 
 --
 -- Indices de la tabla `invoice_lines`
@@ -387,7 +389,7 @@ ALTER TABLE `invoice_lines`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -439,6 +441,7 @@ ALTER TABLE `images`
 -- Filtros para la tabla `invoices`
 --
 ALTER TABLE `invoices`
+  ADD CONSTRAINT `invoices_deliveryid_foreign` FOREIGN KEY (`deliveryId`) REFERENCES `deliveries` (`id`),
   ADD CONSTRAINT `invoices_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 --

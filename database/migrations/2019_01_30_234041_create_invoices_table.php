@@ -20,6 +20,9 @@ class CreateInvoicesTable extends Migration
 
 			$table->integer('userId')->unsigned();
 			$table->foreign('userId')->references('id')->on('users');
+
+			$table->integer('deliveryId')->unsigned();
+			$table->foreign('deliveryId')->references('id')->on('deliveries');
         });
     }
 
