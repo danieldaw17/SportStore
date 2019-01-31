@@ -84,3 +84,26 @@
   margin-bottom: 5px;
   margin-top: -2px;
 }
+
+.textHeader {
+    margin-bottom: 3%;
+    margin-left: 15px;
+    margin-top: -3%;
+}
+
+.service {
+	display: block;
+	max-height: 432px;
+	height: 90%;
+	margin-bottom: 30%;
+}
+
+li.login .dropdown-menu{
+	margin: 0.125rem -56px 0;
+}
+
+@media (max-width: 768px){
+	li.login .dropdown-menu{
+		margin: 0.125rem 40px 0;
+	}
+}

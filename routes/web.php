@@ -15,6 +15,22 @@ Route::get('/', function () {
     return view('partials.index');
 });
 
-Route::get('/product', function () {
+// Pasar nombre de la categoria, subcategoria y producto (sql)
+Route::get('/category/subcategorie/product', function () {
     return view('partials.product-detail');
+});
+
+// Pasar nombre de la categoria y subcategoria (sql)
+Route::get('/category', function () {
+    return view('partials.subcategories');
+});
+
+// Pasar nombre de la categoria, subcategoria (sql)
+Route::get('/category/subcategorie/products', function () {
+    return view('partials.products');
+});
+
+// Pasar nombre de la categoria, subcategoria (sql)
+Route::get('/profile', function () {
+    return view('partials.products');
 });
