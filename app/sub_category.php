@@ -9,4 +9,8 @@ class Sub_category extends Model
     public function categories() {
 		return $this->belongsTo('App\Category');
 	}
+
+	public function products() {
+		return $this->hasMany('App\Product');
+	}
 }

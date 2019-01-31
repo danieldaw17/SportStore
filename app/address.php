@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    //
+	public function users() {
+		return $this->belogsTo('App\User');
+	}
 }
