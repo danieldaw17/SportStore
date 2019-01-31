@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('partials.index');
+});
+
+Route::get('/product', function () {
+    return view('partials.product-detail');
 });

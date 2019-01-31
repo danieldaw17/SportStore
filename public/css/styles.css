@@ -7,10 +7,15 @@
 	width: 100%;
 }
 
-.headerweb {
+.logo {
+	display: block;
 	margin: 0 auto;
+	height: 150px;
+}
+
+.headerweb {
 	width: 100%;
-	height: 50px;
+	height: auto;
 	background-color: #AED6F1;
 }
 

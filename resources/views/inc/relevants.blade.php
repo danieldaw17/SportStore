@@ -1,5 +1,7 @@
 <div class="row probootstrap-gutter60">
 	<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
+		{{-- Pasar id del producto --}}
+		<a href="{{ url('product') }}">
 		<div class="service hover_service text-center">
 			<div class="imgProduct">
 				<img src="img/login.png">
@@ -9,6 +11,7 @@
 				<p>short description</p>
 			</div>  
 		</div>
+		</a>
 	</div>
 	<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
 		<div class="service hover_service text-center">
