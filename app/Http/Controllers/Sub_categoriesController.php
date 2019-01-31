@@ -14,11 +14,9 @@ class Sub_CategoriesController extends Controller
 			return view('partials.subcategories', array('categories'=>$categories));
     }
 
-
-
 	public function edit($subCategoryId)
 	{
-
+		
 			// VISTA DE EDITAR SUBCATEGORIA return view('partials.subcategories', array('subcategory'=>$subCategory));*/
     }
 
