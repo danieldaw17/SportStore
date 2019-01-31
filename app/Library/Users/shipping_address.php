@@ -1,7 +1,7 @@
 <?php
 	namespace App\Library\users;
 
-	class user_Information {
+	class shipping_address {
 
 		private $id;
 		private $roadType;
@@ -15,9 +15,10 @@
 		private $lastName;
 		private $user;
 
-		function constructor($id, $roadType, $city, $province, $zipCode,
+		function __construct($id, $roadType, $city, $province, $zipCode,
 			$country, $nif, $userName, $lastName, $user) {
 
+				$this->user = $user;
 				$this->id = $id;
 				$this->roadType = $roadType;
 				$this->city = $city;
@@ -27,7 +28,6 @@
 				$this->nif = $nif;
 				$this->userName = $userName;
 				$this->lastName = $lastName;
-				$this->user = $user;
 		}
 
 		function __GET($attribute) {
@@ -37,53 +37,86 @@
 					return $this->id;
 					break;
 
-				case 'name':
-					return $this->name;
+				case 'roadType':
+					return $this->roadType;
 					break;
 
-				case 'lastName':
-					return $this->lastName;
+				case 'roadName':
+					return $this->roadName;
+					break;
+
+				case 'city':
+					return $this->city;
+					break;
+
+				case 'province':
+					return $this->province;
+					break;
+
+				case 'zipCode':
+					return $this->zipCode;
+					break;
+
+				case 'country':
+					return $this->country;
 					break;
 
 				case 'nif':
 					return $this->nif;
 					break;
 
-				case 'email':
-					return $this->email;
+				case 'userName':
+					return $this->userName;
 					break;
 
-				case 'user':
-					return $this->user;
+				case 'lastName':
+					return $this->lastName;
 					break;
+
+
 			}
 		}
 
 		function __SET($attribute, $newValue) {
-
 			switch($attribute) {
 				case 'id':
-					return $this->id = $newValue;
+					$this->id = $newValue;
 					break;
 
-				case 'name':
-					return $this->name = $newValue;
+				case 'roadType':
+					$this->roadType = $newValue;
 					break;
 
-				case 'lastName':
-					return $this->lastName = $newValue;
+				case 'roadName':
+					$this->roadName = $newValue;
+					break;
+
+				case 'city':
+					$this->city = $newValue;
+					break;
+
+				case 'province':
+					$this->province = $newValue;
+					break;
+
+				case 'zipCode':
+					$this->zipCode = $newValue;
+					break;
+
+				case 'country':
+					$this->country = $newValue;
 					break;
 
 				case 'nif':
-					return $this->nif = $newValue;
+					$this->nif = $newValue;
 					break;
 
-				case 'email':
-					return $this->email = $newValue;
+				case 'userName':
+					$this->userName = $newValue;
 					break;
 
-				case 'user':
-					return $this->user = $newValue;
+				case 'lastName':
+					$this->lastName = $newValue;
 					break;
 			}
 		}

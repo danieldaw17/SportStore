@@ -10,7 +10,7 @@
 		private $email;
 		private $user;
 
-		function constructor($id, $name, $lastName, $nif, $email, $user) {
+		function __construct($id, $name, $lastName, $nif, $email, $user) {
 			$this->id = $id;
 			$this->name = $name;
 			$this->lastName = $lastName;
@@ -52,27 +52,27 @@
 
 			switch($attribute) {
 				case 'id':
-					return $this->id = $newValue;
+					$this->id = $newValue;
 					break;
 
 				case 'name':
-					return $this->name = $newValue;
+					$this->name = $newValue;
 					break;
 
 				case 'lastName':
-					return $this->lastName = $newValue;
+					$this->lastName = $newValue;
 					break;
 
 				case 'nif':
-					return $this->nif = $newValue;
+					$this->nif = $newValue;
 					break;
 
 				case 'email':
-					return $this->email = $newValue;
+					$this->email = $newValue;
 					break;
 
 				case 'user':
-					return $this->user = $newValue;
+					$this->user = $newValue;
 					break;
 			}
 		}

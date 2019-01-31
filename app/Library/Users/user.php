@@ -8,7 +8,7 @@
 		private $password;
 		private $role;
 
-		function constructor($id, $nick, $password, $role) {
+		function __construct($id, $nick, $password, $role) {
 			$this->id = $id;
 			$this->nick = $nick;
 			$this->password = $password;
