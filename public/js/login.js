@@ -9,8 +9,8 @@ function validateLogin(){
 
 	// Login
 	// Email
-	var fieldEmailLogin = document.getElementById("emailLogin");
-	var emailLogin = document.getElementById("emailLogin").value;
+	var fieldEmailLogin = document.getElementById("email");
+	var emailLogin = document.getElementById("email").value;
 	if(emailLogin == null || emailLogin.length == 0 || emailLogin.trim()==""){
 		var error = document.getElementById("errorEmailLogin");
 		error.innerHTML = fieldNull;

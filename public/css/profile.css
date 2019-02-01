@@ -1,0 +1,15 @@
+.space {
+  width: 100%;
+}
+
+.info h1 {
+  margin-bottom: 3%;
+}
+
+span[id^='error']{
+	color: red;
+}
+
+#changePass {
+	display: none;
+}

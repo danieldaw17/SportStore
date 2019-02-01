@@ -88,6 +88,7 @@ Route::get('/subcategory/{subCategoryId}/product/{productId}', function () {
     //Mostrara un producto completo apartir de su id viniendo desde la url
 });
 
+
 // Pasar nombre de la categoria, subcategoria (sql)
 Route::get('/user/{userId}', function () {
     return "hola";
