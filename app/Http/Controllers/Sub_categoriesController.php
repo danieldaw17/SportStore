@@ -19,12 +19,12 @@ class Sub_CategoriesController extends Controller
 
 	}
 
-	public function store($subCategoryData) { //recibira un array asociativo con los datos de la subcategoria
+	public function store(Request $request) { //recibira un array asociativo con los datos de la subcategoria
 		$subCategory = new Sub_category();
 
-		$subCategory->name = $subCategoryData['name'];
-		$subCategory->imagePath = $subCategoryData['imagePath'];
-		$subCategory->categoryId = $subCategoryData['categoryId'];
+		$subCategory->name = $request->input('name');
+		$subCategory->imagePath = $request->input('imagePath');
+		$subCategory->categoryId = $request->input('categoryId');
 
 		$subCategory->save();
 	}
