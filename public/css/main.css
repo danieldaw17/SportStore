@@ -62,16 +62,14 @@ a, a:focus, a:hover {
   width: 100% !important;
 }
 
-@media (min-width: 768px) {
-  .dropdown .dropdown-menu {
-    opacity: 0;
-    transition: all 200ms ease-in;
-  }
-  .dropdown:hover .dropdown-menu {
-    display: block;
-    font-size:14px;
-    opacity: 1;
-  }
+.dropdown .dropdown-menu {
+  opacity: 0;
+  transition: all 200ms ease-in;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+  font-size:14px;
+  opacity: 1;
 }
 
 .dropdown-menu {

@@ -10,7 +10,8 @@
 		<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 			<ul class="navbar-nav">
 				<li class="dropdown">
-					<a href="#" id="navbardrop" data-toggle="dropdown">
+					{{-- Pasar id de la categoria --}}
+					<a href="{{ url('category') }}" id="navbardrop">
 						Clothes
 					</a>
 					<div class="dropdown-menu">
@@ -20,7 +21,8 @@
 					</div>
 				</li>	
 				<li class="dropdown">
-					<a href="#" id="navbardrop" data-toggle="dropdown">
+					{{-- Pasar id de la categoria --}}
+					<a href="{{ url('category') }}" id="navbardrop">
 						Vehicles
 					</a>
 					<div class="dropdown-menu">
@@ -30,7 +32,8 @@
 					</div>
 				</li>
 				<li class="dropdown">
-					<a href="#" id="navbardrop" data-toggle="dropdown">
+					{{-- Pasar id de la categoria --}}
+					<a href="{{ url('category') }}" id="navbardrop">
 						Accesories
 					</a>
 					<div class="dropdown-menu">
@@ -39,9 +42,27 @@
 						<a class="dropdown-item" href="#">Unisex</a>
 					</div>
 				</li>
-				<li><a href="#team">Supplements</a></li>			
-				<li><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
+				<li>
+					{{-- Pasar id de la categoria --}}
+					<a href="{{ url('category') }}" id="navbardrop">
+					Supplements
+					</a>
+				</li>	
 				<li><a href="#" data-toggle="modal" data-target="#shoppingCart"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"></a></li>
+				{{-- Si no existe la sesion del usuario 	
+				<li><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
+				--}}
+				{{-- Si existe la sesion del usuario --}}
+				<li class="dropdown login">
+					<a href="#" id="navbardrop">
+						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{{ url('profile') }}">My perfil</a>
+						<a class="dropdown-item" href="#">My shopping</a>
+						<a class="dropdown-item" href="#">Log out</a>
+					</div>
+				</li>
 			</ul>
 		</div>
 	</nav>
