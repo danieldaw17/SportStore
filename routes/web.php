@@ -47,12 +47,13 @@ Route::get('/category/subcategorie/product', function () {
  
 });
 
-Route::get('/user/{username}', function ($username) {
+/*Route::get('/user/{username}', function ($username) {
     //aqui tiene que estar la vista del usuario con su informacion
     return 'el usuario es ' . $username;
 
 })
     ->where('username', '[a-zA-z0-9]+');
+    */
 /*ruta opcional
 Route::get('user/{id}/{name}',function($id,$name){
 
@@ -76,17 +77,21 @@ Route::get('user/profile', 'UserProfileController@show');
 
 
 // Pasar nombre de la categoria y subcategoria (sql)
-Route::get('/category', function () {
-    return view('partials.subcategories');
+Route::get('/subcategory/{subCategoryId}', function () {
+
+    //esto muestra todos los productos de una subcategoria 
+    
 });
 
 // Pasar nombre de la categoria, subcategoria (sql)
-Route::get('/category/subcategorie/products', function () {
-    return view('partials.products');
+Route::get('/subcategory/{subCategoryId}/product/{productId}', function () {
+    //Mostrara un producto completo apartir de su id viniendo desde la url
 });
 
 // Pasar nombre de la categoria, subcategoria (sql)
-Route::get('/profile', function () {
-    return view('partials.products');
+Route::get('/user/{userId}', function () {
+    return "hola";
+    //pagina que muestra el perfil con la id de ese usuario
 });
 
+//Route::post('/category/{subcategory}','subcategoryController@postIndex'=>)
