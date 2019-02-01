@@ -14,7 +14,11 @@ class ProductsController extends Controller
      */
     public function index($subCategoryId)
 	{
-		$products = Product::where('subCategoryId', $subCategoryId)->get();
+		if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
+			abort(404);
+		}
+
+
 		return view('partials.products', array('products'=>$products));
     }
 
@@ -25,7 +29,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //
+        //llamar a vista de crear producto
     }
 
     /**
@@ -34,9 +38,26 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Product $request)
     {
-        //
+		$product = new Product();
+        $product->name = $request->input('name');
+		$product->description = $request->input('description');
+		$product->shortDescription = $request->input('shortDescription');
+		$product->basePrice = $request->input('basePrice');
+		$product->gender = $request->input('gender');
+		$product->typeSupplement = $request->input('typeSupplement');
+		$product->volume = $request->input('volume');
+		$product->shifts = $request->input('shifts');
+		$product->wheelsAmount = $request->input('wheelsAmount');
+		$product->weight = $request->input('weight');
+		$product->subCategory = $request->input('subCategory');
+		$product->brandId = $request->input('brandId');
+		$product->sportId = $request->input('sportId');
+
+		$product->save();
+
+
     }
 
     /**
@@ -57,9 +78,13 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($productId)
     {
-        //
+		if (!$product = Sub_category::find($productId)) {
+			abort(404);
+		}
+
+		//llamar a vista de editar producto
     }
 
     /**
@@ -69,7 +94,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Product $request, $id)
     {
         //
     }
