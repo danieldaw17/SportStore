@@ -19,12 +19,12 @@ class CreateProductsTable extends Migration
 			$table->text('description');
 			$table->string('shortDescription', 50);
 			$table->float('basePrice', 7,2);
-			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable()->change();
-			$table->string('typeSupplement', 50)->nullable()->change();
-			$table->float('volume', 7,2)->nullable()->change();
-			$table->integer('shifts', 2)->nullable()->change();
-			$table->integer('wheelsAmount', 1)->nullable()->change();
-			$table->float('weight', 7,2)->nullable()->change();
+			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable();
+			$table->string('typeSupplement', 50)->nullable();
+			$table->float('volume', 7,2)->nullable();
+			$table->integer('shifts')->nullable();
+			$table->integer('wheelsAmount')->nullable();
+			$table->float('weight', 7,2)->nullable();
 
 			$table->integer('subCategoryId')->unsigned();
 			$table->foreign('subCategoryId')->references('id')->on('sub_categories');

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 31-01-2019 a las 20:49:09
+-- Tiempo de generación: 01-02-2019 a las 17:34:40
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -149,18 +149,18 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(89, '2019_01_30_222538_create_categories_table', 1),
-(90, '2019_01_30_222928_create_sub_categories_table', 1),
-(91, '2019_01_30_223836_create_brands_table', 1),
-(92, '2019_01_30_224031_create_deliveries_table', 1),
-(93, '2019_01_30_224240_create_sports_table', 1),
-(94, '2019_01_30_224920_create_users_table', 1),
-(95, '2019_01_30_225227_create_addresses_table', 1),
-(96, '2019_01_30_232152_create_products_table', 1),
-(97, '2019_01_30_233445_create_images_table', 1),
-(98, '2019_01_30_233738_create_stocks_table', 1),
-(99, '2019_01_30_234041_create_invoices_table', 1),
-(100, '2019_01_30_234258_create_invoice_lines_table', 1);
+(127, '2019_01_30_222538_create_categories_table', 1),
+(128, '2019_01_30_222928_create_sub_categories_table', 1),
+(129, '2019_01_30_223836_create_brands_table', 1),
+(130, '2019_01_30_224031_create_deliveries_table', 1),
+(131, '2019_01_30_224240_create_sports_table', 1),
+(132, '2019_01_30_224920_create_users_table', 1),
+(133, '2019_01_30_225227_create_addresses_table', 1),
+(134, '2019_01_30_232152_create_products_table', 1),
+(135, '2019_01_30_233445_create_images_table', 1),
+(136, '2019_01_30_233738_create_stocks_table', 1),
+(137, '2019_01_30_234041_create_invoices_table', 1),
+(138, '2019_01_30_234258_create_invoice_lines_table', 1);
 
 -- --------------------------------------------------------
 
@@ -174,6 +174,12 @@ CREATE TABLE `products` (
   `description` text NOT NULL,
   `shortDescription` varchar(50) NOT NULL,
   `basePrice` double(7,2) NOT NULL,
+  `gender` enum('man','woman','unisex') DEFAULT NULL,
+  `typeSupplement` varchar(50) DEFAULT NULL,
+  `volume` double(7,2) DEFAULT NULL,
+  `shifts` int(11) DEFAULT NULL,
+  `wheelsAmount` int(11) DEFAULT NULL,
+  `weight` double(7,2) DEFAULT NULL,
   `subCategoryId` int(10) UNSIGNED NOT NULL,
   `deliveryId` int(10) UNSIGNED NOT NULL,
   `brandId` int(10) UNSIGNED NOT NULL,
@@ -389,7 +395,7 @@ ALTER TABLE `invoice_lines`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
