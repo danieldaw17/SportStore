@@ -30,7 +30,7 @@ Route::get('/category/subcategorie/products', function () {
     return view('partials.products');
 });
 
-// Pasar nombre de la categoria, subcategoria (sql)
+// Pasar id del usuario
 Route::get('/profile', function () {
-    return view('partials.products');
+    return view('partials.profile');
 });
