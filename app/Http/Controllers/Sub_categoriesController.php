@@ -10,25 +10,34 @@ class Sub_CategoriesController extends Controller
 
 	public function index($categoryId)
 	{
-        	$categories = Sub_category::where('categoryId', $categoryId)->get();
-			return view('partials.subcategories', array('categories'=>$categories));
+        	$subCategories = Sub_category::where('categoryId', $categoryId)->get();
+			return view('partials.subcategories', array('subCategories'=>$subCategories));
     }
 
 	public function edit($subCategoryId)
 	{
-		
-			// VISTA DE EDITAR SUBCATEGORIA return view('partials.subcategories', array('subcategory'=>$subCategory));*/
-    }
 
-	public function show($subCategoryId, $categoryId)
+	}
+
+	public function store($subCategoryData) { //recibira un array asociativo con los datos de la subcategoria
+		$subCategory = new Sub_category();
+
+		$subCategory->name = $subCategoryData['name'];
+		$subCategory->imagePath = $subCategoryData['imagePath'];
+		$subCategory->categoryId = $subCategoryData['categoryId'];
+
+		$subCategory->save();
+	}
+
+	public function show($subCategoryId)
 	{
-        	$subCategory = Sub_category::find($subCategoryId);
-			// VISTA DE EDITAR SUBCATEGORIA return view('partials.subcategories', array('subcategory'=>$subCategory));
+        	$subCategory = Sub_category::findOrFail($subCategoryId);
+			return view('partials.subcategories', array('subcategory'=>$subCategory));
     }
 
 	public function update($subCategoryId, $auxSubCategory)
 	{
-		$subCategory = Sub_category::find($subCategoryId);
+		$subCategory = Sub_category::findOrFail($subCategoryId);
 
 		$subCategory->name = $auxSubCategory->name;
 		$subCategory->imagePath = $auxSubCategory->imagePath;
@@ -39,13 +48,7 @@ class Sub_CategoriesController extends Controller
 
 	public function destroy($subCategoryId)
 	{
-        	$subCategory = Sub_category::find($subCategoryId);
+        	$subCategory = Sub_category::findOrFail($subCategoryId);
 			$subCategory->delete();
-			// VISTA DE EDITAR SUBCATEGORIA return view('partials.subcategories', array('subcategory'=>$subCategory));
     }
-
-
-
-
-
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class ProductsController extends Controller
 {
@@ -11,9 +12,10 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($subCategoryId)
 	{
-        	
+		$products = Product::where('subCategoryId', $subCategoryId)->get();
+		return view('partials.products', array('products'=>$products));
     }
 
     /**
@@ -43,9 +45,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($productId)
     {
-        //
+		$product = Product::findOrFail($productId);
+		return view('partials.product-detail', array('product'=>$product));
     }
 
     /**
