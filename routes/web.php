@@ -34,3 +34,8 @@ Route::get('/category/subcategorie/products', function () {
 Route::get('/profile', function () {
     return view('partials.profile');
 });
+
+// Pasar id del usuario
+Route::get('/user/id/mycart', function () {
+    return view('partials.cart');
+});

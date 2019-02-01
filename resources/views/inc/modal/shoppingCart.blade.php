@@ -20,17 +20,37 @@
                         <tr>
                         	<td>1</td>
                         	<td>Camiseta termica</td>
-                        	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product"></td> {{-- title sql title product --}}
-                        	<td>L</td>
-                        	<td>10,90€</td>
-                        	<td>1</td>
-                        	<td>10,90€</td>
+                        	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCartModal"></td> {{-- title sql title product --}}
+                        	<td>
+                                <select>
+                                    <option>XXL</option>
+                                    <option>XL</option>
+                                    <option>L</option>
+                                    <option>M</option>
+                                    <option>S</option>
+                                    <option>XS</option>
+                                </select>   
+                            </td>
+                        	<td>
+                                <span id="unitPriceModal">10</span>
+                            </td>
+                        	<td>
+                                <select id="quantityModal" onchange="totalModal()">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+                            </td>
+                        	<td>
+                                <span id="totalModal">0€</span>
+                            </td>
                         </tr>
                     </table>
                 </div>
 			</div>				
 			<div class="modal-footer text-center">
-				<input type="submit" name="sendBuy" value="Confirm buy" class="btn btn-default waves-effect waves-light">
+				<a href="{{ url('user/id/mycart') }}"><input type="submit" name="sendBuy" value="Confirm buy" class="btn btn-default waves-effect waves-light"></a>
 			</div>
 		</div>
 	</div>
