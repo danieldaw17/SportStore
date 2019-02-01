@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-02-2019 a las 17:34:40
+-- Tiempo de generación: 01-02-2019 a las 17:46:47
 -- Versión del servidor: 10.1.37-MariaDB
 -- Versión de PHP: 7.3.0
 
@@ -149,18 +149,18 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(127, '2019_01_30_222538_create_categories_table', 1),
-(128, '2019_01_30_222928_create_sub_categories_table', 1),
-(129, '2019_01_30_223836_create_brands_table', 1),
-(130, '2019_01_30_224031_create_deliveries_table', 1),
-(131, '2019_01_30_224240_create_sports_table', 1),
-(132, '2019_01_30_224920_create_users_table', 1),
-(133, '2019_01_30_225227_create_addresses_table', 1),
-(134, '2019_01_30_232152_create_products_table', 1),
-(135, '2019_01_30_233445_create_images_table', 1),
-(136, '2019_01_30_233738_create_stocks_table', 1),
-(137, '2019_01_30_234041_create_invoices_table', 1),
-(138, '2019_01_30_234258_create_invoice_lines_table', 1);
+(139, '2019_01_30_222538_create_categories_table', 1),
+(140, '2019_01_30_222928_create_sub_categories_table', 1),
+(141, '2019_01_30_223836_create_brands_table', 1),
+(142, '2019_01_30_224031_create_deliveries_table', 1),
+(143, '2019_01_30_224240_create_sports_table', 1),
+(144, '2019_01_30_224920_create_users_table', 1),
+(145, '2019_01_30_225227_create_addresses_table', 1),
+(146, '2019_01_30_232152_create_products_table', 1),
+(147, '2019_01_30_233445_create_images_table', 1),
+(148, '2019_01_30_233738_create_stocks_table', 1),
+(149, '2019_01_30_234041_create_invoices_table', 1),
+(150, '2019_01_30_234258_create_invoice_lines_table', 1);
 
 -- --------------------------------------------------------
 
@@ -181,7 +181,6 @@ CREATE TABLE `products` (
   `wheelsAmount` int(11) DEFAULT NULL,
   `weight` double(7,2) DEFAULT NULL,
   `subCategoryId` int(10) UNSIGNED NOT NULL,
-  `deliveryId` int(10) UNSIGNED NOT NULL,
   `brandId` int(10) UNSIGNED NOT NULL,
   `sportId` int(10) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -315,7 +314,6 @@ ALTER TABLE `migrations`
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
   ADD KEY `products_subcategoryid_foreign` (`subCategoryId`),
-  ADD KEY `products_deliveryid_foreign` (`deliveryId`),
   ADD KEY `products_brandid_foreign` (`brandId`),
   ADD KEY `products_sportid_foreign` (`sportId`);
 
@@ -395,7 +393,7 @@ ALTER TABLE `invoice_lines`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=151;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -462,7 +460,6 @@ ALTER TABLE `invoice_lines`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_brandid_foreign` FOREIGN KEY (`brandId`) REFERENCES `brands` (`id`),
-  ADD CONSTRAINT `products_deliveryid_foreign` FOREIGN KEY (`deliveryId`) REFERENCES `deliveries` (`id`),
   ADD CONSTRAINT `products_sportid_foreign` FOREIGN KEY (`sportId`) REFERENCES `sports` (`id`),
   ADD CONSTRAINT `products_subcategoryid_foreign` FOREIGN KEY (`subCategoryId`) REFERENCES `sub_categories` (`id`);
 
