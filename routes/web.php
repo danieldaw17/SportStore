@@ -16,7 +16,7 @@
  */
 Route::get('/', function () {
 
-    return view('index');
+    return view('partials.index');
 
 });
     //->where('username', '([a-zA-z0-9]+)');
