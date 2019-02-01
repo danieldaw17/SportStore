@@ -7,7 +7,7 @@
       <div class="input-group-prepend">
         <span class="list-group-item"><i class="fa fa-user prefix grey-text fa-1g" aria-hidden="true"></i></span>
       </div>
-    <input type="text" id="nameInfoProfile" name="nameInfoProfile" class="form-control" placeholder="Name">
+    <input type="text" id="nameInfoProfile" name="name" class="form-control" placeholder="Name">
     </div>
     <span id="errorNameInfoProfile"></span>
   </div>
@@ -17,7 +17,7 @@
       <div class="input-group-prepend">
         <span class="list-group-item"><i class="fa fa-user prefix grey-text fa-1g" aria-hidden="true"></i></span>
       </div>
-    <input type="text" id="surnamesInfoProfile" name="surnamesInfoProfile" class="form-control" placeholder="Surnames">
+    <input type="text" id="surnamesInfoProfile" name="lastName" class="form-control" placeholder="Surnames">
     </div>
     <span id="errorSurnamesInfoProfile"></span>
   </div>
@@ -27,7 +27,7 @@
       <div class="input-group-prepend">
         <span class="list-group-item"><i class="fa fa-id-card prefix grey-text fa-1g" aria-hidden="true"></i></span>
       </div>
-    <input type="text" id="nifInfoProfile" name="nifInfoProfile" class="form-control" placeholder="NIF (Ex: 12345678Q)">
+    <input type="text" id="nifInfoProfile" name="nif" class="form-control" placeholder="NIF (Ex: 12345678Q)">
     </div>
     <span id="errorNifInfoProfile"></span>
   </div>

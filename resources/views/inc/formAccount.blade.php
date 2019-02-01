@@ -9,7 +9,7 @@
         <div class="input-group-prepend">
           <span class="list-group-item"><i class="fa fa-user prefix grey-text fa-1g" aria-hidden="true"></i></span>
         </div>
-      <input type="text" id="nickInfoProfile" name="nickInfoProfile" class="form-control" placeholder="Nickname">
+      <input type="text" id="nickInfoProfile" name="nick" class="form-control" placeholder="Nickname">
       </div>
       <span id="errorNickInfoProfile"></span>
     </div>
@@ -19,7 +19,7 @@
         <div class="input-group-prepend">
           <span class="list-group-item"><i class="fa fa-envelope prefix grey-text fa-1g" aria-hidden="true"></i></span>
         </div>
-      <input type="text" id="emailInfoProfile" name="emailInfoProfile" class="form-control" placeholder="Email">
+      <input type="text" id="emailInfoProfile" name="email" class="form-control" placeholder="Email">
       </div>
       <span id="errorEmailInfoProfile"></span>
     </div>
@@ -47,7 +47,7 @@
         <div class="input-group-prepend">
           <span class="list-group-item"><i class="fa fa-user prefix grey-text fa-1g" aria-hidden="true"></i></span>
         </div>
-      <input type="password" id="newPassword" name="newPassword" class="form-control" placeholder="New password">
+      <input type="password" id="newPassword" name="password" class="form-control" placeholder="New password">
       </div>
       <span id="errorNewPassword"></span>
     </div>
