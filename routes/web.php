@@ -95,4 +95,16 @@ Route::get('/user/{userId}', function () {
     //pagina que muestra el perfil con la id de ese usuario
 });
 
+
 //Route::post('/category/{subcategory}','subcategoryController@postIndex'=>)
+
+// Pasar id del usuario
+Route::get('/profile', function () {
+    return view('partials.profile');
+});
+
+// Pasar id del usuario
+Route::get('/user/id/mycart', function () {
+    return view('partials.cart');
+});
+

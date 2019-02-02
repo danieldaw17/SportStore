@@ -1,3 +1,4 @@
+/* MODAL */
 .datos table{
     width: 100%;
     max-width: 1650px;
@@ -21,10 +22,34 @@
     background-color: #D8F0EF;
 }
 
-.datos td img{
+.imgCartModal {
     width: 65%;
 }
 
 .autoWidth {
     float: left;
+}
+
+/* END MODAL */
+
+
+
+@media (max-width: 986px){
+    .imgCart {
+        width: 100%;
+        float: left;
+        height: 8%;
+    }
+}
+
+@media (min-width: 987px){
+    .imgCart {
+        width: 20%;
+        float: left;
+        height: 17%;
+    }
+}
+
+.quantityButton {
+    font-size: 35px;
 }
