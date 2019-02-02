@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->increments('id');
 			$table->string('name', 30);
 			$table->string('imagePath', 100);
-			$table->string('taxes', 7,2);
+			$table->float('taxes', 7,2);
             $table->timestamps();
         });
     }

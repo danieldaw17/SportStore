@@ -45,11 +45,11 @@ class Sub_CategoriesController extends Controller
 
 	public function show($subCategoryId)
 	{
-        if (!$subCategory = Sub_category::find($subCategoryId)) {
+        if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
 			abort(404);
 		}
 
-		return view('partials.subcategories', array('subcategory'=>$subCategory));
+		return view('partials.products', array('products'=>$products));
     }
 
 	public function update(Sub_category $request, $subCategoryId, $auxSubCategory)

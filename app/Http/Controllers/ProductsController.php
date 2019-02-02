@@ -12,9 +12,9 @@ class ProductsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($subCategoryId)
+    public function index()
 	{
-		if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
+		if (!$products = Product::all()) {
 			abort(404);
 		}
 
@@ -56,8 +56,6 @@ class ProductsController extends Controller
 		$product->sportId = $request->input('sportId');
 
 		$product->save();
-
-
     }
 
     /**
@@ -68,7 +66,10 @@ class ProductsController extends Controller
      */
     public function show($productId)
     {
-		$product = Product::findOrFail($productId);
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+
 		return view('partials.product-detail', array('product'=>$product));
     }
 
@@ -94,9 +95,26 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Product $request, $id)
+    public function update(Product $request, $productId)
     {
-        //
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+
+		$product->description = $request->input('description');
+		$product->shortDescription = $request->input('shortDescription');
+		$product->basePrice = $request->input('basePrice');
+		$product->gender = $request->input('gender');
+		$product->typeSupplement = $request->input('typeSupplement');
+		$product->volume = $request->input('volume');
+		$product->shifts = $request->input('shifts');
+		$product->wheelsAmount = $request->input('wheelsAmount');
+		$product->weight = $request->input('weight');
+		$product->subCategory = $request->input('subCategory');
+		$product->brandId = $request->input('brandId');
+		$product->sportId = $request->input('sportId');
+
+		$product->save();
     }
 
     /**
@@ -105,8 +123,12 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($productId)
     {
-        //
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+
+		$product->delete();
     }
 }
