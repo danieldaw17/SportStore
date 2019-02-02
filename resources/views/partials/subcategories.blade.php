@@ -15,7 +15,7 @@ Subcategories
 <div class="row probootstrap-gutter60">	
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
+		<a href="4/sub_categories/4">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
 					{{-- Pasar datos de la imagen --}}
@@ -29,7 +29,7 @@ Subcategories
 	</div>
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
+		<a href="categories/4/sub_categories/5">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
 					{{-- Pasar datos de la imagen --}}
@@ -43,7 +43,7 @@ Subcategories
 	</div>
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
+		<a href="categories/4/sub_categories/6">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
 					{{-- Pasar datos de la imagen --}}
@@ -57,7 +57,7 @@ Subcategories
 	</div>
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
+		<a href="categories/4/sub_categories/7">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
 					{{-- Pasar datos de la imagen --}}

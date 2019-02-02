@@ -11,13 +11,13 @@
 			<ul class="navbar-nav">
 				<li class="dropdown">
 					{{-- Pasar id de la categoria --}}
-					<a href="{{ url('category') }}" id="navbardrop">
+					<a href="/categories/4" id="navbardrop">
 						Clothes
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Men</a>
-						<a class="dropdown-item" href="#">Women</a>
-						<a class="dropdown-item" href="#">Unisex</a>
+						<a class="dropdown-item" href="categories/4/sub_categories/4">t-shirts</a>
+						<a class="dropdown-item" href="#">pants</a>
+						<a class="dropdown-item" href="#">underwear</a>
 					</div>
 				</li>	
 				<li class="dropdown">

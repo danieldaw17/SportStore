@@ -42,10 +42,10 @@ Route::get('/sign-in', function () {
 });
 
 // Pasar nombre de la categoria, subcategoria y producto (sql)
-Route::get('/category/subcategorie/product', function () {
-    return view('partials.product-detail');
+//Route::get('/category/subcategorie/product', function () {
+  //  return view('partials.product-detail');
  
-});
+//});
 
 /*Route::get('/user/{username}', function ($username) {
     //aqui tiene que estar la vista del usuario con su informacion
@@ -77,14 +77,22 @@ Route::get('user/profile', 'UserProfileController@show');
 
 
 // Pasar nombre de la categoria y subcategoria (sql)
-Route::get('/category/{categoryId}', function () {
+Route::get('/categories/{categoryId}', function () {
 
+    return view('partials.subcategories');
     //esto muestra todos las subcategoria de una categoria 
     
 });
 
 // Pasar nombre de la categoria, subcategoria (sql)
 Route::get('/categories/{categoryId}/sub_categories/{subCategoryId}', function () {
+    
+    return view('partials.products');
+    //Mostrara un producto completo apartir de su id viniendo desde la url
+});
+Route::get('/categories/{categoryId}/sub_categories/{subCategoryId}/product/{productId}', function () {
+    
+    return view('partials.product-detail');
     //Mostrara un producto completo apartir de su id viniendo desde la url
 });
 
