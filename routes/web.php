@@ -77,14 +77,14 @@ Route::get('user/profile', 'UserProfileController@show');
 
 
 // Pasar nombre de la categoria y subcategoria (sql)
-Route::get('/subcategory/{subCategoryId}', function () {
+Route::get('/category/{categoryId}', function () {
 
-    //esto muestra todos los productos de una subcategoria 
+    //esto muestra todos las subcategoria de una categoria 
     
 });
 
 // Pasar nombre de la categoria, subcategoria (sql)
-Route::get('/subcategory/{subCategoryId}/product/{productId}', function () {
+Route::get('/categories/{categoryId}/sub_categories/{subCategoryId}', function () {
     //Mostrara un producto completo apartir de su id viniendo desde la url
 });
 
