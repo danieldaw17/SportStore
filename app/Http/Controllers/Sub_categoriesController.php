@@ -10,16 +10,30 @@ class Sub_CategoriesController extends Controller
 
 	public function index($categoryId)
 	{
-        	$subCategories = Sub_category::where('categoryId', $categoryId)->get();
+        	if (!$subCategories = Sub_category::where('categoryId', $categoryId)->get()) {
+				abort(404);
+			}
+
 			return view('partials.subcategories', array('subCategories'=>$subCategories));
     }
 
-	public function edit($subCategoryId)
+	public function create()
 	{
+		//llamar a vista de agregar subcategory
 
 	}
 
-	public function store(Request $request) { //recibira un array asociativo con los datos de la subcategoria
+	public function edit($subCategoryId)
+	{
+		if (!$subCategory = Sub_category::find($subCategoryId)) {
+			abort(404);
+		}
+
+		//llamar a vista de editar subcategory
+
+	}
+
+	public function store(Sub_category $request) { //recibira un array asociativo con los datos de la subcategoria
 		$subCategory = new Sub_category();
 
 		$subCategory->name = $request->input('name');
@@ -31,24 +45,33 @@ class Sub_CategoriesController extends Controller
 
 	public function show($subCategoryId)
 	{
-        	$subCategory = Sub_category::findOrFail($subCategoryId);
-			return view('partials.subcategories', array('subcategory'=>$subCategory));
+        if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
+			abort(404);
+		}
+
+		return view('partials.products', array('products'=>$products));
     }
 
-	public function update($subCategoryId, $auxSubCategory)
+	public function update(Sub_category $request, $subCategoryId, $auxSubCategory)
 	{
-		$subCategory = Sub_category::findOrFail($subCategoryId);
+		if (!$subCategory = Sub_category::find($subCategoryId)) {
+			abort(404);
+		}
 
-		$subCategory->name = $auxSubCategory->name;
-		$subCategory->imagePath = $auxSubCategory->imagePath;
-		$subCategory->category = $auxSubCategory->category;
+		$subCategory->name = $request->input('name');
+		$subCategory->imagePath = $request->input('imagePath');
+		$subCategory->categoryId = $request->input('categoryId');
 
 		$subCategory->save();
     }
 
 	public function destroy($subCategoryId)
 	{
-        	$subCategory = Sub_category::findOrFail($subCategoryId);
-			$subCategory->delete();
+        if (!$subCategory = Sub_category::find($subCategoryId)) {
+			abort(404);
+		}
+
+		$subCategory->delete();
+
     }
 }
