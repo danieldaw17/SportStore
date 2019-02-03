@@ -10,6 +10,17 @@ use App\Sub_category;
 
 class CategoriesController extends Controller
 {
+	/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $brands = Category::all();
+
+		//llamar a la vista devolciendo categories
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -107,6 +118,25 @@ class CategoriesController extends Controller
 		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
+
+		$sub_categories = Sub_category::where('categoryId', $categoryId)->get());
+
+		/*
+			DELETE FROM products
+			WHERE products.id IN (
+	            SELECT DISTINCT P.id
+	            FROM (SELECT * FROM products) AS P, sub_categories S, categories C
+				WHERE P.subCategoryId=S.id
+				AND S.categoryId = 2
+	    	);
+		*/
+		$products = Products::whereIn('id', function($query) {
+		    $query->select('paper_type_id')
+		    ->from(with(new ProductCategory)->getTable())
+		    ->whereIn('category_id', ['223', '15'])
+		    ->where('active', 1);
+		})->get();
+
 
 		$category->delete();
     }

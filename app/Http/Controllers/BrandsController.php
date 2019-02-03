@@ -18,7 +18,7 @@ class BrandsController extends Controller
     {
         $brands = Brand::all();
 
-		//llamar a la vista devolciendo bras
+		//llamar a la vista devolciendo brands
     }
 
     /**
