@@ -4,24 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Sub_category;
 
 class ProductsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-	{
-		if (!$products = Product::all()) {
-			abort(404);
-		}
-
-
-		return view('partials.products', array('products'=>$products));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -29,7 +15,14 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        //llamar a vista de crear producto
+		if (!$categories = Category::all()) {
+			abort(404);
+		}
+
+		if (!$sub_categories = Sub_category::all()) {
+			abort(404);
+		}
+        //llamar a vista de crear producto con arrays de categories y subcategpries
     }
 
     /**
@@ -84,7 +77,6 @@ class ProductsController extends Controller
 		if (!$product = Sub_category::find($productId)) {
 			abort(404);
 		}
-
 		//llamar a vista de editar producto
     }
 
