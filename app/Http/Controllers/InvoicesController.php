@@ -43,7 +43,7 @@ class InvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($invoiceId)
     {
 		if (!$invoice = Invoice::find($invoiceId)) {
 			abort(404);
@@ -78,7 +78,7 @@ class InvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($invoiceId)
     {
 		if (!$invoice = Invoice::find($invoiceId)) {
 			abort(404);
