@@ -124,7 +124,7 @@ class CategoriesController extends Controller
 		/*
 			DELETE FROM products
 			WHERE products.id IN (
-	            SELECT DISTINCT P.id
+	            SELECT P.id
 	            FROM (SELECT * FROM products) AS P, sub_categories S, categories C
 				WHERE P.subCategoryId=S.id
 				AND S.categoryId = 2

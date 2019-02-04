@@ -13,7 +13,7 @@
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-envelope prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
-									<input type="text" id="emailLogin" class="form-control" placeholder="Email">
+									<input type="text" id="emailLogin" name="email" class="form-control" placeholder="Email">
 								</div>
 								<span id="errorEmailLogin"></span>
 							</div>
@@ -24,7 +24,7 @@
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-lock prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
-									<input type="password" id="passLogin" class="form-control" placeholder="Password">
+									<input type="password" id="passLogin" name="password" class="form-control" placeholder="Password">
 								</div>
 								<span id="errorPassLogin"></span>
 							</div>
@@ -50,7 +50,7 @@
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-envelope prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
-									<input type="text" id="emailRegister" class="form-control" placeholder="Email">
+									<input type="text" id="emailRegister" name="email" class="form-control" placeholder="Email">
 								</div>
 								<span id="errorEmailRegister"></span>
 							</div>
@@ -61,7 +61,7 @@
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-lock prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
-									<input type="password" id="passRegister" class="form-control" placeholder="Password">
+									<input type="password" id="passRegister" name="password" class="form-control" placeholder="Password">
 								</div>
 								<span id="errorPassRegister"></span>
 							</div>
@@ -70,7 +70,7 @@
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-lock prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
-									<input type="password" id="confirmPass" class="form-control" placeholder="Confirm password">
+									<input type="password" id="confirmPass" name="confirmPass" class="form-control" placeholder="Confirm password">
 								</div>
 								<span id="errorConfirmPass"></span>
 							</div>
