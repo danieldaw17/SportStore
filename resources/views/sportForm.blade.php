@@ -1,40 +1,71 @@
 
-<script>
-	function validateSportForm() {
-		var name = document.getElementById('name').value;
+@extends("layouts.noadmin.layout")
 
-		if (name.length>30) {
-			alert("Error: The sport name must not be longer than 30 characters");
-			return false;
-		}
-	}
-</script>
+@section('title')
+	Sports
+@stop
+@section('styles')
+	<link type="text/css" rel="stylesheet" href="{{url('css/inputFile.css')}}">
+@stop
 
-@if (isset($sport))
-	<form action('SportsController@update') method='post' onsubmit="return validateSportForm()">
+
+@section('js')
+<script src="{{url('js/sportForm.js')}}"></script>
+
+@stop
+
+@section('content')
+	@if (isset($sport))
+	<form action="{{action('SportsController@update')}}" method='POST' onsubmit="return validateSportForm()">
 		{{ csrf_field() }}
-		{{ method_field('PUT') }}
+		{{ method_field('PATCH') }}
 
-		<label for='nane'>
-			<input type='text' name='name' id='name' value="{{$sport->name}}">
-		</label>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="list-group-item"><span class="fas fa-utensil-spoon" aria-hidden="true"></span></span>
+				</div>
+				<span id="errorName"></span>
+				<input type='text' name='name' id='name' class="form-control" value="{{$sport->name}}">
+			</div>
+		</div>
 
-		<label for='imagePath'>
-			<input type='text' name='imagePath' id='imagePath' value="{{$sport->imagePath}}">
-		</label>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="list-group-item"><span class="far fa-image" aria-hidden="true"></span></span>
+				</div>
+				<input id="file" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg">
+			</div>
+		</div>
+
+		<input type="submit" value="Modify" class="btn btn-default waves-effect waves-light">
 	</form>
 
-@else
-	<form action('SportsController@store') method='post' onsubmit="return validateSportForm()">
+	@else
+	<form action="{{action('SportsController@store')}}" method='POST' onsubmit="return validateSportForm()">
 		{{ csrf_field() }}
-		{{ method_field('PUT') }}
+		{{ method_field('PATCH') }}
 
-		<label for='nane'>
-			<input type='text' name='name' id='name'>
-		</label>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="list-group-item"><span class="fas fa-utensil-spoon" aria-hidden="true"></span></span>
+				</div>
+				<input type='text' name='name' id='name' class="form-control" placeholder="Sport name">
+			</div>
+		</div>
 
-		<label for='imagePath'>
-			<input type='text' name='imagePath' id='imagePath'>
-		</label>
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-prepend">
+					<span class="list-group-item"><span class="far fa-image" aria-hidden="true"></span></span>
+				</div>
+				<input id="file" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg">
+			</div>
+		</div>
+
+		<input type="submit" value="Create" class="btn btn-default waves-effect waves-light">
 	</form>
-@endif
+	@endif
+@stop

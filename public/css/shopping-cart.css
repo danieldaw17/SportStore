@@ -1,0 +1,30 @@
+.datos table{
+    width: 100%;
+    max-width: 1650px;
+    margin-top: 30px;
+    border-collapse: collapse;
+    font-family: Hero,'Open Sans',sans-serif;
+    text-align: center;
+}
+
+.datos th, .datos td{
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.datos tr:hover {
+    background: #fbf8e9;
+    transition: all 0.1s ease-in-out;
+}
+
+.datos tr:first-child{
+    background-color: #D8F0EF;
+}
+
+.datos td img{
+    width: 65%;
+}
+
+.autoWidth {
+    float: left;
+}

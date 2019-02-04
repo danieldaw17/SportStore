@@ -39,7 +39,7 @@ class SportsController extends Controller
      */
     public function show($sportId)
     {
-		$sport = Sport::find($sportId)) {
+		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
@@ -53,13 +53,19 @@ class SportsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Sport $request)
+    public function store(Sport $request, $userId, $sportId)
     {
+		return "controller usuario";
+		/*
 		$sport = new Sport();
 		$sport->name = $request->input('name');
-		$sport->imagePath = $request->input('imagePath');
+
+		if (isset($_FILES["file"])) {
+			$sport->imagePath = uploadImage($sport->id);
+		}
 
 		$sport->save();
+		*/
     }
 
     /**
@@ -70,7 +76,7 @@ class SportsController extends Controller
      */
     public function edit($sportId)
     {
-		$sport = Sport::find($sportId)) {
+		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
@@ -86,6 +92,8 @@ class SportsController extends Controller
      */
     public function update(Sport $request, $sportId)
     {
+		return "controlador";
+		 /*
 		if (!$sport = ::find($sportId)) {
 			abort(404);
 		}
@@ -93,7 +101,7 @@ class SportsController extends Controller
 		$sport->name = $request->input('name');
 		$sport->imagePath = $request->input('imagePath');
 
-		$sport->save();
+		$sport->save();*/
     }
 
     /**
@@ -104,10 +112,70 @@ class SportsController extends Controller
      */
     public function destroy($sportId)
     {
-		if (!$sport = ::find($sportId)) {
+		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
 		$sport->delete();
     }
+
+
+
+	function uploadImage($sportId) {
+		$rightUploaded = false;
+
+		$errors = array();
+		$file_name = $_FILES['image']['name'];
+		$file_size = $_FILES['image']['size'];
+		$file_tmp = $_FILES['image']['tmp_name'];
+		$file_type = $_FILES['image']['type'];
+
+		$file_ext = strtolower($file_name);
+		$file_ext = explode(".", $file_name);
+		$file_ext = end($file_ext);
+		$file_name = $sportId.".".$file_ext;
+
+		$extensions= array("jpeg","jpg","png");
+
+		if (in_array($file_ext, $extensions)=== false) {
+			array_push($errors, "extension not allowed, please choose a JPEG or PNG file.");
+		}
+
+		if ($file_size > 2097152) {
+			array_push($errors, 'File size must be excately 2 MB');
+		}
+
+		if (empty($errors)==true) {
+			$path = "/storage/app/images/sports/";
+			createDirectory($path);
+
+			move_uploaded_file($file_tmp, $path."/".$file_name);
+			$rightUploaded = true;
+			$imagePath = $path."/".$file_name;
+
+		} else {
+			$rightUploaded = false;
+			$imagePath=null;
+		}
+
+		return $imagePath;
+	}
+
+	function createDirectory($path) {
+		//$path = "images/2020/February";
+
+		$arrayPath = explode("/", $path);
+		for ($i=0; $i<count($arrayPath); $i++) {
+			$j=0;
+			$auxPath="";
+			while ($j<=$i) {
+				$auxPath.= $arrayPath[$j]."/";
+				$j++;
+			}
+
+			if (!file_exists($auxPath)) {
+				mkdir($auxPath, 0777);
+			}
+		}
+	}
 }

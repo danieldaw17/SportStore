@@ -11,6 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::get('/sport', function() {
+	return view('sportForm');
 });
+
+Route::get('/', function() {
+	return view('partials.index');
+});
+
+
+Route::patch('/user/{userId}/sports/{sportId}/edit', 'SportsController@store');
