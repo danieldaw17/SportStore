@@ -12,8 +12,8 @@
 */
 
 
-Route::get('/sport', function() {
-	return view('sportForm');
+Route::get('user/{userId}/sports/create', function($userId) {
+	return view('sportForm', array('userId'=>$userId));
 });
 
 Route::get('/', function() {
@@ -21,4 +21,4 @@ Route::get('/', function() {
 });
 
 
-Route::patch('/user/{userId}/sports/{sportId}/edit', 'SportsController@store');
+Route::patch('user/{userId}/sports/create', 'SportsController@store');

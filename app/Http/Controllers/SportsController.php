@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\UploadedFile;
 use App\Sport;
 
 class SportsController extends Controller
@@ -53,20 +54,44 @@ class SportsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Sport $request, $userId, $sportId)
+    public function store(Request $request)
     {
-		return "controller usuario";
-		/*
 		$sport = new Sport();
 		$sport->name = $request->input('name');
-
-		if (isset($_FILES["file"])) {
-			$sport->imagePath = uploadImage($sport->id);
-		}
+		$sport->imagePath = "";
 
 		$sport->save();
-		*/
+
+		if ($request->hasFile('image')) {
+
+			$extension = $request->image->extension();
+			$imageName = $sport->id.".".$extension;
+			$foldPath = "/storage/app/images/sports/";
+			File::makeDirectory($foldPath);
+
+
+			$path = $request->photo->storeAs($foldPath, $imageName);
+			return "path: $path";
+		}
     }
+
+	public function createDirectory($path) {
+		//$path = "images/2020/February";
+
+		$arrayPath = explode("/", $path);
+		for ($i=0; $i<count($arrayPath); $i++) {
+			$j=0;
+			$auxPath="";
+			while ($j<=$i) {
+				$auxPath.= $arrayPath[$j]."/";
+				$j++;
+			}
+
+			if (!file_exists($auxPath)) {
+				mkdir($auxPath, 0777);
+			}
+		}
+	}
 
     /**
      * Show the form for editing the specified resource.
@@ -120,8 +145,15 @@ class SportsController extends Controller
     }
 
 
+	/*function uploadImage($image, $path) {
 
-	function uploadImage($sportId) {
+
+
+
+
+	}*/
+
+	function uploadImageViejo($sportId) {
 		$rightUploaded = false;
 
 		$errors = array();
@@ -161,21 +193,5 @@ class SportsController extends Controller
 		return $imagePath;
 	}
 
-	function createDirectory($path) {
-		//$path = "images/2020/February";
 
-		$arrayPath = explode("/", $path);
-		for ($i=0; $i<count($arrayPath); $i++) {
-			$j=0;
-			$auxPath="";
-			while ($j<=$i) {
-				$auxPath.= $arrayPath[$j]."/";
-				$j++;
-			}
-
-			if (!file_exists($auxPath)) {
-				mkdir($auxPath, 0777);
-			}
-		}
-	}
 }
