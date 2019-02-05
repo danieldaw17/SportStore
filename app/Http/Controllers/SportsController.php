@@ -56,6 +56,13 @@ class SportsController extends Controller
 
     public function store(Request $request)
     {
+
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
+
+
 		$sport = new Sport();
 		$sport->name = $request->input('name');
 		$sport->imagePath = "";
@@ -66,12 +73,15 @@ class SportsController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $sport->id.".".$extension;
-			$foldPath = "/storage/app/images/sports/";
-			File::makeDirectory($foldPath);
+			$foldPath = 'storage/images/sports';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
 
-
-			$path = $request->photo->storeAs($foldPath, $imageName);
-			return "path: $path";
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$sport->imagePath = $fullPath;
+			$sport->save();
 		}
     }
 
@@ -117,16 +127,30 @@ class SportsController extends Controller
      */
     public function update(Sport $request, $sportId)
     {
-		return "controlador";
-		 /*
-		if (!$sport = ::find($sportId)) {
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+		
+		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
 		$sport->name = $request->input('name');
-		$sport->imagePath = $request->input('imagePath');
 
-		$sport->save();*/
+		if ($request->hasFile('image')) {
+
+			$extension = $request->image->extension();
+			$imageName = $sport->id.".".$extension;
+			$foldPath = 'storage/images/sports';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$sport->imagePath = $fullPath;
+			$sport->save();
+		}
     }
 
     /**
@@ -143,55 +167,6 @@ class SportsController extends Controller
 
 		$sport->delete();
     }
-
-
-	/*function uploadImage($image, $path) {
-
-
-
-
-
-	}*/
-
-	function uploadImageViejo($sportId) {
-		$rightUploaded = false;
-
-		$errors = array();
-		$file_name = $_FILES['image']['name'];
-		$file_size = $_FILES['image']['size'];
-		$file_tmp = $_FILES['image']['tmp_name'];
-		$file_type = $_FILES['image']['type'];
-
-		$file_ext = strtolower($file_name);
-		$file_ext = explode(".", $file_name);
-		$file_ext = end($file_ext);
-		$file_name = $sportId.".".$file_ext;
-
-		$extensions= array("jpeg","jpg","png");
-
-		if (in_array($file_ext, $extensions)=== false) {
-			array_push($errors, "extension not allowed, please choose a JPEG or PNG file.");
-		}
-
-		if ($file_size > 2097152) {
-			array_push($errors, 'File size must be excately 2 MB');
-		}
-
-		if (empty($errors)==true) {
-			$path = "/storage/app/images/sports/";
-			createDirectory($path);
-
-			move_uploaded_file($file_tmp, $path."/".$file_name);
-			$rightUploaded = true;
-			$imagePath = $path."/".$file_name;
-
-		} else {
-			$rightUploaded = false;
-			$imagePath=null;
-		}
-
-		return $imagePath;
-	}
 
 
 }
