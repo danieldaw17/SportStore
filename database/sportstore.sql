@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Feb 02, 2019 at 03:02 AM
--- Server version: 10.1.37-MariaDB
--- PHP Version: 7.2.12
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 05-02-2019 a las 18:52:31
+-- Versión del servidor: 10.1.37-MariaDB
+-- Versión de PHP: 7.3.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sportstore`
+-- Base de datos: `sportstore`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `addresses`
+-- Estructura de tabla para la tabla `addresses`
 --
 
 CREATE TABLE `addresses` (
@@ -45,7 +45,7 @@ CREATE TABLE `addresses` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `brands`
+-- Estructura de tabla para la tabla `brands`
 --
 
 CREATE TABLE `brands` (
@@ -58,7 +58,7 @@ CREATE TABLE `brands` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Estructura de tabla para la tabla `categories`
 --
 
 CREATE TABLE `categories` (
@@ -73,7 +73,7 @@ CREATE TABLE `categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `deliveries`
+-- Estructura de tabla para la tabla `deliveries`
 --
 
 CREATE TABLE `deliveries` (
@@ -88,7 +88,7 @@ CREATE TABLE `deliveries` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `images`
+-- Estructura de tabla para la tabla `images`
 --
 
 CREATE TABLE `images` (
@@ -103,7 +103,7 @@ CREATE TABLE `images` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoices`
+-- Estructura de tabla para la tabla `invoices`
 --
 
 CREATE TABLE `invoices` (
@@ -118,7 +118,7 @@ CREATE TABLE `invoices` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `invoice_lines`
+-- Estructura de tabla para la tabla `invoice_lines`
 --
 
 CREATE TABLE `invoice_lines` (
@@ -135,7 +135,7 @@ CREATE TABLE `invoice_lines` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `migrations`
+-- Estructura de tabla para la tabla `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -145,27 +145,27 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `migrations`
+-- Volcado de datos para la tabla `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(22, '2019_01_30_222538_create_categories_table', 1),
-(23, '2019_01_30_222928_create_sub_categories_table', 1),
-(24, '2019_01_30_223836_create_brands_table', 1),
-(25, '2019_01_30_224031_create_deliveries_table', 1),
-(26, '2019_01_30_224240_create_sports_table', 1),
-(27, '2019_01_30_224920_create_users_table', 1),
-(28, '2019_01_30_225227_create_addresses_table', 1),
-(29, '2019_01_30_232152_create_products_table', 1),
-(30, '2019_01_30_233445_create_images_table', 1),
-(31, '2019_01_30_233738_create_stocks_table', 1),
-(32, '2019_01_30_234041_create_invoices_table', 1),
-(33, '2019_01_30_234258_create_invoice_lines_table', 1);
+(151, '2019_01_30_222538_create_categories_table', 1),
+(152, '2019_01_30_222928_create_sub_categories_table', 1),
+(153, '2019_01_30_223836_create_brands_table', 1),
+(154, '2019_01_30_224031_create_deliveries_table', 1),
+(155, '2019_01_30_224240_create_sports_table', 1),
+(156, '2019_01_30_224920_create_users_table', 1),
+(157, '2019_01_30_225227_create_addresses_table', 1),
+(158, '2019_01_30_232152_create_products_table', 1),
+(159, '2019_01_30_233445_create_images_table', 1),
+(160, '2019_01_30_233738_create_stocks_table', 1),
+(161, '2019_01_30_234041_create_invoices_table', 1),
+(162, '2019_01_30_234258_create_invoice_lines_table', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Estructura de tabla para la tabla `products`
 --
 
 CREATE TABLE `products` (
@@ -176,7 +176,7 @@ CREATE TABLE `products` (
   `basePrice` double(7,2) NOT NULL,
   `gender` enum('man','woman','unisex') DEFAULT NULL,
   `typeSupplement` varchar(50) DEFAULT NULL,
-  `volume` double(7,2) DEFAULT NULL,
+  `volume` varchar(255) DEFAULT NULL,
   `shifts` int(11) DEFAULT NULL,
   `wheelsAmount` int(11) DEFAULT NULL,
   `weight` double(7,2) DEFAULT NULL,
@@ -190,7 +190,7 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sports`
+-- Estructura de tabla para la tabla `sports`
 --
 
 CREATE TABLE `sports` (
@@ -204,7 +204,7 @@ CREATE TABLE `sports` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `stocks`
+-- Estructura de tabla para la tabla `stocks`
 --
 
 CREATE TABLE `stocks` (
@@ -219,7 +219,7 @@ CREATE TABLE `stocks` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sub_categories`
+-- Estructura de tabla para la tabla `sub_categories`
 --
 
 CREATE TABLE `sub_categories` (
@@ -234,7 +234,7 @@ CREATE TABLE `sub_categories` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Estructura de tabla para la tabla `users`
 --
 
 CREATE TABLE `users` (
@@ -251,43 +251,43 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Índices para tablas volcadas
 --
 
 --
--- Indexes for table `addresses`
+-- Indices de la tabla `addresses`
 --
 ALTER TABLE `addresses`
   ADD PRIMARY KEY (`id`),
   ADD KEY `addresses_userid_foreign` (`userId`);
 
 --
--- Indexes for table `brands`
+-- Indices de la tabla `brands`
 --
 ALTER TABLE `brands`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `categories`
+-- Indices de la tabla `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `deliveries`
+-- Indices de la tabla `deliveries`
 --
 ALTER TABLE `deliveries`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `images`
+-- Indices de la tabla `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`),
   ADD KEY `images_productid_foreign` (`productId`);
 
 --
--- Indexes for table `invoices`
+-- Indices de la tabla `invoices`
 --
 ALTER TABLE `invoices`
   ADD PRIMARY KEY (`id`),
@@ -295,7 +295,7 @@ ALTER TABLE `invoices`
   ADD KEY `invoices_deliveryid_foreign` (`deliveryId`);
 
 --
--- Indexes for table `invoice_lines`
+-- Indices de la tabla `invoice_lines`
 --
 ALTER TABLE `invoice_lines`
   ADD PRIMARY KEY (`id`),
@@ -303,13 +303,13 @@ ALTER TABLE `invoice_lines`
   ADD KEY `invoice_lines_invoiceid_foreign` (`invoiceId`);
 
 --
--- Indexes for table `migrations`
+-- Indices de la tabla `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `products`
+-- Indices de la tabla `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -318,145 +318,145 @@ ALTER TABLE `products`
   ADD KEY `products_sportid_foreign` (`sportId`);
 
 --
--- Indexes for table `sports`
+-- Indices de la tabla `sports`
 --
 ALTER TABLE `sports`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `stocks`
+-- Indices de la tabla `stocks`
 --
 ALTER TABLE `stocks`
   ADD PRIMARY KEY (`id`),
   ADD KEY `stocks_productid_foreign` (`productId`);
 
 --
--- Indexes for table `sub_categories`
+-- Indices de la tabla `sub_categories`
 --
 ALTER TABLE `sub_categories`
   ADD PRIMARY KEY (`id`),
   ADD KEY `sub_categories_categoryid_foreign` (`categoryId`);
 
 --
--- Indexes for table `users`
+-- Indices de la tabla `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT for table `addresses`
+-- AUTO_INCREMENT de la tabla `addresses`
 --
 ALTER TABLE `addresses`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `brands`
+-- AUTO_INCREMENT de la tabla `brands`
 --
 ALTER TABLE `brands`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `deliveries`
+-- AUTO_INCREMENT de la tabla `deliveries`
 --
 ALTER TABLE `deliveries`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `images`
+-- AUTO_INCREMENT de la tabla `images`
 --
 ALTER TABLE `images`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `invoices`
+-- AUTO_INCREMENT de la tabla `invoices`
 --
 ALTER TABLE `invoices`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `invoice_lines`
+-- AUTO_INCREMENT de la tabla `invoice_lines`
 --
 ALTER TABLE `invoice_lines`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `migrations`
+-- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=163;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sports`
+-- AUTO_INCREMENT de la tabla `sports`
 --
 ALTER TABLE `sports`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `stocks`
+-- AUTO_INCREMENT de la tabla `stocks`
 --
 ALTER TABLE `stocks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `sub_categories`
+-- AUTO_INCREMENT de la tabla `sub_categories`
 --
 ALTER TABLE `sub_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Restricciones para tablas volcadas
 --
 
 --
--- Constraints for table `addresses`
+-- Filtros para la tabla `addresses`
 --
 ALTER TABLE `addresses`
   ADD CONSTRAINT `addresses_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `images`
+-- Filtros para la tabla `images`
 --
 ALTER TABLE `images`
   ADD CONSTRAINT `images_productid_foreign` FOREIGN KEY (`productId`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `invoices`
+-- Filtros para la tabla `invoices`
 --
 ALTER TABLE `invoices`
   ADD CONSTRAINT `invoices_deliveryid_foreign` FOREIGN KEY (`deliveryId`) REFERENCES `deliveries` (`id`),
   ADD CONSTRAINT `invoices_userid_foreign` FOREIGN KEY (`userId`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `invoice_lines`
+-- Filtros para la tabla `invoice_lines`
 --
 ALTER TABLE `invoice_lines`
   ADD CONSTRAINT `invoice_lines_invoiceid_foreign` FOREIGN KEY (`invoiceId`) REFERENCES `invoices` (`id`),
   ADD CONSTRAINT `invoice_lines_productid_foreign` FOREIGN KEY (`productId`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `products`
+-- Filtros para la tabla `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_brandid_foreign` FOREIGN KEY (`brandId`) REFERENCES `brands` (`id`),
@@ -464,13 +464,13 @@ ALTER TABLE `products`
   ADD CONSTRAINT `products_subcategoryid_foreign` FOREIGN KEY (`subCategoryId`) REFERENCES `sub_categories` (`id`);
 
 --
--- Constraints for table `stocks`
+-- Filtros para la tabla `stocks`
 --
 ALTER TABLE `stocks`
   ADD CONSTRAINT `stocks_productid_foreign` FOREIGN KEY (`productId`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `sub_categories`
+-- Filtros para la tabla `sub_categories`
 --
 ALTER TABLE `sub_categories`
   ADD CONSTRAINT `sub_categories_categoryid_foreign` FOREIGN KEY (`categoryId`) REFERENCES `categories` (`id`);

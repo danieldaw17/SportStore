@@ -1,0 +1,26 @@
+.contentProduct {
+	margin-bottom: -30%;
+	color: black;
+}
+
+.titleProduct {
+	text-transform: uppercase;
+	margin-top: 10%;
+    margin-bottom: -19%;
+}
+
+.descriptionProduct {
+	margin-left: -30px;
+	margin-right: -30px;
+	text-align: justify;
+}
+
+.prizeProduct {
+	background-color: yellow;
+	text-align: center;
+	font-weight: bold;
+}
+
+.textHeader {
+	margin-left: 15px;
+}
