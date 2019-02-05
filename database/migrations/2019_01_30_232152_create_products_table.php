@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
 			$table->float('basePrice', 7,2);
 			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable();
 			$table->string('typeSupplement', 50)->nullable();
-			$table->float('volume', 7,2)->nullable();
+			$table->string('volume', 255)->nullable();
 			$table->integer('shifts')->nullable();
 			$table->integer('wheelsAmount')->nullable();
 			$table->float('weight', 7,2)->nullable();
