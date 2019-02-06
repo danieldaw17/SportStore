@@ -29,9 +29,10 @@ class BrandsController extends Controller
      */
     public function create($userId)
     {
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
+
         return view('partials.brandForm', array('userId'=>$userId));
     }
 
@@ -43,9 +44,9 @@ class BrandsController extends Controller
      */
     public function store(Request $request, $userId)
     {
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
 
 		$validateData = $request->validate([
           'name' => 'required|max:30'
@@ -87,9 +88,9 @@ class BrandsController extends Controller
     public function update(Request $request, $userId, $brandId)
     {
 
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
 
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
@@ -111,11 +112,11 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brandId)
+    public function destroy($userId, $brandId)
     {
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
 
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
@@ -125,9 +126,10 @@ class BrandsController extends Controller
 		if (count($products)>0) {
 			$errors = array();
 			$errors[0] = "This brand contains products and can not be delete";
-			return view('brands', array('errors'=>$errors));
+			return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
 		}
 
 		$brand->delete();
+		return redirect("user/$userId/brands");
     }
 }

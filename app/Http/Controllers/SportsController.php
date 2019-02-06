@@ -33,9 +33,9 @@ class SportsController extends Controller
      */
     public function create($userId)
     {
-		if(!Auth::check() || Auth::user()->role!="root") {
+		/*if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}
+		}*/
 		return view('partials.sportForm', array('userId'=>$userId));
     }
 
@@ -130,8 +130,8 @@ class SportsController extends Controller
 			$foldPath = 'storage/images/sports';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
-
 			}
+
 			$request->image->move($foldPath, $imageName);
 			$fullPath = $foldPath."/".$imageName;
 			$sport->imagePath = $fullPath;

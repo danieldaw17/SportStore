@@ -38,14 +38,14 @@
 				</div>
 			</div>
 			<span id="errors">
-				@if ($errors->any())
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
+				@if (!empty($errors) && count($errors)>0)
+			        <ul>
+			            @foreach ($errors as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
 				@endif
-			</div>
+			</span>
 
 			<input type="submit" value="Modify" class="btn btn-default waves-effect waves-light">
 		</form>
@@ -72,14 +72,14 @@
 				</div>
 			</div>
 			<span id="errors">
-				@if ($errors->any())
-					<ul>
-						@foreach ($errors->all() as $error)
-							<li>{{ $error }}</li>
-						@endforeach
-					</ul>
+				@if (!empty($errors) && count($errors)>0)
+			        <ul>
+			            @foreach ($errors as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
 				@endif
-			</div>
+			</span>
 				<input type="submit" value="Create" class="btn btn-default waves-effect waves-light">
 		</form>
 	@endif

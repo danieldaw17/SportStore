@@ -19,13 +19,13 @@
 					<input type='text' name='name' id='name' class="form-control" value="{{$brand->name}}">
 				</div>
 			</div>
-			<span id="errors" class="alert alert-danger">
-				@if ($errors->any())
-						<ul>
-							@foreach ($errors->all() as $error)
-								<li>{{ $error }}</li>
-							@endforeach
-						</ul>
+			<span id="errors">
+				@if (!empty($errors) && count($errors)>0)
+			        <ul>
+			            @foreach ($errors as $error)
+			                <li>{{ $error }}</li>
+			            @endforeach
+			        </ul>
 				@endif
 			</span>
 
@@ -45,9 +45,9 @@
 				</div>
 			</div>
 			<span id="errors">
-				@if ($errors->any())
+				@if (!empty($errors) && count($errors)>0)
 			        <ul>
-			            @foreach ($errors->all() as $error)
+			            @foreach ($errors as $error)
 			                <li>{{ $error }}</li>
 			            @endforeach
 			        </ul>
