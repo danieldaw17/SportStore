@@ -16,9 +16,9 @@
 
 @section('content')
 	@if (isset($sport))
-		<form action="{{url('user/'.$userId.'/sports/create')}}" method='POST' onsubmit="return validateSportForm()" enctype="multipart/form-data">
+		<form action="{{url('user/'.$userId.'/sports/'.$sport->id.'/edit')}}" method='POST' onsubmit="return validateSportForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
-			{{ method_field('PATCH') }}
+			{{ method_field('PUT') }}
 
 			<div class="form-group">
 				<div class="input-group">
@@ -47,13 +47,12 @@
 				</div>
 			@endif
 
-			<input type="submit" value="Create" class="btn btn-default waves-effect waves-light">
+			<input type="submit" value="Modify" class="btn btn-default waves-effect waves-light">
 		</form>
 
 	@else
 		<form action="{{url('user/'.$userId.'/sports/create')}}" method='POST' onsubmit="return validateSportForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
-			{{ method_field('PATCH') }}
 
 			<div class="form-group">
 				<div class="input-group">

@@ -26,9 +26,9 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-        //devolver vista crear brand
+        return view('brandForm', array('userId'=>$userId));
     }
 
     /**
@@ -37,27 +37,16 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Brand $request)
+    public function store(Request $request, $userId)
     {
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
 		$brand = new Brand();
 		$brand->name = $request->input('name');
-
 		$brand->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($brandId)
-    {
-		if (!$brand = Brand::find($brandId)) {
-			abort(404);
-		}
-
-		//devolver vista de mostrar
+		return redirect("user/$userId/brands");
     }
 
     /**
@@ -66,13 +55,14 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($brandId)
+    public function edit($userId, $brandId)
     {
 
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
 		}
-		//llamar a vista con brand
+
+		return view('brandForm', array('userId'=>$userId, 'brand'=>$brand));
     }
 
     /**
@@ -82,14 +72,20 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Brand $request, $brandId)
+    public function update(Reuest $request, $userId, $brandId)
     {
+
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
 		}
-		$brand->name = $request->input('name');
 
+		$brand->name = $request->input('name');
 		$brand->save();
+		return redirect("user/$userId/brands");
     }
 
     /**
@@ -105,8 +101,12 @@ class BrandsController extends Controller
 		}
 
 		$products = Product::where('brandId', $brandId)->get();
+		if (count($products)>0) {
+			$errors = array();
+			$errors[0] = "This brand contains products and can not be delete";
+			return view('brands', array('usererrors'=>$errors));
+		}
 
-		$products->delete();
 		$brand->delete();
     }
 }

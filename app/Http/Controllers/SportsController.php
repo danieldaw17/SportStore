@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Sport;
+use Auth;
 
 class SportsController extends Controller
 {
@@ -16,6 +18,9 @@ class SportsController extends Controller
      */
     public function index()
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
         $sports = Sport::all();
 
 		//lamar a la vista y devolver deportes
@@ -26,25 +31,12 @@ class SportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-		//lamar vista de crear deporte
-
-    }
-
-	/**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($sportId)
-    {
-		if (!$sport = Sport::find($sportId)) {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-
-		//llamar vista con deporte
+		return view('sportForm', array('userId'=>$userId));
     }
 
     /**
@@ -54,19 +46,19 @@ class SportsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(Request $request, $userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
 
 		$validateData = $request->validate([
           'name' => 'required|max:30'
 	  	]);
 
-
-
 		$sport = new Sport();
 		$sport->name = $request->input('name');
 		$sport->imagePath = "";
-
 		$sport->save();
 
 		if ($request->hasFile('image')) {
@@ -83,39 +75,25 @@ class SportsController extends Controller
 			$sport->imagePath = $fullPath;
 			$sport->save();
 		}
+		return redirect("user/$userId/sports");
     }
-
-	public function createDirectory($path) {
-		//$path = "images/2020/February";
-
-		$arrayPath = explode("/", $path);
-		for ($i=0; $i<count($arrayPath); $i++) {
-			$j=0;
-			$auxPath="";
-			while ($j<=$i) {
-				$auxPath.= $arrayPath[$j]."/";
-				$j++;
-			}
-
-			if (!file_exists($auxPath)) {
-				mkdir($auxPath, 0777);
-			}
-		}
-	}
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($sportId)
+    public function edit($userId, $sportId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
-		//lamar vista de editar con el $sport
+		return view('sportForm', array('userId'=>$userId, 'sport'=>$sport));
     }
 
     /**
@@ -125,12 +103,17 @@ class SportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Sport $request, $sportId)
+    public function update(Request $request, $userId, $sportId)
     {
+
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		$validateData = $request->validate([
           'name' => 'required|max:30'
 	  	]);
-		
+
 		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
@@ -138,6 +121,9 @@ class SportsController extends Controller
 		$sport->name = $request->input('name');
 
 		if ($request->hasFile('image')) {
+			if (file_exists($imagePath)) {
+				unlink($sport->imagePath);
+			}
 
 			$extension = $request->image->extension();
 			$imageName = $sport->id.".".$extension;
@@ -149,8 +135,10 @@ class SportsController extends Controller
 			$request->image->move($foldPath, $imageName);
 			$fullPath = $foldPath."/".$imageName;
 			$sport->imagePath = $fullPath;
-			$sport->save();
 		}
+		$sport->save();
+
+		return redirect("user/$userId/sports");
     }
 
     /**
@@ -159,13 +147,18 @@ class SportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($sportId)
+    public function destroy($userId, $sportId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+		
 		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
 		$sport->delete();
+		return redirect("user/$userId/sports");
     }
 
 
