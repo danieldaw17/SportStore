@@ -37,15 +37,15 @@
 					<input id="image" name="image" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg,image/jpg">
 				</div>
 			</div>
-			@if ($errors->any())
-				<div id=class="alert alert-danger">
+			<span id="errors">
+				@if ($errors->any())
 					<ul>
 						@foreach ($errors->all() as $error)
 							<li>{{ $error }}</li>
 						@endforeach
 					</ul>
-				</div>
-			@endif
+				@endif
+			</div>
 
 			<input type="submit" value="Modify" class="btn btn-default waves-effect waves-light">
 		</form>
@@ -71,15 +71,15 @@
 					<input id="image" name="image" type="file" class="form-control" accept="image/x-png,image/gif,image/jpeg,image/jpg">
 				</div>
 			</div>
-			@if ($errors->any())
-			    <div id=class="alert alert-danger">
-			        <ul>
-			            @foreach ($errors->all() as $error)
-			                <li>{{ $error }}</li>
-			            @endforeach
-			        </ul>
-			    </div>
-			@endif
+			<span id="errors">
+				@if ($errors->any())
+					<ul>
+						@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				@endif
+			</div>
 				<input type="submit" value="Create" class="btn btn-default waves-effect waves-light">
 		</form>
 	@endif
