@@ -7,13 +7,13 @@
 
 
 @section('js')
-<script src="{{url('js/sportForm.js')}}"></script>
+<script src="{{url('js/deliveryForm.js')}}"></script>
 
 @stop
 
 @section('content')
 	@if (isset($delivery))
-		<form action="{{url('user/'.$userId.'/deliveries/'.$delivery->id.'/edit')}}" method='POST' onsubmit="return validateDeliveryForm()" enctype="multipart/form-data">
+		<form action="{{url('user/'.$userId.'/deliveries/'.$delivery->id.'/edit')}}" method='POST' onsubmit="return validateDeliveryForm()">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
 
@@ -58,9 +58,8 @@
 		</form>
 
 	@else
-	<form action="{{url('user/'.$userId.'/deliveries/create')}}" method='POST' onsubmit="return validateDeliveryForm()" enctype="multipart/form-data">
+	<form action="{{url('user/'.$userId.'/deliveries/create')}}" method='POST' onsubmit="return validateDeliveryForm()">
 		{{ csrf_field() }}
-		{{ method_field('PUT') }}
 
 		<div class="form-group">
 			<div class="input-group">
@@ -99,7 +98,7 @@
 			@endif
 		</span>
 
-		<input type="submit" value="Modify" class="btn btn-default waves-effect waves-light">
+		<input type="submit" value="Create" class="btn btn-default waves-effect waves-light">
 	</form>
 	@endif
 @stop
