@@ -38,7 +38,7 @@ function total(){
 // Total modal cart
 function totalModal(){
 
-	var unitPrice = document.getElementById("unitPrice").innerHTML;
+	var unitPrice = document.getElementById("unitPriceModal").innerHTML;
 	unitPrice = parseFloat(unitPrice);
 	var quantity = document.getElementById("quantityModal").value;
 	var text = document.getElementById("totalModal");

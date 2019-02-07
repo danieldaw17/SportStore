@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Delivery;
+use Auth;
 
 class DeliveriesController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -24,9 +26,13 @@ class DeliveriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-        //llamar a vista que crea deliveries
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+        return view('partials.deliveryForm', array('userId'=>$userId));
     }
 
     /**
@@ -35,8 +41,18 @@ class DeliveriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Delivery $request)
+    public function store(Request $request, $userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+  			'hoursMax' => 'required|numeric',
+  		  	'price' => 'required|numeric'
+	  	]);
+
         $delivery = new Delivery();
 
 		$delivery->name = $request->input('name');
@@ -44,6 +60,7 @@ class DeliveriesController extends Controller
 		$delivery->price = $request->input('price');
 
 		$delivery->save();
+		return redirect("user/$userId/deliveries");
     }
 
     /**
@@ -52,12 +69,17 @@ class DeliveriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($deliveryId)
+    public function edit($userId, $deliveryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$delivery = Delivery::find($deliveryId)) {
 			abort(404);
 		}
-		//llamar vista con datos de delivery
+
+		return view('partials.deliveryForm', array('userId'=>$userId, 'delivery'=>$delivery));
     }
 
     /**
@@ -67,17 +89,28 @@ class DeliveriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Delivery $request, $deliveryId)
+    public function update(Request $request, $userId, $deliveryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$delivery = Delivery::find($deliveryId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+  			'hoursMax' => 'required|numeric',
+  		  	'price' => 'required|numeric'
+	  	]);
 
 		$delivery->name = $request->input('name');
 		$delivery->hoursMax = $request->input('hoursMax');
 		$delivery->price = $request->input('price');
 
 		$delivery->save();
+		return redirect("user/$userId/deiveries");
     }
 
     /**
@@ -86,12 +119,18 @@ class DeliveriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($deliveryId)
+    public function destroy($userId, $deliveryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$delivery = Delivery::find($deliveryId)) {
 			abort(404);
 		}
 
 		$delivery->delete();
+		return redirect("user/$userId/deiveries");
     }
+
 }

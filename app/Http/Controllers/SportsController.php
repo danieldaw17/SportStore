@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 use App\Sport;
+use Auth;
 
 class SportsController extends Controller
 {
@@ -16,6 +18,9 @@ class SportsController extends Controller
      */
     public function index()
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
         $sports = Sport::all();
 
 		//lamar a la vista y devolver deportes
@@ -26,25 +31,12 @@ class SportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-		//lamar vista de crear deporte
-
-    }
-
-	/**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($sportId)
-    {
-		if (!$sport = Sport::find($sportId)) {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-
-		//llamar vista con deporte
+		return view('partials.sportForm', array('userId'=>$userId));
     }
 
     /**
@@ -54,58 +46,54 @@ class SportsController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request)
+    public function store(Request $request, $userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
 		$sport = new Sport();
 		$sport->name = $request->input('name');
 		$sport->imagePath = "";
-
 		$sport->save();
 
 		if ($request->hasFile('image')) {
 
 			$extension = $request->image->extension();
 			$imageName = $sport->id.".".$extension;
-			$foldPath = "/storage/app/images/sports/";
-			File::makeDirectory($foldPath);
+			$foldPath = 'storage/images/sports';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
 
-
-			$path = $request->photo->storeAs($foldPath, $imageName);
-			return "path: $path";
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$sport->imagePath = $fullPath;
+			$sport->save();
 		}
+		return redirect("user/$userId/sports");
     }
-
-	public function createDirectory($path) {
-		//$path = "images/2020/February";
-
-		$arrayPath = explode("/", $path);
-		for ($i=0; $i<count($arrayPath); $i++) {
-			$j=0;
-			$auxPath="";
-			while ($j<=$i) {
-				$auxPath.= $arrayPath[$j]."/";
-				$j++;
-			}
-
-			if (!file_exists($auxPath)) {
-				mkdir($auxPath, 0777);
-			}
-		}
-	}
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($sportId)
+    public function edit($userId, $sportId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
-		//lamar vista de editar con el $sport
+		return view('partials.sportForm', array('userId'=>$userId, 'sport'=>$sport));
     }
 
     /**
@@ -115,18 +103,42 @@ class SportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Sport $request, $sportId)
+    public function update(Request $request, $userId, $sportId)
     {
-		return "controlador";
-		 /*
-		if (!$sport = ::find($sportId)) {
+
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
+		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
 		$sport->name = $request->input('name');
-		$sport->imagePath = $request->input('imagePath');
 
-		$sport->save();*/
+		if ($request->hasFile('image')) {
+			if (file_exists($imagePath)) {
+				unlink($sport->imagePath);
+			}
+
+			$extension = $request->image->extension();
+			$imageName = $sport->id.".".$extension;
+			$foldPath = 'storage/images/sports';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+			}
+
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$sport->imagePath = $fullPath;
+		}
+		$sport->save();
+
+		return redirect("user/$userId/sports");
     }
 
     /**
@@ -135,63 +147,19 @@ class SportsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($sportId)
+    public function destroy($userId, $sportId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$sport = Sport::find($sportId)) {
 			abort(404);
 		}
 
 		$sport->delete();
+		return redirect("user/$userId/sports");
     }
-
-
-	/*function uploadImage($image, $path) {
-
-
-
-
-
-	}*/
-
-	function uploadImageViejo($sportId) {
-		$rightUploaded = false;
-
-		$errors = array();
-		$file_name = $_FILES['image']['name'];
-		$file_size = $_FILES['image']['size'];
-		$file_tmp = $_FILES['image']['tmp_name'];
-		$file_type = $_FILES['image']['type'];
-
-		$file_ext = strtolower($file_name);
-		$file_ext = explode(".", $file_name);
-		$file_ext = end($file_ext);
-		$file_name = $sportId.".".$file_ext;
-
-		$extensions= array("jpeg","jpg","png");
-
-		if (in_array($file_ext, $extensions)=== false) {
-			array_push($errors, "extension not allowed, please choose a JPEG or PNG file.");
-		}
-
-		if ($file_size > 2097152) {
-			array_push($errors, 'File size must be excately 2 MB');
-		}
-
-		if (empty($errors)==true) {
-			$path = "/storage/app/images/sports/";
-			createDirectory($path);
-
-			move_uploaded_file($file_tmp, $path."/".$file_name);
-			$rightUploaded = true;
-			$imagePath = $path."/".$file_name;
-
-		} else {
-			$rightUploaded = false;
-			$imagePath=null;
-		}
-
-		return $imagePath;
-	}
 
 
 }

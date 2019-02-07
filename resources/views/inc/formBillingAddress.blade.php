@@ -64,7 +64,7 @@
         <span class="list-group-item"><i class="fa fa-flag prefix grey-text fa-1g" aria-hidden="true"></i></span>
       </div>
     <input type="text" id="countryBillingAddress" name="country" class="form-control" placeholder="Country">
-    <input type="hidden" name="type" id="type" value="billing">
+    <input type="hidden" name="type" id="billing" value="billing">
     </div>
     <span id="errorCountryBillingAddress"></span>
   </div>

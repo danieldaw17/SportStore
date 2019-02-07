@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Brand;
 use App\Product;
+use Auth;
 
 class BrandsController extends Controller
 {
@@ -26,9 +27,13 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-        //devolver vista crear brand
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+        return view('partials.brandForm', array('userId'=>$userId));
     }
 
     /**
@@ -37,27 +42,21 @@ class BrandsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Brand $request)
+    public function store(Request $request, $userId)
     {
-		$brand = new Brand();
-		$brand->name = $request->input('name');
-
-		$brand->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($brandId)
-    {
-		if (!$brand = Brand::find($brandId)) {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
-		//devolver vista de mostrar
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
+		$brand = new Brand();
+		$brand->name = $request->input('name');
+		$brand->save();
+
+		return redirect("user/$userId/brands");
     }
 
     /**
@@ -66,13 +65,17 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($brandId)
+    public function edit($userId, $brandId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
 
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
 		}
-		//llamar a vista con brand
+
+		return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand));
     }
 
     /**
@@ -82,14 +85,25 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Brand $request, $brandId)
+    public function update(Request $request, $userId, $brandId)
     {
+
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
 		}
-		$brand->name = $request->input('name');
 
+		$validateData = $request->validate([
+          'name' => 'required|max:30'
+	  	]);
+
+		$brand->name = $request->input('name');
 		$brand->save();
+
+		return redirect("user/$userId/brands");
     }
 
     /**
@@ -98,15 +112,24 @@ class BrandsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($brandId)
+    public function destroy($userId, $brandId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$brand = Brand::find($brandId)) {
 			abort(404);
 		}
 
 		$products = Product::where('brandId', $brandId)->get();
+		if (count($products)>0) {
+			$errors = array();
+			$errors[0] = "This brand contains products and can not be delete";
+			return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
+		}
 
-		$products->delete();
 		$brand->delete();
+		return redirect("user/$userId/brands");
     }
 }

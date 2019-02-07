@@ -50,7 +50,7 @@
                 </div>
 			</div>				
 			<div class="modal-footer text-center">
-				<a href="{{ url('user/id/mycart') }}"><input type="submit" name="sendBuy" value="Confirm buy" class="btn btn-default waves-effect waves-light"></a>
+				<a href="{{ url('user/{id}/mycart') }}"><input type="submit" name="sendBuy" value="Confirm buy" class="btn btn-default waves-effect waves-light"></a>
 			</div>
 		</div>
 	</div>

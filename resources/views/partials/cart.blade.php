@@ -50,7 +50,3 @@ My cart
 	</table>
 </div>
 @stop
-
-@section("js")
-<script type="text/javascript" src="{{ url('js/cart.js') }}"></script>
-@stop

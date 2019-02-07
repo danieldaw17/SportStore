@@ -364,3 +364,37 @@ function showFormChangeEmail(){
 	formEmail.style.display = "block";
 
 }
+
+// Validate password new user from Admin
+function validatePassword(){
+
+	// Error text
+	var textFieldNull = "This field can not be blank";
+	var unmatchPasswords = "Passwords do not match";
+
+	// New password and confirm password
+	var fieldNewPassword = document.getElementById("newPassword");
+	var newPasswordValue = document.getElementById("newPassword").value;
+	var fieldConfirmNewPassword = document.getElementById("confirmNewPassword");
+	var confirmNewPasswordValue = document.getElementById("confirmNewPassword").value;
+	if(newPasswordValue == null || newPasswordValue.length == 0 || newPasswordValue.trim()==""){
+		var error = document.getElementById("errorNewPassword");
+		error.innerHTML = textFieldNull;
+		fieldNewPassword.focus();
+		return false;
+	}else if(confirmNewPasswordValue == null || confirmNewPasswordValue.length == 0 || confirmNewPasswordValue.trim()==""){
+		var error = document.getElementById("errorConfirmNewPassword");
+		error.innerHTML = textFieldNull;
+		fieldConfirmNewPassword.focus();
+		return false;
+	}
+
+	// Confirm password
+	if(newPasswordValue != confirmNewPasswordValue){
+		var error = document.getElementById("errorConfirmNewPassword");
+		error.innerHTML = unmatchPasswords;
+		fieldConfirmNewPassword.focus();
+		return false;
+	}
+
+}

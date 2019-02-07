@@ -1,0 +1,11 @@
+.space {
+  width: 100%;
+}
+
+.info h1 {
+  margin-bottom: 3%;
+}
+
+#changePass {
+	display: none;
+}
