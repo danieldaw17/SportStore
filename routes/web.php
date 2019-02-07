@@ -46,3 +46,5 @@
 Route::get('/', function() {
 	return view('partials.index');
 });
+
+Auth::routes();

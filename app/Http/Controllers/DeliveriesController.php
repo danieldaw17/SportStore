@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Delivery;
-use App\Http\Requests\Delivery;
+use Auth;
 
 class DeliveriesController extends Controller
 {
@@ -28,11 +28,11 @@ class DeliveriesController extends Controller
      */
     public function create($userId)
     {
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
 
-        return view('partials.sportForm', array('userId'=>$userId));
+        return view('partials.deliveryForm', array('userId'=>$userId));
     }
 
     /**
@@ -41,11 +41,17 @@ class DeliveriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Delivery $request, $deliveryId)
+    public function store(Request $request, $userId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+  			'hoursMax' => 'required|numeric',
+  		  	'price' => 'required|numeric'
+	  	]);
 
         $delivery = new Delivery();
 
@@ -65,6 +71,10 @@ class DeliveriesController extends Controller
      */
     public function edit($userId, $deliveryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$delivery = Delivery::find($deliveryId)) {
 			abort(404);
 		}
@@ -79,7 +89,7 @@ class DeliveriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Delivery $request, $userId, $deliveryId)
+    public function update(Request $request, $userId, $deliveryId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -88,6 +98,12 @@ class DeliveriesController extends Controller
 		if (!$delivery = Delivery::find($deliveryId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+  			'hoursMax' => 'required|numeric',
+  		  	'price' => 'required|numeric'
+	  	]);
 
 		$delivery->name = $request->input('name');
 		$delivery->hoursMax = $request->input('hoursMax');
@@ -103,7 +119,7 @@ class DeliveriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($deliveryId)
+    public function destroy($userId, $deliveryId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
