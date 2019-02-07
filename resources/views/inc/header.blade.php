@@ -50,10 +50,10 @@
 				</li>	
 				<li><a href="#" data-toggle="modal" data-target="#shoppingCart"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"></a></li>
 				{{-- Si no existe la sesion del usuario 	
-				<li><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
+				<li id="lastLi"><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
 				--}}
 				{{-- Si existe la sesion del usuario --}}
-				<li class="dropdown login">
+				<li class="dropdown login" id="lastLi">
 					<a href="#" id="navbardrop">
 						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
 					</a>

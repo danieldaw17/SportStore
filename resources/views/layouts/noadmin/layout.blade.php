@@ -4,20 +4,24 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>@yield("title") | SportStore</title>
 		{{-- css --}}
-		<link rel="stylesheet" href="{{ url('css/main.css') }}">
-		<link rel="stylesheet" href="{{ url('css/bootstrap.css') }}">
-		<link rel="stylesheet" href="{{ url('css/style.min.css') }}">
-		<link rel="stylesheet" href="{{ url('css/styles.css') }}">
-		<link rel="stylesheet" href="{{ url('css/login.css') }}">
-		<link rel="stylesheet" href="{{ url('css/shopping-cart.css') }}">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/main.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/bootstrap.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/style.min.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/styles.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/login.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/shopping-cart.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/header.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/searcher.css') }}">
+		<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 		@yield("styles")
 	</head>
 	<body>
 		<div class="container">
 			{{-- Include header --}}
-			@include("inc/header")
-
+			{{-- Si no existe la sesion del administrador --}}
+			{{--@include("inc/header")--}}
+			{{-- Si existe la sesion del administrador --}}
+			@include("inc/admin/header")
 			<div class="section">
 				@yield("content")
 			</div>
@@ -30,6 +34,7 @@
 		<script src="{{ url('js/popper.js') }}"></script>
 		<script src="{{ url('js/bootstrap.min.js') }}"></script>
 		<script src="{{ url('js/login.js') }}"></script>
+		<script src="{{ url('js/cart.js') }}"></script>
 		@yield("js")
 	</body>
 </html>
