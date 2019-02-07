@@ -31,6 +31,16 @@
 
 	Route::get('user/{userId}/brands/{brandId}/delete', 'BrandsController@destroy');
 
+//DELIVERY ROUTES
+
+	Route::get('user/{userId}/deliveries/create', 'DeliveriesController@create');
+	Route::post('user/{userId}/deliveries/create', 'DeliveriesController@store');
+
+	Route::get('user/{userId}/deliveries/{deliveryId}/edit', 'DeliveriesController@edit');
+	Route::put('user/{userId}/deliveries/{deliveryId}/edit', 'DeliveriesController@update');
+
+	Route::get('user/{userId}/deliveries/{deliveryId}/delete', 'DeliveriesController@destroy');
+
 
 
 Route::get('/', function() {

@@ -33,9 +33,9 @@ class SportsController extends Controller
      */
     public function create($userId)
     {
-		/*if(!Auth::check() || Auth::user()->role!="root") {
+		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
-		}*/
+		}
 		return view('partials.sportForm', array('userId'=>$userId));
     }
 
