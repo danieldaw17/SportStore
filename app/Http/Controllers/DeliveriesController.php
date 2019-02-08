@@ -15,10 +15,15 @@ class DeliveriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+		
 		$deliveries = Delivery::all();
-		//llamar a vista que muestra deliveries
+
+		return view('partials.admin.showDeliveries', array('userId'=>$userId, 'deliveries'=>$deliveries));
     }
 
     /**

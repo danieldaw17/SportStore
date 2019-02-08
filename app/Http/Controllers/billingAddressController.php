@@ -79,7 +79,7 @@ class shippingAddressController extends Controller
 			abort(404);
 		}
 
-		return view('inc.shippingAddressForm', array('userId'=>$userId, 'address'=>$address));
+		return view('inc.billingAddressForm', array('userId'=>$userId, 'address'=>$address));
     }
 
     /**

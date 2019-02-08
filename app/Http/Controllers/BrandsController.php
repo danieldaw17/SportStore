@@ -130,7 +130,7 @@ class BrandsController extends Controller
 		if (count($products)>0) {
 			$errors = array();
 			$errors[0] = "This brand contains products and can not be delete";
-			return view('partials.admin.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
+			return view('partials.admin.showBrands', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
 		}
 
 		$brand->delete();

@@ -52,14 +52,16 @@ class CategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($userId, $categoryId)
-
+	{
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
 		//show its subcategories
-		$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
-        return view('partials.admin.showSubcategories', array('userId'=>$userId, 'sub_categories'=>$sub_categories));
+		if (!$sub_categories = Sub_category::where('categoryId', $categoryId)->get()) {
+			abort(404);
+		}
+        return view('partials.admin.showSubcategories', array('userId'=>$userId, 'sub_categories'=>$sub_categories));;
     }
 
     /**
@@ -70,7 +72,7 @@ class CategoriesController extends Controller
      */
 
 	 //it receives the data of a new category from a form and save it in the database
-    public function store(Request $request)
+    public function store(Request $request, $userId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -89,27 +91,6 @@ class CategoriesController extends Controller
 
 		$category->save();
 		return redirect("user/$userId/categories");
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-	 //it looks for subcategories where categoryid is this and call the view
-    public function show($categoryId)
-    {
-		if(!Auth::check() || Auth::user()->role!="root") {
-			abort(404);
-		}
-
-		if (!$sub_categories = Sub_category::where('categoryId', $categoryId)->get()) {
-			abort(404);
-		}
-
-		return view('partials.subcategories', array('sub_categories'=>$sub_categories));
     }
 
     /**
@@ -139,7 +120,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $categoryId)
+    public function update(Request $request, $userId, $categoryId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);

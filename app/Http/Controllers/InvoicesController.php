@@ -10,15 +10,25 @@ use App\Invoice_line;
 class InvoicesController extends Controller
 {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //llamar formulario de crear factura
-    }
+	/**
+	 * Display the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return \Illuminate\Http\Response
+	 */
+	public function show($userId, $invoiceId)
+	{
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
+		if (!$invoice = Invoice::find($invoiceId)) {
+			abort(404);
+		}
+
+		//show to the user their invoice but they can not modify it
+		return view('partials.showInvoice', array('userId'=>$userId, 'invoice'=>$invoice));
+	}
 
     /**
      * Store a newly created resource in storage.
@@ -26,69 +36,13 @@ class InvoicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Invoice $request)
+    public function store($userIds, $invoice)
     {
-        $invoice = new Invoice();
-
-		$invoice->totalPrice = $request->input('totalPrice');
-		$invoice->userId = $request->input('userId');
-		$invoice->deliveryId = $request->input('deliveryId');
-
-		$invoice->save();
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($invoiceId)
-    {
-		if (!$invoice = Invoice::find($invoiceId)) {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
 			abort(404);
 		}
 
-		//llamar vista de editar factura
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Invoice $request, $invoiceId)
-    {
-		if (!$invoice = Invoice::find($invoiceId)) {
-			abort(404);
-		}
-
-		$invoice->totalPrice = $request->input('totalPrice');
-		$invoice->userId = $request->input('userId');
-		$invoice->deliveryId = $request->input('deliveryId');
-
-		$invoice->save();
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($invoiceId)
-    {
-		if (!$invoice = Invoice::find($invoiceId)) {
-			abort(404);
-		}
-
-		if (!$invoice_lines = Invoice_line::where('invoiceId', $invoiceId)->get()) {
-			abort(404);
-		}
-
-		$invoice_lines->delete();
-		$invoice->delete();
+        $invoice->save();
+		return redirect("user/$userId/invoices");
     }
 }
