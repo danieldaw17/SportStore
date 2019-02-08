@@ -33,7 +33,7 @@ class BrandsController extends Controller
 			abort(404);
 		}
 
-        return view('partials.brandForm', array('userId'=>$userId));
+        return view('partials.admin.brandForm', array('userId'=>$userId));
     }
 
     /**
@@ -75,7 +75,7 @@ class BrandsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand));
+		return view('partials.admin.brandForm', array('userId'=>$userId, 'brand'=>$brand));
     }
 
     /**
@@ -126,7 +126,7 @@ class BrandsController extends Controller
 		if (count($products)>0) {
 			$errors = array();
 			$errors[0] = "This brand contains products and can not be delete";
-			return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
+			return view('partials.admin.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
 		}
 
 		$brand->delete();

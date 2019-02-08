@@ -32,7 +32,7 @@ class DeliveriesController extends Controller
 			abort(404);
 		}
 
-        return view('partials.deliveryForm', array('userId'=>$userId));
+        return view('partials.admin.deliveryForm', array('userId'=>$userId));
     }
 
     /**
@@ -79,7 +79,7 @@ class DeliveriesController extends Controller
 			abort(404);
 		}
 
-		return view('partials.deliveryForm', array('userId'=>$userId, 'delivery'=>$delivery));
+		return view('partials.admin.deliveryForm', array('userId'=>$userId, 'delivery'=>$delivery));
     }
 
     /**

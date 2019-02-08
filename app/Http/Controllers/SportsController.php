@@ -36,7 +36,7 @@ class SportsController extends Controller
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-		return view('partials.sportForm', array('userId'=>$userId));
+		return view('partials.admin.sportForm', array('userId'=>$userId));
     }
 
     /**
@@ -93,7 +93,7 @@ class SportsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.sportForm', array('userId'=>$userId, 'sport'=>$sport));
+		return view('partials.admin.sportForm', array('userId'=>$userId, 'sport'=>$sport));
     }
 
     /**
