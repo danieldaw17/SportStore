@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Sport;
 use App\Category;
 use App\Sub_category;
 use Auth;
@@ -46,6 +45,23 @@ class CategoriesController extends Controller
         return view('partials.admin.formCategory', array('userId'=>$userId));
     }
 
+	/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($userId, $categoryId)
+
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		//show its subcategories
+		$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
+        return view('partials.admin.showSubcategories', array('userId'=>$userId, 'sub_categories'=>$sub_categories));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -54,11 +70,17 @@ class CategoriesController extends Controller
      */
 
 	 //it receives the data of a new category from a form and save it in the database
-    public function store(Category $request)
+    public function store(Request $request)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+			'imagePath' => 'required|max:100',
+			'taxes' => 'required|numeric'
+	  	]);
 
         $category = new Category();
 		$subCategory->name = $request->input('name');
@@ -117,7 +139,7 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $request, $categoryId)
+    public function update(Request $request, $categoryId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -126,6 +148,12 @@ class CategoriesController extends Controller
 		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+			'imagePath' => 'required|max:100',
+			'taxes' => 'required|numeric'
+	  	]);
 
 		$subCategory->name = $request->input('name');
 		$subCategory->imagePath = $request->input('imagePath');

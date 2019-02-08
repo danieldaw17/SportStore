@@ -27,7 +27,13 @@ class Sub_CategoriesController extends Controller
 	}
 
 	//it receives the data of a new subcategory from a form and save it in the database
-	public function store(Sub_category $request, $userId, $categoryId) {
+	public function store(Request $request, $userId, $categoryId) {
+
+		$validateData = $request->validate([
+			'name' => 'required|unique:sub_categories|max:30',
+            'imagePath' => 'required|max:100',
+	  	]);
+
 		$subCategory = new Sub_category();
 
 		$subCategory->name = $request->input('name');
@@ -38,12 +44,18 @@ class Sub_CategoriesController extends Controller
 		return redirect("user/$userId/categories/$categoryId/sub_categories");
 	}
 
-	public function update(Sub_category $request, $userId, $categoryId, $subCategoryId)
+	public function update(Request $request, $userId, $categoryId, $subCategoryId)
 	//it updates a subcategory in the database
 	{
+
 		if (!$subCategory = Sub_category::find($subCategoryId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|unique:sub_categories|max:30',
+            'imagePath' => 'required|max:100',
+	  	]);
 
 		$subCategory->name = $request->input('name');
 		$subCategory->imagePath = $request->input('imagePath');
@@ -69,6 +81,5 @@ class Sub_CategoriesController extends Controller
 
 		$sub_category->delete();
 		return redirect("user/$userId/categories/$categoryId/sub_categories");
-		}
     }
 }
