@@ -55,7 +55,7 @@ class shippingAddressController extends Controller
 		$address->province = $request->input('province');
 		$address->zipCode = $request->input('zipCode');
 		$address->country = $request->input('country');
-		$address->typeAddress = "billing";
+		$address->typeAddress = "billing ";
 		$address->userId = $userId;
 
 		$address->save();

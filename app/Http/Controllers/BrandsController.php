@@ -15,11 +15,14 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
         $brands = Brand::all();
 
-		//llamar a la vista devolciendo brands
+		return view('partials.admin.formCategory', array('userId'=>$userId, 'brands'=>$brands));
     }
 
     /**
@@ -57,6 +60,7 @@ class BrandsController extends Controller
 		$brand->save();
 
 		return redirect("user/$userId/brands");
+
     }
 
     /**

@@ -9,25 +9,25 @@ use Illuminate\Http\Request;
 class Sub_CategoriesController extends Controller
 {
 	//for creating a new subcategory with a form
-	public function create()
+	public function create($userId, $categoryId)
 	{
-		//llamar a vista de agregar subcategory
+		return view('partials.admin.formSubcategory', array('userId'=>$userId, 'categoryId'=>$categoryId));
 
 	}
 
 	//for editing a subcategory loading its data in the form
-	public function edit($subCategoryId)
+	public function edit($userId, $categoryId, $sub_categoryId)
 	{
-		if (!$subCategory = Sub_category::find($subCategoryId)) {
+		if (!$sub_category = Sub_category::find($sub_categoryId)) {
 			abort(404);
 		}
 
-		//llamar a vista de editar subcategory
+		return view('partials.admin.formSubcategory', array('userId'=>$userId, 'categoryId'=>$categoryId, $sub_category));
 
 	}
 
 	//it receives the data of a new subcategory from a form and save it in the database
-	public function store(Sub_category $request) {
+	public function store(Sub_category $request, $userId, $categoryId) {
 		$subCategory = new Sub_category();
 
 		$subCategory->name = $request->input('name');
@@ -35,19 +35,10 @@ class Sub_CategoriesController extends Controller
 		$subCategory->categoryId = $request->input('categoryId');
 
 		$subCategory->save();
+		return redirect("user/$userId/categories/$categoryId/sub_categories");
 	}
 
-	//it looks for products where subcategoryid is this and call the view
-	public function show($subCategoryId)
-	{
-        if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
-			abort(404);
-		}
-
-		return view('partials.products', array('products'=>$products));
-    }
-
-	public function update(Sub_category $request, $subCategoryId)
+	public function update(Sub_category $request, $userId, $categoryId, $subCategoryId)
 	//it updates a subcategory in the database
 	{
 		if (!$subCategory = Sub_category::find($subCategoryId)) {
@@ -59,21 +50,25 @@ class Sub_CategoriesController extends Controller
 		$subCategory->categoryId = $request->input('categoryId');
 
 		$subCategory->save();
+		return redirect("user/$userId/categories/$categoryId/sub_categories");
     }
 
 	//for deleting a subcategory
-	public function destroy($subCategoryId)
+	public function destroy($userId, $categoryId, $subCategoryId)
 	{
         if (!$subCategory = Sub_category::find($subCategoryId)) {
 			abort(404);
 		}
 
-		if (!$products = Product::where('subCategoryId', $subCategoryId)->get()) {
-			abort(404);
+		$products = Product::where('subCategoryId', $subCategoryId)->get();
+		if (count($products)>0) {
+			$errors = array();
+			$errors[0] = "This sub category contains products and can not be delete";
+			return view('partials.admin.showCategories', array('userId'=>$userId, 'categoryId'=>$categoryId, 'errors'=>$errors));
 		}
 
-		if ($products->delete()) {
-			$subCategory->delete();
+		$sub_category->delete();
+		return redirect("user/$userId/categories/$categoryId/sub_categories");
 		}
     }
 }
