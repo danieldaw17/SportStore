@@ -8,6 +8,7 @@ use App\Category;
 use App\Sub_category;
 use App\Sport;
 use App\Brands;
+use App\Stock;
 
 class ProductsController extends Controller
 {
@@ -22,7 +23,8 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId));
+		$stocks = Stock::where('productId', $productId)->get();
+		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'stocks'=>$stocks));
     }
 
     /**
@@ -49,7 +51,14 @@ class ProductsController extends Controller
     		'weight' => 'numeric',
     		'subCategoryId' => 'required|integer',
     		'brandId' => 'required|integer',
-    		'sportId' => 'required|integer'
+    		'sportId' => 'required|integer',
+			'XXS'=> 'integer',
+			'XS'=> 'integer',
+			'S'=> 'integer',
+			'M'=> 'integer',
+			'L'=> 'integer',
+			'XL'=> 'integer',
+			'XXL'=> 'integer'
 	  	]);
 
 		$product = new Product();
@@ -68,6 +77,62 @@ class ProductsController extends Controller
 		$product->sportId = $sportId;
 
 		$product->save();
+
+		if ($request->input('XXS')!="") {
+			$stock = new Stock();
+			$stock->size = "XXS";
+			$stock->amount = $request->input('M');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('XS')!="") {
+			$stock = new Stock();
+			$stock->size = "XS";
+			$stock->amount = $request->input('XS');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('S')!="") {
+			$stock = new Stock();
+			$stock->size = "S";
+			$stock->amount = $request->input('S');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('M')!="") {
+			$stock = new Stock();
+			$stock->size = "M";
+			$stock->amount = $request->input('M');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('L')!="") {
+			$stock = new Stock();
+			$stock->size = "L";
+			$stock->amount = $request->input('L');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('XL')!="") {
+			$stock = new Stock();
+			$stock->size = "XL";
+			$stock->amount = $request->input('XL');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('XXL')!="") {
+			$stock = new Stock();
+			$stock->size = "XXL";
+			$stock->amount = $request->input('XXL');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
 		redirect("user/$userId/categories/$categoryId/sub_categories/$subCategoryId");
     }
 
@@ -106,7 +171,8 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product));
+		$stocks = Stock::where('productId', $productId)->get();
+		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product, 'stocks'=>$stocks));
     }
 
     /**
@@ -138,7 +204,14 @@ class ProductsController extends Controller
     		'weight' => 'numeric',
     		'subCategoryId' => 'required|integer',
     		'brandId' => 'required|integer',
-    		'sportId' => 'required|integer'
+    		'sportId' => 'required|integer',
+			'XXS'=> 'integer',
+			'XS'=> 'integer',
+			'S'=> 'integer',
+			'M'=> 'integer',
+			'L'=> 'integer',
+			'XL'=> 'integer',
+			'XXL'=> 'integer'
 	  	]);
 
         $product->name = $request->input('name');
@@ -156,6 +229,85 @@ class ProductsController extends Controller
 		$product->sportId = $sportId;
 
 		$product->save();
+
+
+		if ($request->input('XXS')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'XXS')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "XXS";
+			$stock->amount = $request->input('M');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+
+		if ($request->input('XS')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'XS')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "XS";
+			$stock->amount = $request->input('XS');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('S')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'S')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "S";
+			$stock->amount = $request->input('S');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('M')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'M')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "M";
+			$stock->amount = $request->input('M');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('L')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'L')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "L";
+			$stock->amount = $request->input('L');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('XL')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'XL')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "XL";
+			$stock->amount = $request->input('XL');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+
+		if ($request->input('XXL')!="") {
+
+			if (!$stock = Stock::where('productId', $productId)->where('size', 'XXL')->get()) {
+				$stock = new Stock();
+			}
+			$stock->size = "XXL";
+			$stock->amount = $request->input('XXL');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
 		redirect("user/$userId/categories/$categoryId/sub_categories/$subCategoryId");
     }
 
@@ -179,6 +331,13 @@ class ProductsController extends Controller
 		if (count($images)>0) {
 			$errors = array();
 			$errors[0] = "This product contains images and can not be delete";
+			return view('inc.admin.showProducts', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId,'errors'=>$errors));
+		}
+
+		$stocks = Stock::where('productId', $productId)->get();
+		if (count($stocks)>0) {
+			$errors = array();
+			$errors[0] = "This product contains stocks and can not be delete";
 			return view('inc.admin.showProducts', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId,'errors'=>$errors));
 		}
 
