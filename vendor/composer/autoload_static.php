@@ -439,7 +439,7 @@ class ComposerStaticInit2ef86c2043090b65eb0bc1a97bfcf172
         'App\\Http\\Controllers\\ImagesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ImagesController.php',
         'App\\Http\\Controllers\\Invoice_linesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Invoice_linesController.php',
         'App\\Http\\Controllers\\InvoicesController' => __DIR__ . '/../..' . '/app/Http/Controllers/InvoicesController.php',
-        'App\\Http\\Controllers\\ProductsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductsController.php',
+        'App\\Http\\Controllers\\ProductsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ProductsManagementController.php',
         'App\\Http\\Controllers\\SportsController' => __DIR__ . '/../..' . '/app/Http/Controllers/SportsController.php',
         'App\\Http\\Controllers\\StocksController' => __DIR__ . '/../..' . '/app/Http/Controllers/StocksController.php',
         'App\\Http\\Controllers\\Sub_CategoriesController' => __DIR__ . '/../..' . '/app/Http/Controllers/Sub_categoriesController.php',

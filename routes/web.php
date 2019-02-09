@@ -83,6 +83,19 @@ use App\Address;
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/delete', 'Sub_categoriesController@destroy');
 
+//INVOICE ROUTES
+	Route::get('user/{userId}/Invoices', 'InvoicesController@index');
+	Route::get('user/{userId}/Invoices/{invoiceId}', 'InvoicesController@show');
+
+	Route::post('user/{userId}/Invoices', 'InvoicesController@store');
+
+//INVOICELINES ROUTES
+	Route::get('user/{userId}/Invoices', 'Invoice_linesController@index');
+	Route::get('user/{userId}/Invoices/{invoiceId}', 'Invoice_linesController@show');
+
+	Route::post('user/{userId}/Invoices{invoiceId}/Invoice_lines/create', 'Invoice_linesController@store');
+
+
 
 Route::get('/', function() {
 	return view('partials.index');
