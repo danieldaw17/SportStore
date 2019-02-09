@@ -14,14 +14,14 @@ class Sub_CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($userId, $subCategoryId)
+    public function index($userId, $categoryId)
     {
 		if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
-		$products = Product::where('subCategoryId', $subCategoryId)->get();
-		return view ('partials.10.productManagement', array('userId'=>$userId, 'subCategoryId'=>$subCategoryId, 'products'=>$products));
+		$products = Sub_category::where('categoryId', $categoryId)->get();
+		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'products'=>$products));
     }
 
 	//for creating a new subcategory with a form
@@ -99,6 +99,10 @@ class Sub_CategoriesController extends Controller
 	//for deleting a subcategory
 	public function destroy($userId, $categoryId, $subCategoryId)
 	{
+		if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
         if (!$subCategory = Sub_category::find($subCategoryId)) {
 			abort(404);
 		}

@@ -158,13 +158,6 @@ class SportsController extends Controller
 			abort(404);
 		}
 
-		$products = Product::where('sportId', $sportId)->get();
-		if (count($products)>0) {
-			$errors = array();
-			$errors[0] = "There are products with this sport and can not be deleted";
-			return view('inc.admin.showSports', array('userId'=>$userId, 'sportId'=>$sportId,'errors'=>$errors));
-		}
-
 		$sport->delete();
 		return redirect("user/$userId/sports");
     }

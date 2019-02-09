@@ -12,6 +12,22 @@ use App\Stock;
 
 class ProductsController extends Controller
 {
+
+	/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($userId, $categoryId, $subCategoryId)
+    {
+		if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$products = Product::where('subCategoryId', $subCategoryId)->get();
+		return view ('partials.admin.productManagement', array('userId'=>$userId, 'subCategoryId'=>$subCategoryId, 'products'=>$products));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -23,8 +39,22 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
+
+		$brands = Brand::all();
+		if (count($brands)<1) {
+			$errors = array();
+			$errors[0] = "There are no brands available. Create one brand first";
+			return view('partials.admin.productManagement', 'errors'=>$errors);
+		}
+
+		$brands = Sport::all();
+		if (count($sports)<1) {
+			$errors = array();
+			$errors[0] = "There are no sports available. Create one sport first";
+			return view('partials.admin.productManagement', 'errors'=>$errors);
+		}
 		$stocks = Stock::where('productId', $productId)->get();
-		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'stocks'=>$stocks));
+		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
     }
 
     /**
@@ -73,10 +103,86 @@ class ProductsController extends Controller
 		$product->wheelsAmount = $request->input('wheelsAmount');
 		$product->weight = $request->input('weight');
 		$product->subCategory = $subCategoryId;
-		$product->brandId = $brandId;
-		$product->sportId = $sportId;
+		$product->brandId = $request->input('brandId');
+		$product->sportId = $request->input('sportId');
 
 		$product->save();
+
+		if ($request->hasFile('imageFront')) {
+
+			$extension = $request->imageFront->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->imageFront->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+
+			$image = new Image();
+			$image->name = "front";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageBack')) {
+
+			$extension = $request->imageBack->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->imageBack->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+
+			$image = new Image();
+			$image->name = "back";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageSideL')) {
+
+			$extension = $request->imageSideL->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->imageSideL->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+
+			$image = new Image();
+			$image->name = "sideL";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageSideR')) {
+
+			$extension = $request->imageSideR->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->imageSideR->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+
+			$image = new Image();
+			$image->name = "sideR";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
 
 		if ($request->input('XXS')!="") {
 			$stock = new Stock();
@@ -142,7 +248,7 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($userId, $categoryId, $subCategoryId, $productId)
+    /*public function show($userId, $categoryId, $subCategoryId, $productId)
     {
 		if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -153,7 +259,7 @@ class ProductsController extends Controller
 		}
 
 		return view('partials.product-detail', array('product'=>$product));
-    }
+    }*/
 
     /**
      * Show the form for editing the specified resource.
@@ -171,8 +277,22 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
+		$brands = Brand::all();
+		if (count($brands)<1) {
+			$errors = array();
+			$errors[0] = "There are no brands available. Create one brand first";
+			return view('partials.admin.productManagement', 'errors'=>$errors);
+		}
+
+		$brands = Sport::all();
+		if (count($sports)<1) {
+			$errors = array();
+			$errors[0] = "There are no sports available. Create one sport first";
+			return view('partials.admin.productManagement', 'errors'=>$errors);
+		}
+
 		$stocks = Stock::where('productId', $productId)->get();
-		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product, 'stocks'=>$stocks));
+		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'prodct'=>$product, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
     }
 
     /**
@@ -225,10 +345,131 @@ class ProductsController extends Controller
 		$product->wheelsAmount = $request->input('wheelsAmount');
 		$product->weight = $request->input('weight');
 		$product->subCategory = $subCategoryId;
-		$product->brandId = $brandId;
-		$product->sportId = $sportId;
+		$product->brandId = $request->input('brandId');
+		$product->sportId = $request->input('sportId');
 
 		$product->save();
+
+		if ($request->hasFile('imageFront')) {
+
+			$extension = $request->imageFront->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+
+			//check if exists a previous file with the same name
+			$fullPath = $foldPath."/".$imageName;
+			if (file_exists($fullPath)) {
+				unlink($fullPath);
+			}
+
+			//create file if does not exists
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+
+			$request->imageFront->move($foldPath, $imageName);
+
+			//search image or create it if does not exists
+			if (!$image = Image::where('poductId', $product->id)->where('name', "front")->get()) {
+				$image = new Image();
+			}
+			$image->name = "front";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageBack')) {
+
+			$extension = $request->imageBack->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+
+			//check if exists a previous file with the same name
+			$fullPath = $foldPath."/".$imageName;
+			if (file_exists($fullPath)) {
+				unlink($fullPath);
+			}
+
+			//create file if does not exists
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+
+			$request->imageBack->move($foldPath, $imageName);
+
+			//search image or create it if does not exists
+			if (!$image = Image::where('poductId', $product->id)->where('name', "back")->get()) {
+				$image = new Image();
+			}
+			$image->name = "back";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageSideL')) {
+
+			$extension = $request->imageSideL->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+
+			//check if exists a previous file with the same name
+			$fullPath = $foldPath."/".$imageName;
+			if (file_exists($fullPath)) {
+				unlink($fullPath);
+			}
+
+			//create file if does not exists
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+
+			$request->imageFront->move($foldPath, $imageName);
+
+			//search image or create it if does not exists
+			if (!$image = Image::where('poductId', $product->id)->where('name', "sideL")->get()) {
+				$image = new Image();
+			}
+			$image->name = "sideL";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
+		if ($request->hasFile('imageSideR')) {
+
+			$extension = $request->imageSideR->extension();
+			$imageName = $product->id.".".$extension;
+			$foldPath = 'storage/images/products';
+
+			//check if exists a previous file with the same name
+			$fullPath = $foldPath."/".$imageName;
+			if (file_exists($fullPath)) {
+				unlink($fullPath);
+			}
+
+			//create file if does not exists
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+
+			$request->imageFront->move($foldPath, $imageName);
+
+			//search image or create it if does not exists
+			if (!$image = Image::where('poductId', $product->id)->where('name', "sideR")->get()) {
+				$image = new Image();
+			}
+			$image->name = "sideR";
+			$image->path = $fullPath;
+			$image->productId = $product->id;
+			$image->save();
+		}
+
 
 
 		if ($request->input('XXS')!="") {
