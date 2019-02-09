@@ -9,34 +9,58 @@ use App\Image;
 class ImagesController extends Controller
 {
 
+	//for creating a new image with a form
+   public function create($userId, $categoryId, $subCategoryId, $productId)
+   {
+	   if(!Auth::check() || Auth::user()->role!="root") {
+		   abort(404);
+	   }
+
+	   $categories = Category::all();
+
+	   return view('partials.admin.formImage', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'productId'=>$productId));
+   }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Image $request)
+    public function store(Request $request, $userId, $categoryId, $subCategoryId, $productId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:50',
+			'path' => 'required|max:50'
+	  	]);
+
         $image = new Image();
 
 		$image->name = $request->input('name');
 		$image->path = $request->input('path');
-		$productId->path = $request->input('productId');
-
+		$productId->path = $productId;
+		$image->path = "";
 		$image->save();
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($imageId)
-    {
-		if (!$image = Image::find($imageId)) {
-			abort(404);
+		if ($request->hasFile('image')) {
+
+			$extension = $request->image->extension();
+			$imageName = $image->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$image->imagePath = $fullPath;
+			$image->save();
 		}
+		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products/$productId/Images");
     }
 
     /**
@@ -45,9 +69,17 @@ class ImagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($imageId)
+    public function edit(Request $request, $userId, $categoryId, $subCategoryId, $productId, $imageId)
     {
-        //
+		if(!Auth::check() || Auth::user()->role!="root") {
+ 		   abort(404);
+ 	   }
+
+	   if (!$image = Image::find($imageId)) {
+		   abort(404);
+	   }
+
+ 	   return view('partials.admin.formImage', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'productId'=>$productId, 'image'=>$image));
     }
 
     /**
@@ -57,8 +89,12 @@ class ImagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Image $request, $imageId)
+    public function update(Request $request, $userId, $categoryId, $subCategoryId, $productId, $imageId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$image = Image::find($imageId)) {
 			abort(404);
 		}
@@ -67,7 +103,25 @@ class ImagesController extends Controller
 		$image->path = $request->input('path');
 		$image->path = $request->input('productId');
 
+		if ($request->hasFile('image')) {
+			if (file_exists($image->path)) {
+				unlink($image->path);
+			}
+
+			$extension = $request->image->extension();
+			$imageName = $image->id.".".$extension;
+			$foldPath = 'storage/images/products';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+			}
+
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$image->path = $fullPath;
+		}
+
 		$image->save();
+		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products/$productId/Images");
     }
 
     /**
@@ -76,12 +130,17 @@ class ImagesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($imageId)
+    public function destroy($userId, $categoryId, $subCategoryId, $productId, $imageId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$image = Image::find($imageId)) {
 			abort(404);
 		}
 
 		$image->delete();
+		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products/$productId/Images");
     }
 }

@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Address;
+use Auth;
 
-class AddressesController extends Controller
+class shippingAddressController extends Controller
 {
 
     /**
@@ -14,9 +15,14 @@ class AddressesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId)
     {
-        //abrir formulario para incluir nueva direccion
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
+
+        return view('inc.shippingAddressForm', array('userId'=>$userId));
     }
 
     /**
@@ -25,8 +31,22 @@ class AddressesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Address $request)
+    public function store(Request $request, $userId)
     {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+			'line' => 'required|integer',
+			'roadType' => 'required',
+			'roadName' => 'required|max:70',
+			'city' => 'required|max:40',
+			'province' => 'required|max:40',
+			'zipCode' => 'required',
+			'country' => 'required|max:25'
+	  	]);
+
         $address = new Address();
 
 		$address->roadType = $request->input('address');
@@ -35,10 +55,12 @@ class AddressesController extends Controller
 		$address->province = $request->input('province');
 		$address->zipCode = $request->input('zipCode');
 		$address->country = $request->input('country');
-		$address->typeAddress = $request->input('typeAddress');
-		$address->userId = $request->input('userId');
+		$address->typeAddress = "shipping";
+		$address->userId = $userId;
 
 		$address->save();
+
+		return redirect("user/$userId");
     }
 
     /**
@@ -47,13 +69,17 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($addressId)
+    public function edit($userId, $addressId)
     {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
 		if (!$address = Address::find($addressId)) {
 			abort(404);
 		}
 
-		//llamar a formulario direccion con datos
+		return view('inc.shippingAddressForm', array('userId'=>$userId, 'address'=>$address));
     }
 
     /**
@@ -63,11 +89,25 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Address $request, $addressId)
+    public function update(Request $request, $userId, $addressId)
     {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
 		if (!$address = Address::find($addressId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'line' => 'required|integer',
+			'roadType' => 'required',
+			'roadName' => 'required|max:70',
+			'city' => 'required|max:40',
+			'province' => 'required|max:40',
+			'zipCode' => 'required',
+			'country' => 'required|max:25'
+	  	]);
 
 		$address->roadType = $request->input('address');
 		$address->roadName = $request->input('roadName');
@@ -75,10 +115,10 @@ class AddressesController extends Controller
 		$address->province = $request->input('province');
 		$address->zipCode = $request->input('zipCode');
 		$address->country = $request->input('country');
-		$address->typeAddress = $request->input('typeAddress');
-		$address->userId = $request->input('userId');
 
 		$address->save();
+
+		return redirect("user/$userId");
     }
 
     /**
@@ -87,13 +127,19 @@ class AddressesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($addressId)
+    public function destroy($userId, $addressId)
     {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
         if (!$address = Address::find($addressId)) {
 			abort(404);
 		}
 
 		$address->delete();
+
+		return redirect("user/$userId");
 
     }
 }

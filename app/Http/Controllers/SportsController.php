@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use App\Sport;
+use App\Product;
 use Auth;
 
 class SportsController extends Controller
@@ -16,14 +17,14 @@ class SportsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
         $sports = Sport::all();
 
-		//lamar a la vista y devolver deportes
+		return view('partials.admin.showSports', array('userId'=>$userId, 'sports'=>$sports));
     }
 
     /**
@@ -36,7 +37,7 @@ class SportsController extends Controller
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-		return view('partials.sportForm', array('userId'=>$userId));
+		return view('partials.admin.sportForm', array('userId'=>$userId));
     }
 
     /**
@@ -93,7 +94,7 @@ class SportsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.sportForm', array('userId'=>$userId, 'sport'=>$sport));
+		return view('partials.admin.sportForm', array('userId'=>$userId, 'sport'=>$sport));
     }
 
     /**
@@ -121,7 +122,7 @@ class SportsController extends Controller
 		$sport->name = $request->input('name');
 
 		if ($request->hasFile('image')) {
-			if (file_exists($imagePath)) {
+			if (file_exists($sport->imagePath)) {
 				unlink($sport->imagePath);
 			}
 
