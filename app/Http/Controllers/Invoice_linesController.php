@@ -15,11 +15,25 @@ class Invoice_linesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($userId, $invoice, $invoice_line)
+    public function store(Request $request, $userId, $invoice, $invoiceId)
     {
 		if (!Auth::check() || Auth::user()->id!=$userId) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+  		   'amount' => 'required|integer',
+  		   'basePrice' => 'required|numeric'
+	  	]);
+
+		$numberLine = Invoice_line::max('line')->where('invoiceId', $invoiceId)->get();
+		$numberLine++;
+
+		$invoice_line = new Invoice_line();
+
+		$invoice_line->line = $numberLine;
+		$invoice_line->amount = $request->input('amount');
+		$invoice_line->basePrice = $request->input('basePrice');
 
         $invoice_line->save();
 	}
@@ -35,7 +49,7 @@ class Invoice_linesController extends Controller
 		if (!Auth::check() || Auth::user()->id!=$userId) {
 			abort(404);
 		}
-		
+
 		if (!$invoice_line = Invoice_line::find($invoice_lineId)) {
 			abort(404);
 		}

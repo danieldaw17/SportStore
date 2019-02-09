@@ -25,7 +25,7 @@ return array(
     'App\\Http\\Controllers\\ImagesController' => $baseDir . '/app/Http/Controllers/ImagesController.php',
     'App\\Http\\Controllers\\Invoice_linesController' => $baseDir . '/app/Http/Controllers/Invoice_linesController.php',
     'App\\Http\\Controllers\\InvoicesController' => $baseDir . '/app/Http/Controllers/InvoicesController.php',
-    'App\\Http\\Controllers\\ProductsController' => $baseDir . '/app/Http/Controllers/ProductsController.php',
+    'App\\Http\\Controllers\\ProductsController' => $baseDir . '/app/Http/Controllers/ProductsManagementController.php',
     'App\\Http\\Controllers\\SportsController' => $baseDir . '/app/Http/Controllers/SportsController.php',
     'App\\Http\\Controllers\\StocksController' => $baseDir . '/app/Http/Controllers/StocksController.php',
     'App\\Http\\Controllers\\Sub_CategoriesController' => $baseDir . '/app/Http/Controllers/Sub_categoriesController.php',

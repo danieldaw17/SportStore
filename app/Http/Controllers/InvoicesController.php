@@ -9,6 +9,21 @@ use App\Invoice_line;
 
 class InvoicesController extends Controller
 {
+	/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index($userId)
+    {
+		if (!Auth::check() || Auth::user()->id!=$userId) {
+			abort(404);
+		}
+
+        $invoices = Invoice::all();
+
+		return view('partials.showInvoices', 'userId'=>$userId, 'invoices'=>$invoices);
+    }
 
 	/**
 	 * Display the specified resource.
@@ -36,13 +51,24 @@ class InvoicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($userIds, $invoice)
+    public function store(Request $request, $userId, $invoice)
     {
 		if (!Auth::check() || Auth::user()->id!=$userId) {
 			abort(404);
 		}
 
-        $invoice->save();
-		return redirect("user/$userId/invoices");
+		$validateData = $request->validate([
+			'totalPrice' => 'required|numeric',
+			'userId' => 'required|integer',
+			'deliveryId' => 'required|integer'
+	  	]);
+
+        $invoice = new Invoice();
+		$invoice->totalPrice = $request->input('totalPrice');
+		$invoice->userId = $request->input('userId');
+		$invoice->deliveryId = $request->input('deliveryId');
+
+		$invoice->save();
+		return("user/$userId/invoices");
     }
 }
