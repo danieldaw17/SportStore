@@ -48,18 +48,18 @@ class RegisterController extends Controller
      */
     public function store(Request $request){
         $validateData = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' =>'required|string|min:6|confirmed',
-            'nick' =>'string|max:20',
-            'lastName' =>'string|max:25',
-            'role'=>'string|max:10'
- 
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' =>'required|min:6|confirmed',
+            'nick' =>'max:20',
+            'lastName' =>'max:25',
+            'role'=>'max:10'
+
         ]);
         return redirect("/");
     }
-    
-    
+
+
 
     /**
      * Create a new user instance after a valid registration.

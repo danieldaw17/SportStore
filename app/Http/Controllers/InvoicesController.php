@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Invoice;
 use App\Invoice_line;
+use Auth;
 
 class InvoicesController extends Controller
 {
@@ -22,7 +23,7 @@ class InvoicesController extends Controller
 
         $invoices = Invoice::all();
 
-		return view('partials.showInvoices', 'userId'=>$userId, 'invoices'=>$invoices);
+		return view('partials.showInvoices', array('userId'=>$userId, 'invoices'=>$invoices));
     }
 
 	/**
@@ -42,7 +43,7 @@ class InvoicesController extends Controller
 		}
 
 		//show to the user their invoice but they can not modify it
-		return view('partials.showInvoice', array('userId'=>$userId, 'invoice'=>$invoice));
+		return view('partials.showInvoice-detail', array('userId'=>$userId, 'invoice'=>$invoice));
 	}
 
     /**

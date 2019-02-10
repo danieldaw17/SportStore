@@ -3,15 +3,15 @@
 namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Model implements Authenticatable
+class User extends Authenticatable
 {
     use Notifiable;
 
     public function invoices() {
-        return $this->belongsTo('App\Invoice');
+        return $this->hasMany('App\Invoice');
     }
 
     public function addresses() {
@@ -25,7 +25,7 @@ class User extends Model implements Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password','nick','lastName'
+        'name', 'email', 'password', 'nick', 'lastName', 'image'
     ];
 
     /**

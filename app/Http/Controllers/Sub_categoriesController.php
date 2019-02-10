@@ -20,8 +20,8 @@ class Sub_CategoriesController extends Controller
 			abort(404);
 		}
 
-		$products = Sub_category::where('categoryId', $categoryId)->get();
-		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'products'=>$products));
+		$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
+		return view ('partials.showSubcategories', array('userId'=>$userId, 'categoryId'=>$categoryId, 'sub_categories'=>$sub_categories));
     }
 
 	//for creating a new subcategory with a form

@@ -281,14 +281,14 @@ class ProductsController extends Controller
 		if (count($brands)<1) {
 			$errors = array();
 			$errors[0] = "There are no brands available. Create one brand first";
-			return view('partials.admin.productManagement', 'errors'=>$errors);
+			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
 
 		$brands = Sport::all();
 		if (count($sports)<1) {
 			$errors = array();
 			$errors[0] = "There are no sports available. Create one sport first";
-			return view('partials.admin.productManagement', 'errors'=>$errors);
+			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
 
 		$stocks = Stock::where('productId', $productId)->get();
