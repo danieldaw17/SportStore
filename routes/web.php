@@ -73,7 +73,7 @@ use App\Address;
 	Route::get('user/{userId}/Categories/{categoryId}/delete', 'CategoriesController@destroy');
 
 //SUB_CATEGORY ROUTES
-	Route::get('user/{userId}/Categories/', 'Sub_categoriesController@index');
+	Route::get('user/{userId}/Categories/{categoryId}', 'Sub_categoriesController@index');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/create', 'Sub_categoriesController@create');
 	Route::post('user/{userId}/Categories/{categoryId}/Sub_categories/create', 'Sub_categoriesController@store');
@@ -115,6 +115,8 @@ use App\Address;
         $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
         $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
+
+//
 Route::get('user/{userId}', 'UsersController@index');
 Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
 
