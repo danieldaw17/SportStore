@@ -17,13 +17,10 @@
 						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
 					</a>
 					<div class="dropdown-menu">
-						{{--<a class="dropdown-item" href="{{ url('user/'.Auth::user()->id) }}">My perfil</a>
-						<a class="dropdown-item" href="#">My shopping</a>--}}
 						<a class="dropdown-item" href="/logout">Log out</a>
 					</div>
 				</li>
 			</ul>
-
 		</div>
 	</nav>
 </header>

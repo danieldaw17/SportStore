@@ -14,7 +14,7 @@ New product
   {{-- Cambiar en funcion si recibe datos o no --}}
   <h1>New product</h1>
   {{-- pasar action --}}
-  <form method="post" action="#" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
+  <form method="post" action="{{ url('user/'.Auth::user()->id.'/Products/create') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
     {{-- Name --}}
     <div class="form-group">
       <div class="input-group">

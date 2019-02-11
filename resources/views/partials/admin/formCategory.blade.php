@@ -14,7 +14,7 @@ New categorie
   {{-- Cambiar en funcion si recibe datos o no --}}
   <h1>New category</h1>
   {{-- pasar action --}}
-  <form method="post" action="#" onsubmit="return validateFormCategory();">
+  <form method="post" action="{{ url('user/'.Auth::user()->id.'/Categories/create') }}" onsubmit="return validateFormCategory();">
     {{-- Name --}}
     <div class="form-group">
       <div class="input-group">

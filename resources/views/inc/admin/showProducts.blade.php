@@ -4,7 +4,7 @@
 <div class="row probootstrap-gutter60">
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id del producto --}}
-		<a href="{{ url('user/4/products/create') }}">
+		<a href="{{ url('user/'.Auth::user()->id.'/Products/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
 					{{-- pasar datos de la imagen --}}

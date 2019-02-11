@@ -47,6 +47,7 @@ use App\Address;
 
 
 //PRODUCT ROUTES
+
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products', 'ProductsManagementController@index');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/create', 'ProductsManagementController@create');
@@ -127,4 +128,12 @@ Route::get('/', function() {
 
 Route::get('/home', function() {
 	return view('partials.index');
+});
+
+Route::get('/products', function() {
+	return view('partials.showProducts');
+});
+
+Route::get('/myCart', function() {
+	return view('partials.cart');
 });

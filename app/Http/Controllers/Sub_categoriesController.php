@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Sub_category;
 use App\Product;
+use Auth;
 
 use Illuminate\Http\Request;
 

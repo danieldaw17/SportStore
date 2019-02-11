@@ -10,7 +10,7 @@
                 Are you sure you want to delete the sport #id?
             </div>
             <div class="modal-footer">
-                <a href="{{ url('user/3/sports/3/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <a href="{{ url('user/'.Auth::user()->id.'/sports/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
         </div>
     </div>

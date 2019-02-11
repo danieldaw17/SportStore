@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Sub_category;
+use App\Sport;
 use Auth;
 
 class CategoriesController extends Controller
