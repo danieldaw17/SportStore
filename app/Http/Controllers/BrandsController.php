@@ -15,11 +15,14 @@ class BrandsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
         $brands = Brand::all();
 
-		//llamar a la vista devolciendo brands
+		return view('partials.admin.formCategory', array('userId'=>$userId, 'brands'=>$brands));
     }
 
     /**
@@ -33,7 +36,7 @@ class BrandsController extends Controller
 			abort(404);
 		}
 
-        return view('partials.brandForm', array('userId'=>$userId));
+        return view('partials.admin.brandForm', array('userId'=>$userId));
     }
 
     /**
@@ -57,6 +60,7 @@ class BrandsController extends Controller
 		$brand->save();
 
 		return redirect("user/$userId/brands");
+
     }
 
     /**
@@ -75,7 +79,7 @@ class BrandsController extends Controller
 			abort(404);
 		}
 
-		return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand));
+		return view('partials.admin.brandForm', array('userId'=>$userId, 'brand'=>$brand));
     }
 
     /**
@@ -126,7 +130,7 @@ class BrandsController extends Controller
 		if (count($products)>0) {
 			$errors = array();
 			$errors[0] = "This brand contains products and can not be delete";
-			return view('partials.brandForm', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
+			return view('partials.admin.showBrands', array('userId'=>$userId, 'brand'=>$brand, 'errors'=>$errors));
 		}
 
 		$brand->delete();

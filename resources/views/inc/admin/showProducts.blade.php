@@ -1,10 +1,10 @@
 <div class="textHeader">
 	<h1>Products</h1>
 </div>
-<div class="row probootstrap-gutter60">	
+<div class="row probootstrap-gutter60">
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id del producto --}}
-		<a href="{{ url('user/4/product') }}">
+		<a href="{{ url('user/4/products/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
 					{{-- pasar datos de la imagen --}}
@@ -12,7 +12,7 @@
 				</div>
 				<div class="contentProduct">
 					<h3 class="titleProduct">Add product</h3>
-				</div>  
+				</div>
 			</div>
 		</a>
 	</div>
@@ -30,7 +30,7 @@
 						<a href="{{ url('user/4/product') }}"><button type="button" class="btn btn-success">Edit</button></a>
 						<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
 					</div>
-				</div>  
+				</div>
 			</div>
 		</a>
 	</div>

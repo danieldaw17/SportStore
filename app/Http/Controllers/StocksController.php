@@ -14,9 +14,9 @@ class StocksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($userId, $categoryId, $subCategoryId, $productId)
     {
-        //llamar a vista de crear stock
+        return view('partials.admin.formStock', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'productId'=>$productId));
     }
 
     /**
@@ -25,8 +25,15 @@ class StocksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Stock $request)
+    public function store(Request $request)
     {
+
+		$validateData = $request->validate([
+			'amount' => 'required',
+			'size' => 'required|max:10',
+			'productId' => 'required'
+	  	]);
+
         $stock = new Stock();
 
 		$stock->amount = $request->input('amount');
@@ -59,11 +66,17 @@ class StocksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Stock $request, $stockId)
+    public function update(Request $request, $stockId)
     {
 		if (!$stock = Stock::find($stockId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'amount' => 'required',
+			'size' => 'required|max:10',
+			'productId' => 'required'
+	  	]);
 
 		$stock->amount = $request->input('amount');
 		$stock->size = $request->input('size');

@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Sport;
 use App\Category;
 use App\Sub_category;
+use Auth;
 
 class CategoriesController extends Controller
 {
@@ -15,11 +15,16 @@ class CategoriesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($userId)
     {
+
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
         $brands = Category::all();
 
-		//llamar a la vista devolciendo categories
+		return view('partials.admin.showCategories', array('userId'=>$userId));
     }
 
     /**
@@ -29,11 +34,34 @@ class CategoriesController extends Controller
      */
 
 	 //for creating a new subcategory with a form
-    public function create()
+    public function create($userId)
     {
-		$sports = Sport::all();
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
 
-        //llamar a vista de crear category con array sports
+		$categories = Category::all();
+
+        return view('partials.admin.formCategory', array('userId'=>$userId));
+    }
+
+	/**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($userId, $categoryId)
+	{
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		//show its subcategories
+		if (!$sub_categories = Sub_category::where('categoryId', $categoryId)->get()) {
+			abort(404);
+		}
+        return view('partials.admin.showSubcategories', array('userId'=>$userId, 'sub_categories'=>$sub_categories));;
     }
 
     /**
@@ -44,31 +72,25 @@ class CategoriesController extends Controller
      */
 
 	 //it receives the data of a new category from a form and save it in the database
-    public function store(Category $request)
+    public function store(Request $request, $userId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+			'imagePath' => 'required|max:100',
+			'taxes' => 'required|numeric'
+	  	]);
+
         $category = new Category();
 		$subCategory->name = $request->input('name');
 		$subCategory->imagePath = $request->input('imagePath');
 		$subCategory->taxes = $request->input('taxes');
 
 		$category->save();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-
-	 //it looks for subcategories where categoryid is this and call the view
-    public function show($categoryId)
-    {
-		if (!$sub_categories = Sub_category::where('categoryId', $categoryId)->get()) {
-			abort(404);
-		}
-
-		return view('partials.subcategories', array('sub_categories'=>$sub_categories));
+		return redirect("user/$userId/categories");
     }
 
     /**
@@ -77,14 +99,18 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($categoryId)
+    public function edit($userId, $categoryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		$sports = Sport::all();
 
 		if (!$category = Sub_category::find($categoryId)) {
 			abort(404);
 		}
-        //llamar a vista de editar category
+        return view('partials.admin.formCategory', array('userId'=>$userId, 'category'=>$category));
     }
 
     /**
@@ -94,17 +120,28 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Category $request, $categoryId)
+    public function update(Request $request, $userId, $categoryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
+
+		$validateData = $request->validate([
+			'name' => 'required|max:30',
+			'imagePath' => 'required|max:100',
+			'taxes' => 'required|numeric'
+	  	]);
 
 		$subCategory->name = $request->input('name');
 		$subCategory->imagePath = $request->input('imagePath');
 		$subCategory->taxes = $request->input('taxes');
 
 		$category->save();
+		return redirect("user/$userId/categories");
     }
 
     /**
@@ -113,31 +150,25 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($categoryId)
+    public function destroy($userId, $categoryId)
     {
+		if(!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
 		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
 
-		$sub_categories = Sub_category::where('categoryId', $categoryId)->get());
-
-		/*
-			DELETE FROM products
-			WHERE products.id IN (
-	            SELECT P.id
-	            FROM (SELECT * FROM products) AS P, sub_categories S, categories C
-				WHERE P.subCategoryId=S.id
-				AND S.categoryId = 2
-	    	);
-		*/
-		$products = Products::whereIn('id', function($query) {
-		    $query->select('paper_type_id')
-		    ->from(with(new ProductCategory)->getTable())
-		    ->whereIn('category_id', ['223', '15'])
-		    ->where('active', 1);
-		})->get();
+		$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
+		if (count($sub_categories)>0) {
+			$errors = array();
+			$errors[0] = "This category contains sub categories and can not be delete";
+			return view('partials.admin.showCategories', array('userId'=>$userId, 'categoryId'=>$categoryId, 'errors'=>$errors));
+		}
 
 
 		$category->delete();
+		return redirect("user/$userId/categories");
     }
 }
