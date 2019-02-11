@@ -6,7 +6,6 @@
                 <h4 class="modal-title">Are you sure?</h4>
             </div>
             <div class="modal-body">
-                {{-- Pasar id del usuario --}}
                 Are you sure you want to delete the sport #id?
             </div>
             <div class="modal-footer">

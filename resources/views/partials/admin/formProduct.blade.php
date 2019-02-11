@@ -55,36 +55,6 @@ New product
       </div>
       <span id="errorImage"></span>
     </div>
-    {{-- Category --}}
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-        </div>
-        <select name="categoryId" id="categoryId" class="form-control">
-          <option value="0">Select category</option>
-          <option value="1">Clothes</option>
-          <option value="2">Suplements</option>
-          <option value="3">Vehicles</option>
-          <option value="4">Accesories</option>
-        </select>
-      </div>
-      <span id="errorCategory"></span>
-    </div>
-    {{-- Subcategory (cambiar en function de las categorias)--}}
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-        </div>
-        <select name="subcategoryId" id="subcategoryId" class="form-control">
-          <option value="0">Select subcategory</option>
-          <option value="1">Tshirts</option>
-          <option value="2">Trousers</option>
-        </select>
-      </div>
-      <span id="errorSubcategory"></span>
-    </div>
     {{-- Gender --}}
     <div class="form-group" id="genderGroup">
       <div class="input-group">

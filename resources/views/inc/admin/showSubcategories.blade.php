@@ -3,7 +3,7 @@
 </div>
 <div class="row probootstrap-gutter60">	
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		<a href="{{ url('user/4/categorie') }}">
+		<a href="{{ url('user/'.Auth::user()->id.'/Categories/1/Sub_categories/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
 					{{-- pasar datos de la imagen --}}
@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		{{-- Pasar id subcategoria --}}
-		<a href="{{ url('category/subcategorie/product') }}">
+		<a href="{{ url('user/'.Auth::user()->id.'/Categories/1/Sub_categories/1/Products') }}">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
 					{{-- pasar datos de la imagen --}}
@@ -26,7 +26,7 @@
 				<div class="contentProduct">
 					<h3 class="titleProduct">Subcategory</h3>
 					<div class="optionsED">
-						<a href="{{ url('user/4/subcategorie') }}"><button type="button" class="btn btn-success">Edit</button></a>
+						<a href="{{ url('user/'.Auth::user()->id.'/Categories/1/Sub_categories/1/Products/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
 						<a href="#deleteSubcategory" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
 					</div>
 				</div>  
