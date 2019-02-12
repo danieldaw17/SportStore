@@ -16,22 +16,34 @@
 	</div>
 
 	@foreach ($products as $product)
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					<img src="{{ url('storage/images/products/'.$product->id.'-front.jpg') }}" alt="{{ $product->name }}" title="{{ $product->name }}">
-				</div>
-				<div class="contentProduct">
-					<h5 class="titleProduct">{{ $product->name }}</h5>
-					<div class="optionsED">
-						<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-						<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
+		@foreach ($images as $image)
+			@if ($image->productId==$product->id && $image->name=="front")
+				@php
+					$auxImage = $image;
+					break;
+				@endphp
+			@endif
+		@endforeach
+		<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
+			<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products') }}">
+				<div class="service hover_service text-center">
+					<div class="imgProduct">
+						@if (isset($image))
+							<img src="{{ url($auxImage->path) }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+						@else
+							<img src="{{ url('img/login.png') }}" alt="{{ $product->name }}" title="{{ $product->name }}">
+						@endif
+					</div>
+					<div class="contentProduct">
+						<h5 class="titleProduct">{{ $product->name }}</h5>
+						<div class="optionsED">
+							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
+							<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
+						</div>
 					</div>
 				</div>
-			</div>
-		</a>
+			</a>
+		</div>
 	</div>
 	@endforeach
-</div>
 @include("inc/admin/modal/confirmDeleteProduct")

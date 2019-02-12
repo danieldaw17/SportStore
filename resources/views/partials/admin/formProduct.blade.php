@@ -10,10 +10,12 @@ New product
 @stop
 
 @section("content")
+
+
 <div id="formProduct">
   @if(isset($product))
     <h1>Edit product</h1>
-    <form method="post" action="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$productId.'/edit') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
+    <form method="post" action="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
       {{-- Name --}}
@@ -63,10 +65,20 @@ New product
             <span class="list-group-item"><i class="fa fa-male prefix grey-text fa-1g" aria-hidden="true"></i></span>
           </div>
           <select name="gender" id="gender" class="form-control">
-            <option value="0">Select gender</option>
-            <option value="1">Men</option>
-            <option value="2">Female</option>
-            <option value="3">Unisex</option>
+			  @if ($product->gender=="men")
+			  	<option selected value="man">Man</option>
+				<option value="woman">Woman</option>
+	            <option value="unisex">Unisex</option>
+
+			  @elseif ($product->gender=="woman")
+				  <option value="man">Man</option>
+				  <option selected value="woman">Woman</option>
+				  <option value="unisex">Unisex</option>
+			  @else
+				<option value="man">Man</option>
+				<option value="woman">Woman</option>
+				<option selected value="unisex">Unisex</option>
+			  @endif
           </select>
         </div>
         <span id="errorGender"></span>
@@ -521,6 +533,7 @@ New product
     </form>
   @endif
 </div>
+
 @stop
 
 @section("js")

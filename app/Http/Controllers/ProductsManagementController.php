@@ -29,7 +29,7 @@ class ProductsManagementController extends Controller
 
 		$images = Image::all();
 		$products = Product::where('subCategoryId', $subCategoryId)->get();
-		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'products'=>$products));
+		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'products'=>$products, 'images'=>$images));
     }
 
     /**
@@ -273,7 +273,7 @@ class ProductsManagementController extends Controller
      */
     public function edit($userId, $categoryId, $subCategoryId, $productId)
     {
-    	if (!Auth::check() || Auth::user()->role!="root") {
+		if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
@@ -295,8 +295,10 @@ class ProductsManagementController extends Controller
 			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
 
+		//$stocks = Product::find($productId)->stocks()->get();
 		$stocks = Stock::where('productId', $productId)->get();
-		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
+		$product = Product::find($productId);
+		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
     }
 
     /**

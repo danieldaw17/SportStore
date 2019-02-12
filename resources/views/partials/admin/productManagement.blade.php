@@ -11,11 +11,11 @@ Products
 
 @section("content")
 
-{{-- Menu options management --}}
-@include("inc/admin/headerProductManagement")
+{{-- Menu options management
+@include("inc/admin/headerProductManagement")--}}
 
-{{-- Searcher advanced --}}
-@include("inc/admin/searcher")
+{{-- Searcher advanced
+@include("inc/admin/searcher")--}}
 
 {{-- Show products --}}
 @include("inc/admin/showProducts")
