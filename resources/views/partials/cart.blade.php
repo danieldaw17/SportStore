@@ -9,7 +9,9 @@ My cart
 @stop
 
 @section("content")
+@if(Session()->has('cart'))
 <div class="datos">
+
 	<table>
 	    <tr>
 	        <th>#</th>
@@ -21,8 +23,9 @@ My cart
 	        <th>Total</th>{{-- quantity * price --}}
 	    </tr>
 	    <tr>
+	    	@foreach($products as $product)
 	    	<td>1</td>
-	    	<td>Camiseta termica</td>
+	    	<td>{{$product['name']}}</td>
 	    	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td> {{-- title sql title product --}}
 	    	<td>
 	    		<select>
@@ -35,18 +38,21 @@ My cart
 	    		</select>
 	    	</td>
 	    	<td>
-	    		<span id="unitPrice">10</span>
+	    		<span id="unitPrice">{{$product['basePrice']}}</span>
 	    	</td>
 	    	<td>
 	    		<div class="quantityButton"><strong><a href="#" onclick="add(), total()">+</a></strong></div>
-	    		<span id="quantity">0</span>
+	    		<span id="quantity">{{$product['qty']}}</span>
 	    		<div class="quantityButton"><strong><a href="#" onclick="rest(),total()">-</a></strong></div>
 
 	    	</td>
 	    	<td>
-	    		<span id="total">0€</span>
+	    		<span id="total">{{$totalprice}}</span>
 	    	</td>
 	    </tr>
 	</table>
 </div>
+@else 
+
+@endif
 @stop
