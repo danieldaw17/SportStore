@@ -18,10 +18,12 @@
 	<body>
 		<div class="container">
 			{{-- Include header --}}
-			{{-- Si no existe la sesion del administrador --}}
-			{{--@include("inc/header")--}}
-			{{-- Si existe la sesion del administrador --}}
-			@include("inc/admin/header")
+
+			@if (Auth::check() && Auth::user()->role=="root")
+				@include("inc/admin/header")
+			@else
+				@include("inc/header")
+			@endif
 			<div class="section">
 				@yield("content")
 			</div>

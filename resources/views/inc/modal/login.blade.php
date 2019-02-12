@@ -1,7 +1,8 @@
 <div class="modal fade" id="loginModal">
 	<div class="modal-dialog">
 	    <div class="modal-content">
-	    	<form method="post" action="#" onsubmit="return validateLogin();">
+	    	<form method="post" action="{{url('login')}}" onsubmit="return validateLogin();">
+				{{ csrf_field() }}
 		    	<div id="loginForm">
 					<div class="modal-header">
 						<h3 class="text-center default-text py-3"><i class="fa fa-lock"></i> Log in:</h3>
@@ -32,7 +33,7 @@
 						<div>
 							<p class="text-center register-text">¿Dont have an account? <a href="#" onclick="showFormRegister()">Sign up</a></p>
 						</div>
-					</div>				
+					</div>
 					<div class="modal-footer text-center">
 						<input type="submit" name="sendLogin" value="Log in" class="btn btn-default waves-effect waves-light">
 					</div>
@@ -78,7 +79,7 @@
 						<div>
 							<p class="text-center register-text">I remembered my account <a href="#" onclick="showFormLogin()">Login</a></p>
 						</div>
-					</div>				
+					</div>
 					<div class="modal-footer text-center">
 						<input type="submit" name="sendRegister" value="Sign up" class="btn btn-default waves-effect waves-light">
 					</div>

@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
         DB::table('brands')->truncate();
         DB::table('products')->truncate();
         DB::table('images')->truncate();
+		DB::table('stocks')->truncate();
+		DB::table('users')->truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
@@ -30,6 +32,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BrandTableSeeder::class);
         $this->call(ProductsTableSeeder::class);
         $this->call(ImagesTableSeeder::class);
+		$this->call(UsersTableSeeder::class);
+		$this->call(StocksTableSeeder::class);
         //Model::reguard();
 
     }

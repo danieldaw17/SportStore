@@ -22,6 +22,7 @@ class SportsController extends Controller
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
+		
         $sports = Sport::all();
 
 		return view('partials.admin.showSports', array('userId'=>$userId, 'sports'=>$sports));

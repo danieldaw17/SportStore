@@ -22,8 +22,8 @@ Producto
 	</div>
 	<div class="col-sm-8">
 		<h2>Title product</h2>
-		<p class="description"><strong>Description: </strong>hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio hola que pasa tio</p>
-		<p><strong>Prize: </strong>10€</p>
+		<p class="description"><strong>Description: </strong>{{$product['description']</p>
+		<p><strong>Prize: {{$product['price']}} </strong>10€</p>
 		<p>
 			<strong>Size: </strong>
 			<select>
@@ -45,7 +45,7 @@ Producto
 			</select>
 		</p>
 		{{-- pasar el producto al carro de la compra --}}
-		<a class="btn btn-success" href="#">Add to cart</a>
+		<a class="btn btn-success" href="{{route('product.addToCart',['productId' =>$product->id])}}">Add to cart</a>
 	</div>
 </div>
 @include("inc/modal/imgProduct")

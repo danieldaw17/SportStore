@@ -47,6 +47,7 @@ use App\Address;
 
 
 //PRODUCT ROUTES
+
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products', 'ProductsManagementController@index');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/create', 'ProductsManagementController@create');
@@ -73,7 +74,7 @@ use App\Address;
 	Route::get('user/{userId}/Categories/{categoryId}/delete', 'CategoriesController@destroy');
 
 //SUB_CATEGORY ROUTES
-	Route::get('user/{userId}/Categories/', 'Sub_categoriesController@index');
+	Route::get('user/{userId}/Categories/{categoryId}', 'Sub_categoriesController@index');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/create', 'Sub_categoriesController@create');
 	Route::post('user/{userId}/Categories/{categoryId}/Sub_categories/create', 'Sub_categoriesController@store');
@@ -96,11 +97,43 @@ use App\Address;
 	Route::post('user/{userId}/Invoices{invoiceId}/Invoice_lines/create', 'Invoice_linesController@store');
 
 
+//LOGIN ROUTES
+	//Route::post('login', 'LoginController@store');
+
+
+// AUTH ROUTES
+        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+        $this->post('login', 'Auth\LoginController@login');
+        $this->get('logout', 'Auth\LoginController@logout')->name('logout');
+
+        // Registration Routes...
+        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+        $this->post('register', 'Auth\RegisterController@register');
+
+        // Password Reset Routles...
+        $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+        $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+
+
+//
+Route::get('user/{userId}', 'UsersController@index');
+Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
+
 
 Route::get('/', function() {
 	return view('partials.index');
 });
 
-Auth::routes();
+Route::get('/home', function() {
+	return view('partials.index');
+});
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/products', function() {
+	return view('partials.showProducts');
+});
+
+Route::get('/myCart', function() {
+	return view('partials.cart');
+});

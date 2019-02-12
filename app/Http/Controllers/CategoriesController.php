@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use App\Sub_category;
+use App\Sport;
 use Auth;
 
 class CategoriesController extends Controller
@@ -22,9 +23,9 @@ class CategoriesController extends Controller
 			abort(404);
 		}
 
-        $brands = Category::all();
+        $categories = Category::all();
 
-		return view('partials.admin.showCategories', array('userId'=>$userId));
+		return view('partials.admin.showCategories', array('userId'=>$userId, 'categories'=>$categories));
     }
 
     /**
@@ -39,8 +40,6 @@ class CategoriesController extends Controller
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-
-		$categories = Category::all();
 
         return view('partials.admin.formCategory', array('userId'=>$userId));
     }
@@ -62,17 +61,9 @@ class CategoriesController extends Controller
 			abort(404);
 		}
         return view('partials.admin.showSubcategories', array('userId'=>$userId, 'sub_categories'=>$sub_categories));;
-    }
+	}
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-
-	 //it receives the data of a new category from a form and save it in the database
-    public function store(Request $request, $userId)
+	public function store(Request $request, $userId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -96,16 +87,15 @@ class CategoriesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function edit($userId, $categoryId)
     {
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-
-		$sports = Sport::all();
 
 		if (!$category = Sub_category::find($categoryId)) {
 			abort(404);
