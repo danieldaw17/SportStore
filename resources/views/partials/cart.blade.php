@@ -23,7 +23,8 @@ My cart
 	        <th>Total</th>{{-- quantity * price --}}
 	    </tr>
 	    <tr>
-	    	@foreach($products as $product)
+	    	{{--
+	    	@foreach($products as $product)--}}
 	    	<td>1</td>
 	    	<td>{{$product['name']}}</td>
 	    	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td> {{-- title sql title product --}}
@@ -49,10 +50,11 @@ My cart
 	    	<td>
 	    		<span id="total">{{$totalprice}}</span>
 	    	</td>
+	    	{{--@endforeach--}}
 	    </tr>
 	</table>
 </div>
 @else 
-
+	<div class="e"></div>
 @endif
 @stop
