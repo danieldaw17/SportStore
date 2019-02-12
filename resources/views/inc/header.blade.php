@@ -9,46 +9,21 @@
 
 		<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 			<ul class="navbar-nav">
-				<li class="dropdown">
-					{{-- Pasar id de la categoria --}}
-					<a href="{{ url('partials/showSubcategories') }}" id="navbardrop">
-						Clothes
-					</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Men</a>
-						<a class="dropdown-item" href="#">Women</a>
-						<a class="dropdown-item" href="#">Unisex</a>
-					</div>
-				</li>
-				<li class="dropdown">
-					{{-- Pasar id de la categoria --}}
-					<a href="{{ url('partials/showSubcategories') }}" id="navbardrop">
-						Vehicles
-					</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Men</a>
-						<a class="dropdown-item" href="#">Women</a>
-						<a class="dropdown-item" href="#">Unisex</a>
-					</div>
-				</li>
-				<li class="dropdown">
-					{{-- Pasar id de la categoria --}}
-					<a href="{{ url('partials/showSubcategories') }}" id="navbardrop">
-						Accesories
-					</a>
-					<div class="dropdown-menu">
-						<a class="dropdown-item" href="#">Men</a>
-						<a class="dropdown-item" href="#">Women</a>
-						<a class="dropdown-item" href="#">Unisex</a>
-					</div>
-				</li>
-				<li>
-					{{-- Pasar id de la categoria --}}
-					<a href="{{ url('partials/showSubcategories') }}" id="navbardrop">
-					Supplements
-					</a>
-				</li>
-				<li><a href="{{ route('product.shoppingCart')}}"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"><span class="badge">{{Session()->has('cart') ? Session()->get('cart')->totalQty : '' }} </span></a></li>
+				@if (isset($categoriesNav))
+					@foreach($categoriesNav as $category)
+						<li class="dropdown">
+							<a href="{{ url('categories/'.$category->id) }}" id="navbardrop">{{$category->name}}</a>
+							<div class="dropdown-menu">
+								@foreach($sub_categoriesNav as $sub_category)
+									@if ($sub_category->categoryId == $category->id)
+										<a class="dropdown-item" href="{{ url('sub_categories/'.$sub_category->id) }}">{{$sub_category->name}}</a>
+									@endif
+								@endforeach
+							</div>
+						</li>
+					@endforeach
+				@endif
+				<li><a href="{{ route('product.shoppingCart') }}"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"><span class="badge">{{Session()->has('cart') ? Session()->get('cart')->totalQty : '' }} </span></a></li>
 				{{-- Si no existe la sesion del usuario--}}
 				@if (!Auth::check())
 					<li id="lastLi"><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>

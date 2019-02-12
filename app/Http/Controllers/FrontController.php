@@ -15,27 +15,35 @@ class FrontController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    
 
-     public function showSubCategory($categoryId){
+    public function showSubCategories($categoryId)
+    {
+    	$categories = Category::all();
+    	$categoriesNav = Category::all();
+    	$sub_categoriesNav = Sub_category::all();
+
+    	if (!$category = Category::find($categoryId)) {
+    		abort(404);
+    	}
+    	$categoryId = ($category->id)-1;
+
      	$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
-		return view ('partials.showSubCategories', array('subCategory'=> $sub_categories));
+		return view ('partials.showSubCategories', array('categories'=>$categories,'sub_categories'=> $sub_categories, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav, 'categoryId'=>$categoryId));
+    }
 
-      }
-      public function showProducts($subCategoryId)
-   
+    public function showProducts($subCategoryId)
+    {
+    	$categoriesNav = Category::all();
+    	$sub_categoriesNav = Sub_category::all();
     	$products = Product::where('subCategoryId', $subCategoryId)->get();
-		return view ('partials.showProducts', array('products'=>$products));
-     }
+		return view ('partials.showProducts', array('products'=>$products, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+    }
 
-     public function showProduct($productId){
+    public function showProduct($productId){
+    	$categoriesNav = Category::all();
+    	$sub_categoriesNav = Sub_category::all();
 		$product = Product::find($productId);
-		return view ('partials.product-detail', array('product'=> $product));
+		return view ('partials.product-detail', array('product'=> $product, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
 	}
 
-     
 }
-
-
-
-?>

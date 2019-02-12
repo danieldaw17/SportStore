@@ -20,14 +20,16 @@ My cart
 	        <th>Size</th>
 	        <th>Price</th>{{-- price unitary --}}
 	        <th>Quantity</th>
-	        
+
 	    </tr>
-	   
+
 	    	{{---@foreach($products as $product)--}}
 	    	{{---@}}
-	    <tr>
-	    	<td><?php echo contador?></td>
-	    	<td>camiseta {{--$product['name']--}}</td>
+
+	    	{{--
+	    	@foreach($products as $product)--}}
+	    	<td>1</td>
+	    	<td>{{$product['name']}}</td>
 	    	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td> {{-- title sql title product --}}
 	    	<td>
 	    		<span class="well"> XL {{--$product['size']--}}</span>
@@ -41,23 +43,27 @@ My cart
 	    		<div class="quantityButton"><strong><a href="#" onclick="rest(),total()">-</a></strong></div>
 
 	    	</td>
-	    	
-	    </tr>
+		<tr>
+
+
 	    {{---@endforeach--}}
 	    <tr>
 	    	<th>TOTAL:</th>
-	    	<td><span id="total">0{{--$totalprice--}}</span></td>
-	    </tr>
+			<td>
+	    		<span id="total">{{$totalprice}}</span>
+	    	</td>
+		</tr>
+
 	</table>
 	<hr>
 	<div class="container">
 	<button type="button" class="btn btn-success">Check-out</button>
 	</div>
 </div>
-{{--@else}} 
+{{--@else}}
 	<div class="container">
 		<div class="alert alert-warning">
-    	<strong>Warning!</strong>No items added to the cart 
+    	<strong>Warning!</strong>No items added to the cart
   		</div>
 	</div>
 @endif--}}
