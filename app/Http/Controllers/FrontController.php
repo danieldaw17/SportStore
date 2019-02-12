@@ -1,11 +1,11 @@
-
-
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Sub_category;
 use App\Product;
 use App\Category;
+use App\Image;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -25,24 +25,33 @@ class FrontController extends Controller
     	if (!$category = Category::find($categoryId)) {
     		abort(404);
     	}
-    	$categoryId = ($category->id)-1;
+    	$categoryName = $category->name;
 
      	$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
-		return view ('partials.showSubCategories', array('categories'=>$categories,'sub_categories'=> $sub_categories, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav, 'categoryId'=>$categoryId));
+		return view ('partials.showSubCategories', array('categories'=>$categories,'sub_categories'=> $sub_categories, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav, 'categoryName'=>$categoryName));
     }
 
     public function showProducts($subCategoryId)
     {
     	$categoriesNav = Category::all();
     	$sub_categoriesNav = Sub_category::all();
+		if (!$sub_category = Sub_Category::find($subCategoryId)) {
+			abort(404);
+		}
+
+		$categoryId = $sub_category->id;
+		$subCategoryName = $sub_category->name;
     	$products = Product::where('subCategoryId', $subCategoryId)->get();
-		return view ('partials.showProducts', array('products'=>$products, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+		$images = Image::all();
+		return view ('partials.showProducts', array('products'=>$products, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav, 'subCategoryName'=>$subCategoryName, 'images'=>$images));
     }
 
     public function showProduct($productId){
     	$categoriesNav = Category::all();
     	$sub_categoriesNav = Sub_category::all();
-		$product = Product::find($productId);
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
 		return view ('partials.product-detail', array('product'=> $product, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
 	}
 
