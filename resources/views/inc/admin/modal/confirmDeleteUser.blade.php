@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 {{-- Pasar id del usuario --}}
-                Are you sure you want to delete the user #id?
+                Are you sure you want to delete the user?
             </div>
             <div class="modal-footer">
                 <a href="{{ url('user/3/users/3/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>

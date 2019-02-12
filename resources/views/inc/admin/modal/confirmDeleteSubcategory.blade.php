@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 {{-- Pasar id de la subcategoria --}}
-                Are you sure you want to delete the subcategory #id?
+                Are you sure you want to delete the subcategory?
             </div>
             <div class="modal-footer">
                 <a href="{{ url('user/'.Auth::user()->id.'/Categories/1/Sub_categories/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>

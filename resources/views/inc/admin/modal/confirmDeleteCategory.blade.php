@@ -6,8 +6,7 @@
                 <h4 class="modal-title">Are you sure?</h4>
             </div>
             <div class="modal-body">
-                {{-- Pasar id de la categoria --}}
-                Are you sure you want to delete the category #id?
+                Are you sure you want to delete the category?
             </div>
             <div class="modal-footer">
                 <a href="{{ url('user/'.Auth::user()->id.'/Categories/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>

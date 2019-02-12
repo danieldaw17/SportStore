@@ -23,9 +23,9 @@ class CategoriesController extends Controller
 			abort(404);
 		}
 
-        $brands = Category::all();
+        $categories = Category::all();
 
-		return view('partials.admin.showCategories', array('userId'=>$userId));
+		return view('partials.admin.showCategories', array('userId'=>$userId, 'categories'=>$categories));
     }
 
     /**
@@ -108,7 +108,7 @@ class CategoriesController extends Controller
 
 		$sports = Sport::all();
 
-		if (!$category = Sub_category::find($categoryId)) {
+		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
         return view('partials.admin.formCategory', array('userId'=>$userId, 'category'=>$category));

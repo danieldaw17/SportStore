@@ -7,7 +7,7 @@
             </div>
             <div class="modal-body">
                 {{-- Pasar id del usuario --}}
-                Are you sure you want to delete the brand #id?
+                Are you sure you want to delete the brand?
             </div>
             <div class="modal-footer">
                 <a href="{{ url('user/'.Auth::user()->id.'/brands/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>

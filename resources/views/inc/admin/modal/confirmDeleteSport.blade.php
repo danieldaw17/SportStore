@@ -6,10 +6,10 @@
                 <h4 class="modal-title">Are you sure?</h4>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete the sport #id?
+                Are you sure you want to delete the sport?
             </div>
             <div class="modal-footer">
-                <a href="{{ url('user/'.Auth::user()->id.'/sports/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <a href="{{ url('user/'.Auth::user()->id.'/sports/'.$sport->id.'/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
         </div>
     </div>

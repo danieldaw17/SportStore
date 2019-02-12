@@ -6,7 +6,6 @@
 		<a href="{{ url('user/'.Auth::user()->id.'/sports/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
 					<img src="{{ url('img/new.png') }}" alt="New item" title="New item">
 				</div>
 				<div class="contentProduct">
@@ -15,20 +14,21 @@
 			</div>
 		</a>
 	</div>
+	@foreach ($sports as $sport)
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		<div class="service hover_service text-center">
 			<div class="imgProduct">
-				{{-- pasar datos de la imagen --}}
-				<img src="{{ url('img/login.png') }}" alt="" title="">
+				<img src="{{ url('storage/images/sports/'.$sport->id.'.jpg') }}" alt="{{$sport->name}}" title="{{$sport->name}}">
 			</div>
 			<div class="contentProduct">
-				<h3 class="titleProduct">sport</h3>
+				<h3 class="titleProduct">{{$sport->name}}</h3>
 				<div class="optionsED">
-					<a href="{{ url('user/'.Auth::user()->id.'/sports/1/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
+					<a href="{{ url('user/'.Auth::user()->id.'/sports/'.$sport->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
 					<a href="#deleteSport" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
 				</div>
 			</div>  
 		</div>
 	</div>
+	@endforeach
 </div>
 @include("inc/admin/modal/confirmDeleteSport")
