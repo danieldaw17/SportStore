@@ -39,9 +39,10 @@ class ProductsManagementController extends Controller
      */
     public function create($userId, $categoryId, $subCategoryId)
     {
-		if (!Auth::check() || Auth::user()->role!="root") {
+		if (!Auth::check() || Auth::user()->role!="root"){
 			abort(404);
 		}
+
 
 		$brands = Brand::all();
 		if (count($brands)<1) {

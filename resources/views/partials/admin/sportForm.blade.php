@@ -16,6 +16,7 @@
 
 @section('content')
 	@if (isset($sport))
+		<h1>Edit sport</h1>
 		<form action="{{url('user/'.$userId.'/sports/'.$sport->id.'/edit')}}" method='POST' onsubmit="return validateSportForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
@@ -51,6 +52,7 @@
 		</form>
 
 	@else
+		<h1>New sport</h1>
 		<form action="{{url('user/'.$userId.'/sports/create')}}" method='POST' onsubmit="return validateSportForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
 

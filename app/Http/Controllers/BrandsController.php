@@ -20,6 +20,7 @@ class BrandsController extends Controller
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
+
         $brands = Brand::all();
 
 		return view('partials.admin.showBrands', array('userId'=>$userId, 'brands'=>$brands));

@@ -14,7 +14,7 @@ New product
   {{-- Cambiar en funcion si recibe datos o no --}}
   <h1>New product</h1>
   {{-- pasar action --}}
-  <form method="post" action="#" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
+  <form method="post" action="{{ url('user/'.Auth::user()->id.'/Products/create') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
     {{-- Name --}}
     <div class="form-group">
       <div class="input-group">
@@ -54,36 +54,6 @@ New product
         <input type="file" name="nameImg[]" id="nameImg" multiple class="form-control">
       </div>
       <span id="errorImage"></span>
-    </div>
-    {{-- Category --}}
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-        </div>
-        <select name="categoryId" id="categoryId" class="form-control">
-          <option value="0">Select category</option>
-          <option value="1">Clothes</option>
-          <option value="2">Suplements</option>
-          <option value="3">Vehicles</option>
-          <option value="4">Accesories</option>
-        </select>
-      </div>
-      <span id="errorCategory"></span>
-    </div>
-    {{-- Subcategory (cambiar en function de las categorias)--}}
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-prepend">
-          <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-        </div>
-        <select name="subcategoryId" id="subcategoryId" class="form-control">
-          <option value="0">Select subcategory</option>
-          <option value="1">Tshirts</option>
-          <option value="2">Trousers</option>
-        </select>
-      </div>
-      <span id="errorSubcategory"></span>
     </div>
     {{-- Gender --}}
     <div class="form-group" id="genderGroup">

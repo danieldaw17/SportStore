@@ -7,6 +7,7 @@
 
 @section('content')
 	@if (isset($brand))
+		<h1>Edit brand</h1>
 		<form action="{{url('user/'.$userId.'/brands/'.$brand->id.'/edit')}}" method='POST' onsubmit="return validateBrandForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
 			{{ method_field('PUT') }}
@@ -33,6 +34,7 @@
 		</form>
 
 	@else
+		<h1>New brand</h1>
 		<form action="{{url('user/'.$userId.'/brands/create')}}" method='POST' onsubmit="return validateBrandForm()" enctype="multipart/form-data">
 			{{ csrf_field() }}
 
