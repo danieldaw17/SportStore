@@ -9,16 +9,14 @@
 		<div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarSupportedContent">
 			<ul class="navbar-nav headerAdmin">
 				<li><a href="{{ url('user/'.Auth::user()->id) }}">User management</a></li>
-				<li><a href="{{ url('user/'.Auth::user()->id.'/productManagement') }}">Product management</a></li>
+				<li><a href="{{ url('user/'.Auth::user()->id.'/Categories') }}">Product management</a></li>
 				<li><a href="{{ url('user/'.Auth::user()->id.'/orders') }}">Orders</a></li>
-				<li><a href="{{ url('user/{id}/providers') }}">Providers</a></li>
+				<li><a href="{{ url('user/'.Auth::user()->id.'/providers') }}">Providers</a></li>
 				<li class="dropdown login" id="lastLi">
 					<a href="#" id="navbardrop">
 						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
 					</a>
 					<div class="dropdown-menu">
-						{{--<a class="dropdown-item" href="{{ url('user/'.Auth::user()->id) }}">My perfil</a>
-						<a class="dropdown-item" href="#">My shopping</a>--}}
 						<a class="dropdown-item" href="/logout">Log out</a>
 					</div>
 				</li>

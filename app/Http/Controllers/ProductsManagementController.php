@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Product;
 use App\Category;
 use App\Sub_category;
 use App\Sport;
-use App\Brands;
+use App\Brand;
 use App\Stock;
+use App\Image;
+use Auth;
 
-class ProductsController extends Controller
+class ProductsManagementController extends Controller
 {
 
 	/**
@@ -24,8 +27,9 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
+		$images = Image::all();
 		$products = Product::where('subCategoryId', $subCategoryId)->get();
-		return view ('partials.admin.productManagement', array('userId'=>$userId, 'subCategoryId'=>$subCategoryId, 'products'=>$products));
+		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'products'=>$products));
     }
 
     /**
@@ -39,22 +43,21 @@ class ProductsController extends Controller
 			abort(404);
 		}
 
-
 		$brands = Brand::all();
 		if (count($brands)<1) {
 			$errors = array();
 			$errors[0] = "There are no brands available. Create one brand first";
-			return view('partials.admin.productManagement', 'errors'=>$errors);
+			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
 
-		$brands = Sport::all();
+		$sports = Sport::all();
 		if (count($sports)<1) {
 			$errors = array();
 			$errors[0] = "There are no sports available. Create one sport first";
-			return view('partials.admin.productManagement', 'errors'=>$errors);
+			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
-		$stocks = Stock::where('productId', $productId)->get();
-		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
+
+		return view('partials.admin.formProduct', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'brands'=>$brands, 'sports'=>$sports));
     }
 
     /**
@@ -269,11 +272,11 @@ class ProductsController extends Controller
      */
     public function edit($userId, $categoryId, $subCategoryId, $productId)
     {
-		if (!Auth::check() || Auth::user()->role!="root") {
+    	if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
-		if (!$product = Sub_category::find($productId)) {
+		if (!$product = Product::find($productId)->get()) {
 			abort(404);
 		}
 
@@ -284,7 +287,7 @@ class ProductsController extends Controller
 			return view('partials.admin.productManagement', array('errors'=>$errors));
 		}
 
-		$brands = Sport::all();
+		$sports = Sport::all();
 		if (count($sports)<1) {
 			$errors = array();
 			$errors[0] = "There are no sports available. Create one sport first";
@@ -292,7 +295,7 @@ class ProductsController extends Controller
 		}
 
 		$stocks = Stock::where('productId', $productId)->get();
-		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'prodct'=>$product, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
+		return view('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'product'=>$product, 'stocks'=>$stocks, 'brands'=>$brands, 'sports'=>$sports));
     }
 
     /**

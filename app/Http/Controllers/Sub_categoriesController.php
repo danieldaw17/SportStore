@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Sub_category;
 use App\Product;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -21,7 +22,7 @@ class Sub_CategoriesController extends Controller
 		}
 
 		$sub_categories = Sub_category::where('categoryId', $categoryId)->get();
-		return view ('partials.showSubcategories', array('userId'=>$userId, 'categoryId'=>$categoryId, 'sub_categories'=>$sub_categories));
+		return view ('partials.admin.showSubcategories', array('userId'=>$userId, 'categoryId'=>$categoryId, 'sub_categories'=>$sub_categories));
     }
 
 	//for creating a new subcategory with a form
@@ -46,7 +47,7 @@ class Sub_CategoriesController extends Controller
 			abort(404);
 		}
 
-		return view('partials.admin.formSubcategory', array('userId'=>$userId, 'categoryId'=>$categoryId, $sub_category));
+		return view('partials.admin.formSubcategory', array('userId'=>$userId, 'categoryId'=>$categoryId, 'sub_category'=>$sub_category));
 
 	}
 
