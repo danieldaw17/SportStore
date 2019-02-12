@@ -6,7 +6,6 @@
 		<a href="{{ url('user/'.Auth::user()->id.'/Categories/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
 					<img src="{{ url('img/new.png') }}" alt="New item" title="New item">
 				</div>
 				<div class="contentProduct">

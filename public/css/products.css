@@ -6,7 +6,7 @@
 .titleProduct {
 	text-transform: uppercase;
 	margin-top: 10%;
-    margin-bottom: -19%;
+	word-wrap: break-word;
 }
 
 .descriptionProduct {

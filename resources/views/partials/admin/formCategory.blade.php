@@ -14,7 +14,7 @@ New categorie
   @if (isset($category))
     <h1>Edit category</h1>
     {{-- pasar action --}}
-    <form method="post" action="{{ url('user/'.$userId.'/Categories/'.$category->id.'/edit') }}" onsubmit="return validateFormCategory();">
+    <form method="post" action="{{ url('user/'.$userId.'/Categories/'.$category->id.'/edit') }}" onsubmit="return validateFormCategory();" enctype="multipart/form-data">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
       {{-- Name --}}
@@ -26,6 +26,16 @@ New categorie
           <input type="text" id="name" name="name" class="form-control" placeholder="Name" value="{{$category->name}}">
         </div>
         <span id="errorNameCategory"></span>
+      </div>
+      {{-- Image --}}
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+          </div>
+          <input type="file" id="imagePath" name="imagePath" class="form-control">
+        </div>
+        <span id="errorImageCategory"></span>
       </div>
       {{-- Taxes --}}
       <div class="form-group">
@@ -50,8 +60,7 @@ New categorie
     </form>
   @else
     <h1>New category</h1>
-    {{-- pasar action --}}
-    <form method="post" action="{{ url('user/'.$userId.'/Categories/create') }}" onsubmit="return validateFormCategory();">
+    <form method="post" action="{{ url('user/'.$userId.'/Categories/create') }}" onsubmit="return validateFormCategory();"  enctype="multipart/form-data">
       {{ csrf_field() }}
       {{-- Name --}}
       <div class="form-group">
@@ -62,6 +71,16 @@ New categorie
           <input type="text" id="name" name="name" class="form-control" placeholder="Name">
         </div>
         <span id="errorNameCategory"></span>
+      </div>
+      {{-- Image --}}
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+          </div>
+          <input type="file" id="imagePath" name="imagePath" class="form-control">
+        </div>
+        <span id="errorImageCategory"></span>
       </div>
       {{-- Taxes --}}
       <div class="form-group">

@@ -6,7 +6,6 @@
 		<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/create') }}">
 			<div class="service hover_service text-center firstItem">
 				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
 					<img src="{{ url('img/new.png') }}" alt="New item" title="New item">
 				</div>
 				<div class="contentProduct">
@@ -18,16 +17,13 @@
 
 	@foreach ($products as $product)
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id del producto --}}
-
 		<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products') }}">
 			<div class="service hover_service text-center">
 				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
-					<img src="{{ url('storage/images/products/'.$product->id.'-front.jpg') }}" alt="" title="">
+					<img src="{{ url('storage/images/products/'.$product->id.'-front.jpg') }}" alt="{{ $product->name }}" title="{{ $product->name }}">
 				</div>
 				<div class="contentProduct">
-					<h3 class="titleProduct">Title product</h3>
+					<h5 class="titleProduct">{{ $product->name }}</h5>
 					<div class="optionsED">
 						<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
 						<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>

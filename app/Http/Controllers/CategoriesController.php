@@ -86,11 +86,11 @@ class CategoriesController extends Controller
 	  	]);
 
         $category = new Category();
-		$subCategory->name = $request->input('name');
-		$subCategory->imagePath = $request->input('imagePath');
-		$subCategory->taxes = $request->input('taxes');
-
+		$category->name = $request->input('name');
+		$category->imagePath = $request->input('imagePath');
+		$category->taxes = $request->input('taxes');
 		$category->save();
+		
 		return redirect("user/$userId/categories");
     }
 
