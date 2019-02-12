@@ -48,7 +48,7 @@
 					Supplements
 					</a>
 				</li>
-				<li><a href="{{ url('myCart') }}" data-toggle="modal" data-target="#shoppingCart"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"><span class="badge">{{Session()->has('cart') ? Session()->get('cart')->totalQty : '' }} </span></a></li>
+				<li><a href="{{ route('product.shoppingCart')}}"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader"><span class="badge">{{Session()->has('cart') ? Session()->get('cart')->totalQty : '' }} </span></a></li>
 				{{-- Si no existe la sesion del usuario--}}
 				@if (!Auth::check())
 					<li id="lastLi"><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>

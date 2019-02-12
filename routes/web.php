@@ -134,6 +134,21 @@ Route::get('/products', function() {
 	return view('partials.showProducts');
 });
 
-Route::get('/myCart', function() {
-	return view('partials.cart');
-});
+Route::get('/shopping-cart',[
+
+	'uses' => 'ProductController@getCart',
+	'as' => 'product.shoppingCart'
+
+]);
+
+Route::get('/mycart/{id}',[
+	'uses'
+=> 'ProductController@getAddToCart',
+'as' => 'product.addToCart'
+]);
+
+
+
+
+
+

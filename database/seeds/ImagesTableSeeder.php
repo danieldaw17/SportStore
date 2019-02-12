@@ -13,7 +13,7 @@ class ImagesTableSeeder extends Seeder
     public function run()
     {
         //Semilla de imagenes
-        $i = new Image;
+       $i = new Image;
         $i->name = 'front';
         $i->path = 'storage/images/products/1-front.jpg';
         $i->productId = '1';
