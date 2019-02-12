@@ -191,7 +191,7 @@ class ProductsManagementController extends Controller
 		if ($request->input('XXS')!="") {
 			$stock = new Stock();
 			$stock->size = "XXS";
-			$stock->amount = $request->input('M');
+			$stock->amount = $request->input('XXS');
 			$stock->productId = $product->id;
 			$stock->save();
 		}
