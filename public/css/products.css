@@ -10,8 +10,6 @@
 }
 
 .descriptionProduct {
-	margin-left: -30px;
-	margin-right: -30px;
 	text-align: justify;
 }
 
@@ -23,4 +21,10 @@
 
 .textHeader {
 	margin-left: 15px;
+}
+
+.alignSpace {
+	margin-left: 4%;
+	margin-bottom: -5%;
+    margin-top: 2%;
 }

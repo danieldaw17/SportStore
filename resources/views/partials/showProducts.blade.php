@@ -1,9 +1,5 @@
 @extends("layouts.noadmin.layout")
 
-@section("styles")
-<link rel="stylesheet" type="text/css" href="{{ url('css/products.css') }}">
-@stop
-
 @section("title")
 {{-- Pasar nombre de la subcategoria --}} Clothes
 @stop

@@ -12,6 +12,7 @@
 		<link rel="stylesheet" type="text/css" href="{{ url('css/shopping-cart.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/header.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/searcher.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/products.css') }}">
 		<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 		@yield("styles")
 	</head>
