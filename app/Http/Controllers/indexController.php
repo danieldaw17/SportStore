@@ -18,4 +18,9 @@ class indexController extends Controller
 		$productsTopPrices = Product::orderBy('basePrice', 'asc')->take(6)->get();
 		return view('partials.index', array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav, 'productsTopNews'=>$productsTopNews, 'productsTopPrices'=>$productsTopPrices, 'images'=>$images));
     }
+
+    public function searcher(){
+    	
+    }
+
 }

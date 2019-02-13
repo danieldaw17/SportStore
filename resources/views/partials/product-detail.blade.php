@@ -22,13 +22,13 @@
 			@endif
 			<div class="smallPictures">
 		    <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url($image->path) }}" alt="Product" title="Product" onclick="changePic(this.src, this.alt, this.title)"></a></div>
+		    </div>
 		@endforeach
-		</div>
 	</div>
 	<div class="col-sm-8">
 		<h2>{{$product->name}}</h2>
 		<p class="description"><strong>Description: </strong>{{$product->description}}</p>
-		<p><strong>Prize: </strong>{{$product->basePrice}}</p>
+		<p><strong>Prize: </strong>{{$product->basePrice}}€</p>
 		<p>
 			<strong>Size: </strong>
 			<select id="size" onChange="loadAmount(this, event)";>

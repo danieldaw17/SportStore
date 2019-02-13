@@ -6,7 +6,7 @@
 @stop
 
 @section("title")
-
+Index
 @stop
 
 @section("content")
