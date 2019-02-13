@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\User;
+use \Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class RegisterController extends Controller
 {
@@ -20,7 +21,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-
+    use ValidatesRequests;
     use RegistersUsers;
 
     /**
@@ -46,21 +47,19 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function store(Request $request){
+    
+        public function register(Request $request){
         $validateData = $request->validate([
-            'name' => 'required|max:255',
+            
             'email' => 'required|email|max:255|unique:users',
             'password' =>'required|min:6|confirmed',
-            'nick' =>'max:20',
-            'lastName' =>'max:25',
-            'role'=>'max:10'
-
+            
         ]);
-        return redirect("/");
-    }
-
-
-
+         $user = new User();
+        $user->email = $request('email');
+        $user->password = $request('password');
+        $user->save();
+}
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,6 +68,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return view ('partials.index',array('option'=>'signUp'));
+        Return User::create([
+            'email' => $data('email'),
+            'password'=>$data('password'),
+        ]);
+
+      
     }
 }
