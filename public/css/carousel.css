@@ -11,6 +11,11 @@
 }
 
 /* Convierte la primera letra a mayuscula */
-.carousel-caption h3:first-letter, .carousel-caption p:first-letter{
+.carousel-caption h3{
     text-transform: uppercase;
+    background-color: white;
+    display: block;
+    width: 40%;
+    margin: 0 auto;
+    margin-bottom: 1%;
 }

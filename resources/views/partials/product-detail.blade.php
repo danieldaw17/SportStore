@@ -22,7 +22,7 @@ Producto
 	</div>
 	<div class="col-sm-8">
 		<h2>Title product</h2>
-		<p class="description"><strong>Description: </strong>{{$product['description']</p>
+		<p class="description"><strong>Description: </strong>{{$product['description']}}</p>
 		<p><strong>Prize: {{$product['price']}} </strong>10€</p>
 		<p>
 			<strong>Size: </strong>
