@@ -132,7 +132,7 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 	Route::get('sub_categories/{subCategoryId}', 'FrontController@showProducts');
 
 	// Muestra detalle del producto
-	Route::get('/product/{productId}', 'FrontController@showProduct');
+	Route::get('product/{productId}', 'FrontController@showProduct');
 
 
 Route::get('/myCart', function() {

@@ -196,7 +196,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XXS" name="XXS" class="form-control" value="Stock XXS">
+                  <input type="text" id="XXS" name="XXS" class="form-control" placeholder="XXS">
                 </div>
                 <span id="errorXXS"></span>
               </div>
@@ -208,7 +208,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XS" name="XS" class="form-control" placeholder="Stock XS">
+                  <input type="text" id="XS" name="XS" class="form-control" placeholder="XS">
                 </div>
                 <span id="errorXS"></span>
               </div>
@@ -220,7 +220,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="S" name="S" class="form-control" placeholder="Stock S">
+                  <input type="text" id="S" name="S" class="form-control" placeholder="S">
                 </div>
                 <span id="errorS"></span>
               </div>
@@ -232,7 +232,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="M" name="M" class="form-control" placeholder="Stock M">
+                  <input type="text" id="M" name="M" class="form-control" placeholder="m">
                 </div>
                 <span id="errorM"></span>
               </div>
@@ -244,7 +244,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="L" name="L" class="form-control" placeholder="Stock L">
+                  <input type="text" id="L" name="L" class="form-control" placeholder="L">
                 </div>
                 <span id="errorL"></span>
               </div>
@@ -256,7 +256,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XL" name="XL" class="form-control" placeholder="Stock XL">
+                  <input type="text" id="XL" name="XL" class="form-control" placeholder="XL">
                 </div>
                 <span id="errorXL"></span>
               </div>
@@ -268,7 +268,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="Stock XXL">
+                  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="XXL">
                 </div>
                 <span id="errorXXL"></span>
               </div>
@@ -276,7 +276,7 @@ New product
           </div>
         </div>
       </div>
-      <input type="submit" name="sendProduct" value="Create" class="btn btn-default waves-effect waves-light">
+      <input type="submit" name="sendProduct" value="Update" class="btn btn-default waves-effect waves-light">
     </form>
   @else
     <h1>New product</h1>
