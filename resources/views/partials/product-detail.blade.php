@@ -10,6 +10,10 @@
 @stop
 
 @section("content")
+<script>
+
+	loadAmount(null);
+</script>
 <div class="row">
 	<div class="col-sm-4">
 		@foreach ($images as $image)
@@ -23,41 +27,40 @@
 	</div>
 	<div class="col-sm-8">
 		<h2>{{$product->name}}</h2>
-		{{--<p class="description"><strong>Description: </strong>{{$product->description</p>--}}
+		<p class="description"><strong>Description: </strong>{{$product->description}}</p>
 		<p><strong>Prize: </strong>{{$product->basePrice}}</p>
 		<p>
 			<strong>Size: </strong>
-			<select>
+			<select id="size" onChange="loadAmount(this, event)";>
 				@php
-					$stockAvailable="yes";
+					$stockAvailable=true;
 				@endphp
 				@if (count($stocks) < 1)
 					@php
-						$stockAvailable="no";
-					@endph
+						$stockAvailable=false;
+					@endphp
 				@else
 					@foreach ($stocks as $stock)
-						<option>{{$stock->size}}</option>
+						<option amount="{{$stock->amount}}">{{$stock->size}}</option>
 					@endforeach
 				@endif
 			</select>
 			<span>
-				@if ($stockAvailable=="no")
+				@if ($stockAvailable==false)
 					There is not any stock available. I am sorry
 				@endif
 			</span>
 		</p>
 		<p>
 			<strong>Quantity: </strong>
-			<select>
-				<option>1</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
+			<input id="amount" type="number">
 			</select>
 		</p>
 		{{-- pasar el producto al carro de la compra --}}
-		<a class="btn btn-success" href="{{route('product.addToCart', array('productId' =>$product->id))}}">Add to cart</a>
+		@if ($stockAvailable==true)
+			<a class="btn btn-success" href="{{route('product.addToCart', array('productId' =>$product->id))}}">Add to cart</a>
+		@endif
+
 	</div>
 </div>
 @include("inc/modal/imgProduct")
