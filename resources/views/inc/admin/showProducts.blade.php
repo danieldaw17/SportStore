@@ -1,7 +1,7 @@
 <div class="textHeader">
 	<h1>Products</h1>
 </div>
-<div class="row probootstrap-gutter60">
+<div class="row probootstrap-gutter60 alignSpace">
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/create') }}">
 			<div class="service hover_service text-center firstItem">
@@ -38,12 +38,12 @@
 						<h5 class="titleProduct">{{ $product->name }}</h5>
 						<div class="optionsED">
 							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-							<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
+							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/delete') }}"><button type="button" class="btn btn-danger">Defuse</button></a>
 						</div>
 					</div>
 				</div>
 			</a>
 		</div>
+		@endforeach
 	</div>
-	@endforeach
 @include("inc/admin/modal/confirmDeleteProduct")
