@@ -25,7 +25,7 @@
 		@endforeach
 		<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 			{{-- Pasar id del producto --}}
-			<a href="{{ url('category/subcategorie/product') }}">
+			<a href="{{ url('product/'.$product->id) }}">
 				<div class="service hover_service text-center">
 					<div class="imgProduct">
 						{{-- pasar datos de la imagen --}}
