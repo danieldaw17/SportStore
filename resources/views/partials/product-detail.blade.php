@@ -32,6 +32,7 @@
 		<p>
 			<strong>Size: </strong>
 			<select id="size" onChange="loadAmount(this, event)";>
+				<option>Select a size</option>
 				@php
 					$stockAvailable=true;
 				@endphp
