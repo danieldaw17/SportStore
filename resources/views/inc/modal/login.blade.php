@@ -39,32 +39,41 @@
 					</div>
 				</div>
 			</form>
-			<form method="post" action="#" onsubmit="return validateRegister();">
+			<form method="post" action="{{url('register')}}" onsubmit="return validateRegister();">
+				{{ csrf_field() }}
 				<div id="registerForm">
 					<div class="modal-header">
 						<h3 class="text-center default-text py-3" id="exampleModalLabel"><i class="fa fa-lock"></i> Sign up:</h3>
 					</div>
 					<div class="modal-body">
 						<div class="md-form">
-							<div class="form-group">
+							<div class="form-group {{$errors->has('email') ? 'has-error' : ''}} has-feedback ">
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-envelope prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
 									<input type="text" id="emailRegister" name="email" class="form-control" placeholder="Email">
 								</div>
-								<span id="errorEmailRegister"></span>
+								@if ($errors->has('email'))
+								  <span id="errorEmailRegister" class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+								@endif
 							</div>
 						</div>
 						<div class="md-form">
-							<div class="form-group">
+							<div class="form-group form-group {{$errors->has('password') ? 'has-error' : ''}} has-feedback ">
 								<div class="input-group">
 									<div class="input-group-prepend">
 										<span class="list-group-item"><i class="fa fa-lock prefix grey-text fa-1g" aria-hidden="true"></i></span>
 									</div>
 									<input type="password" id="passRegister" name="password" class="form-control" placeholder="Password">
 								</div>
-								<span id="errorPassRegister"></span>
+								@if ($errors->has('password'))
+								<span id="errorPassRegister" class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                 @endif
 							</div>
 							<div class="form-group">
 								<div class="input-group">
