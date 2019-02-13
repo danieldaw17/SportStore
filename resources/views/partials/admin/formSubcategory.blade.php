@@ -10,6 +10,9 @@ New subcategorie
 @stop
 
 @section("content")
+@foreach ($errors as $error)
+	{{$error}}
+@endforeach
 <div id="formCategorie">
   @if (isset($sub_category))
     <h1>Edit subcategory</h1>
