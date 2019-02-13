@@ -102,38 +102,49 @@ use App\Address;
 
 
 // AUTH ROUTES
-        $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-        $this->post('login', 'Auth\LoginController@login');
-        $this->get('logout', 'Auth\LoginController@logout')->name('logout');
+    $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    $this->post('login', 'Auth\LoginController@login');
+    $this->get('logout', 'Auth\LoginController@logout')->name('logout');
 
-        // Registration Routes...
-        $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-        $this->post('register', 'Auth\RegisterController@register');
+    // Registration Routes...
+    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+    $this->post('register', 'Auth\RegisterController@register');
 
-        // Password Reset Routles...
-        $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-        $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-        $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-        $this->post('password/reset', 'Auth\ResetPasswordController@reset');
+    // Password Reset Routles...
+    $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
+    $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+    $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+    $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
-//
 Route::get('user/{userId}', 'UsersController@index');
 Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
 
+// NO ADMIN ROUTES (SIN USUARIO, VISITANTE)
 
-Route::get('/', function() {
-	return view('partials.index');
-});
+	// Carga las categorias y subcategorias en el nav
+	Route::get('/', 'indexController@getCategorias');
 
-Route::get('/home', function() {
-	return view('partials.index');
-});
+	// Muestra subcategorias
+	Route::get('categories/{categoryId}', 'FrontController@showSubcategories');
 
-Route::get('/products', function() {
-	return view('partials.showProducts');
-});
+	// Muestra productos
+	Route::get('sub_categories/{subCategoryId}', 'FrontController@showProducts');
+
+	// Muestra detalle del producto
+	Route::get('product/{productId}', 'FrontController@showProduct');
+
 
 Route::get('/myCart', function() {
 	return view('partials.cart');
 });
+
+Route::get('shopping-cart',[
+	'uses' => 'ProductController@getCart',
+	'as' => 'product.shoppingCart'
+]);
+
+Route::get('mycart/{id}', [
+	'uses' => 'ProductController@getAddToCart',
+	'as' => 'product.addToCart'
+]);

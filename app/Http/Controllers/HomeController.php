@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Sub_category;
+use App\Category;
 
 class HomeController extends Controller
 {
@@ -21,8 +24,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
-    {
-        return view('home');
+    public function index(){
+       $categorias=Category::all();
+       $subcategorias=Sub_category::all();
+       return view('partials.index',array('categorias' =>$categorias ,'subcategorias'=>$subcategorias) );
     }
+
+     public function category($id){
+       $categorias=Category::all();
+       $subcategorias=Sub_category::all();
+       return view('partials.index',array('categorias' =>$categorias ,'subcategorias'=>$subcategorias) );
+     }
 }

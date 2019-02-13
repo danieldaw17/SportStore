@@ -9,65 +9,28 @@ Subcategories
 @stop
 
 @section("content")
-<div class="textHeader">
-	<h1>{{-- titulo de la categoria principal --}} Clothes subcategories</h1>
-</div>
-<div class="row probootstrap-gutter60">	
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- Pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="text">
-					<h3>Subcategorie title</h3>
-				</div>  
-			</div>
-		</a>
+	<div class="textHeader">
+		<h1> {{$categoryName}}</h1>
 	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- Pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="text">
-					<h3>Subcategorie title</h3>
-				</div>  
+	<div class="row probootstrap-gutter60">
+		@if (isset($sub_categories))
+			@foreach ($sub_categories as $sub_category)
+			<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
+				<a href="{{ url('category/subcategorie/products') }}">
+					<div class="service hover_service text-center">
+						<div class="imgProduct">
+							{{-- Pasar datos de la imagen --}}
+							<img src="{{ url('img/login.png') }}" alt="" title="">
+						</div>
+						<div class="text">
+							<h3>Subcategorie title</h3>
+						</div>
+					</div>
+				</a>
 			</div>
-		</a>
+			@endforeach
+		@else
+			parguela
+		@endif
 	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- Pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="text">
-					<h3>Subcategorie title</h3>
-				</div>  
-			</div>
-		</a>
-	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id de la subcategoria --}}
-		<a href="{{ url('category/subcategorie/products') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- Pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="text">
-					<h3>Subcategorie title</h3>
-				</div>  
-			</div>
-		</a>
-	</div>
-</div>
 @stop

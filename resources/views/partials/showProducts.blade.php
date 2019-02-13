@@ -10,72 +10,36 @@
 
 @section("content")
 <div class="textHeader">
-	<h1>{{-- titulo de la subcategoria principal --}} Title of subcategorie</h1>
+	<h1>{{$subCategoryName}}</h1>
 </div>
-<div class="row probootstrap-gutter60">	
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id del producto --}}
-		<a href="{{ url('category/subcategorie/product') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
+
+<div class="row probootstrap-gutter60">
+
+	@foreach ($products as $product)
+		@foreach ($images as $image)
+			@if ($image->productId==$product->id && $image->name=="front")
+				@php
+					break;
+				@endphp
+			@endif
+		@endforeach
+		<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
+			{{-- Pasar id del producto --}}
+			<a href="{{ url('category/subcategorie/product') }}">
+				<div class="service hover_service text-center">
+					<div class="imgProduct">
+						{{-- pasar datos de la imagen --}}
+						<img src="{{ url($image->path) }}" alt="" title="">
+					</div>
+					<div class="contentProduct">
+						<h3 class="titleProduct">{{$product->name}}</h3>
+						<p class="descriptionProduct">{{$product->shortDescription}}</p>
+						<p class="prizeProduct">{{$product->basePrice}} €</p>
+					</div>
 				</div>
-				<div class="contentProduct">
-					<h3 class="titleProduct">Title product</h3>
-					<p class="descriptionProduct">short description short description short description  short description  short description </p>
-					<p class="prizeProduct">10.00€</p>
-				</div>  
-			</div>
-		</a>
-	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id del producto --}}
-		<a href="{{ url('category/subcategorie/product') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="contentProduct">
-					<h3 class="titleProduct">Title product</h3>
-					<p class="descriptionProduct">short description short description short description  short description  short description </p>
-					<p class="prizeProduct">10.00€</p>
-				</div>  
-			</div>
-		</a>
-	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id del producto --}}
-		<a href="{{ url('category/subcategorie/product') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="contentProduct">
-					<h3 class="titleProduct">Title product</h3>
-					<p class="descriptionProduct">short description short description short description  short description  short description </p>
-					<p class="prizeProduct">10.00€</p>
-				</div>  
-			</div>
-		</a>
-	</div>
-	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-		{{-- Pasar id del producto --}}
-		<a href="{{ url('category/subcategorie/product') }}">
-			<div class="service hover_service text-center">
-				<div class="imgProduct">
-					{{-- pasar datos de la imagen --}}
-					<img src="{{ url('img/login.png') }}" alt="" title="">
-				</div>
-				<div class="contentProduct">
-					<h3 class="titleProduct">Title product</h3>
-					<p class="descriptionProduct">short description short description short description  short description  short description </p>
-					<p class="prizeProduct">10.00€</p>
-				</div>  
-			</div>
-		</a>
-	</div>
+			</a>
+		</div>
+	@endforeach
 </div>
+
 @stop
