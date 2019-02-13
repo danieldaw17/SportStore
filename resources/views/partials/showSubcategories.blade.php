@@ -20,7 +20,7 @@ Subcategories
 					<div class="service hover_service text-center">
 						<div class="imgProduct">
 							{{-- Pasar datos de la imagen --}}
-							<img src="{{ url('img/login.png') }}" alt="" title="">
+							{{--<img src="{{ url($sub_category->imagePath) }}" alt="" title="">--}}
 						</div>
 						<div class="text">
 							<h3>Subcategorie title</h3>
@@ -29,8 +29,6 @@ Subcategories
 				</a>
 			</div>
 			@endforeach
-		@else
-			parguela
 		@endif
 	</div>
 @stop

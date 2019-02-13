@@ -28,7 +28,7 @@ class ProductsManagementController extends Controller
 		}
 
 		$images = Image::all();
-		$products = Product::where('subCategoryId', $subCategoryId)->get();
+		$products = Product::where('subCategoryId', $subCategoryId)->where('active', true)->get();
 		return view ('partials.admin.productManagement', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'products'=>$products, 'images'=>$images));
     }
 
@@ -569,7 +569,7 @@ class ProductsManagementController extends Controller
 		if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-
+		/*
 		if (!$product = Product::find($productId)) {
 			abort(404);
 		}
@@ -589,6 +589,12 @@ class ProductsManagementController extends Controller
 		}
 
 		$product->delete();
-		redirect("user/$userId/categories/$categoryId/sub_categories/$subCategoryId");
+		*/
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+		$product->active=false;
+		$product->save();
+		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products");
     }
 }

@@ -1,7 +1,7 @@
 <div class="textHeader">
 	<h1>Categories</h1>
 </div>
-<div class="row probootstrap-gutter60">
+<div class="row probootstrap-gutter60 alignSpace">
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 		<a href="{{ url('user/'.Auth::user()->id.'/Categories/create') }}">
 			<div class="service hover_service text-center firstItem">

@@ -65,6 +65,7 @@ class CategoriesController extends Controller
 
 	public function store(Request $request, $userId)
     {
+		
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
