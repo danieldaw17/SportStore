@@ -7,6 +7,7 @@ use App\Sub_category;
 use App\Category;
 use App\Product;
 use App\Image;
+use Illuminate\Support\Facades\Input;
 
 class indexController extends Controller
 {
@@ -19,8 +20,14 @@ class indexController extends Controller
 		return view('partials.index', array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav, 'productsTopNews'=>$productsTopNews, 'productsTopPrices'=>$productsTopPrices, 'images'=>$images));
     }
 
-    public function searcher(){
-    	
+    public function search(){
+        $images = Image::all();
+        $text = Input::post('text');
+        $product = Product::where('name','LIKE','%'.$text.'%')->paginate(3);
+        if(count($product) > 0){
+            return view('partials.results', array('images'=>$images))->withDetails($product)->withQuery($text);
+        }
+
     }
 
 }

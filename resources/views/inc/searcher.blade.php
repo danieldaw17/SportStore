@@ -1,12 +1,12 @@
 <div class="searcher">
 	<div id="custom-search-input">
 	    <div class="input-group col-md-12">
-	        <input type="text" class="  search-query form-control" placeholder="Search" />
-	        <span class="input-group-btn">
-	            <button class="btn btn-danger" type="button">
-	                <span class=" glyphicon glyphicon-search">lupa</span>
-	            </button>
-	        </span>
+	    	<form action="/search" method="POST" role="search">
+			    @csrf
+			    <div class="input-group">
+			        <input type="text" class="form-control" name="text" id="text" placeholder="Search users">
+			    </div>
+			</form>
 	    </div>
 	</div>
 </div>

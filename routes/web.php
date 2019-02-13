@@ -1,5 +1,7 @@
 <?php
 use App\Address;
+use App\Product;
+use Illuminate\Support\Facades\Input;
 
 /*
 |--------------------------------------------------------------------------
@@ -148,3 +150,7 @@ Route::get('mycart/{id}', [
 	'uses' => 'ProductController@getAddToCart',
 	'as' => 'product.addToCart'
 ]);
+
+// Muestra resultados de la busqueda
+Route::get('search', 'indexController@search');
+Route::post('search', 'indexController@search');
