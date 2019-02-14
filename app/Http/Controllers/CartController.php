@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Cart;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class CartController extends Controller
 {
@@ -73,10 +74,23 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+        $validator = Validator::make($request->all(), [
+
+            'quantity' => 'required|numeric|between:1,10'
+        ]);
+
+
+        if($validator->fails()){
+            session()->flash('errors',collect(['Quantity mush be between 1 and 10']));
+            return responde()->json(['success' => false ],400);
+
+
+        }
+
+
             Cart::update($id, $request->quantity);
 
-            session()->flash('sucess_message','Quantity was updated successfully!');
+            session()->flash('success_message','Quantity was updated successfully!');
             return responde()->json(['success' => true ]);
 
 

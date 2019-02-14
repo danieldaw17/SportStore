@@ -50,19 +50,18 @@ My cart
 	    		<span id="unitPrice">{{$item->options->size}}</span>
 	    	</td>
 	    	<td>
-	    		<span class="well">{{$item->model->basePrice}}€</span>
+	    		<span class="well">{{$item->subtotal}}€</span>
 
 	    	</td>
 	    	<td>
 	    		
 	    		<select class="quantity" data-id="{{$item->rowId}}">
-				<option selected>{{$item->qty}}</option>
-					<option>1</option>
-	    			<option>2</option>
-					<option>3</option>
-	    			<option>4</option>
-	    			<option>5</option>
-	    			<option>6</option>
+	    			@for($i=1 ;$i < 10 + 1; $i++)
+						<option {{$item->qty == $i ? 'selected' : ''}}>{{$i}}</option>
+
+	    			@endfor
+				
+					
 	    		</select>
 	    		
 	    		<form action="{{route('cart.destroy',$item->rowId)}}" method="POST">
@@ -107,7 +106,7 @@ My cart
 </div>
 @else
 	<div class="alert alert-danger">
-		No items in Cart
+		No items added in the cart
 	</div>
 	<a class="btn btn-success" href="{{url('/')}}" role="button">Continue Shopping</a>
 @endif
@@ -130,10 +129,11 @@ My cart
   				})
   			.then(function (response) {
     		//console.log(response);
-    		window.location.href='{{ route('cart.index')}}';
+    		window.location.href='{{ route("cart.index") }}';
   				})
   			.catch(function (error) {
-   			 console.log(error);
+   			 
+   			 window.location.href='{{ route("cart.index") }}';
   				});
 	 	})
 
