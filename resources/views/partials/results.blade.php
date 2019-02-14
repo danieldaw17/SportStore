@@ -37,6 +37,10 @@ results
 					</div>
 				@endforeach
 				{{$details->render()}}
+			@else
+				@if(!empty($message))
+					<div class="alert alert-warning noResults">{{$message}}</div>
+				@endif
 		    @endif
 	    </div>
 	</div>

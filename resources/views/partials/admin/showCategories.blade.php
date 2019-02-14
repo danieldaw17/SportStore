@@ -14,7 +14,7 @@ Categories
 {{-- Menu options management --}}
 @include("inc/admin/headerProductManagement")
 
-{{-- Searcher advanced --}}
+{{-- Searcher --}}
 
 
 {{-- Show categories --}}

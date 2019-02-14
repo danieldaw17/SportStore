@@ -2,7 +2,7 @@
 	<div class="modal-dialog">
 	    <div class="modal-content">
 	    	<form method="post" action="{{url('register')}}" onsubmit="return validateRegister();">
-				{{ csrf_field() }}
+				@csrf
 		    	<div id="registerForm">
 					<div class="modal-header">
 						<h3 class="text-center default-text py-3"><i class="fa fa-lock"></i> Sign up:</h3>

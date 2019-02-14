@@ -2,7 +2,6 @@
 
 @section("styles")
 <link rel="stylesheet" href="{{ url('css/carousel.css') }}">
-<link rel="stylesheet" href="{{ url('css/searcher.css') }}">
 @stop
 
 @section("title")

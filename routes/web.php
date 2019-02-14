@@ -1,6 +1,5 @@
 <?php
 use App\Address;
-use App\Product;
 use Illuminate\Support\Facades\Input;
 
 /*
@@ -152,5 +151,6 @@ Route::get('mycart/{id}', [
 ]);
 
 // Muestra resultados de la busqueda
-Route::get('search', 'indexController@search');
-Route::post('search', 'indexController@search');
+Route::get('search', 'SearchController@search');
+Route::post('search', 'SearchController@search');
+Route::get('ajax_subcat','SearchController@ajaxSubcategories');
