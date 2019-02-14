@@ -32,6 +32,8 @@ class UsersTableSeeder extends Seeder
 			'role' => "user"
         ]);
 
+      
+
 		/*$user = new User();
 
 		$user->name = "root";

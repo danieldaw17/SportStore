@@ -7,10 +7,6 @@
 	margin: auto;
 }
 
-#registerForm {
-	display: none;
-}
-
 #errorEmailLogin, #errorPassLogin, #errorEmailRegister, #errorPassRegister, #errorConfirmPass {
 	color: red;
 }
