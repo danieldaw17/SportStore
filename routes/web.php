@@ -150,6 +150,7 @@ Route::get('empty',function(){
 	Cart::destroy();
 
 });
+
 // Muestra resultados de la busqueda
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@search');
