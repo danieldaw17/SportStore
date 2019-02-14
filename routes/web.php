@@ -57,7 +57,7 @@ use App\Address;
 	Route::put('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/edit', 'ProductsManagementController@update');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
-
+	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
 //BILLING ADDRESS ROUTES
 
 //SHIPPING Address

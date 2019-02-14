@@ -1,3 +1,4 @@
+
 <div class="textHeader">
 	<h1>Products</h1>
 </div>
@@ -38,12 +39,15 @@
 						<h5 class="titleProduct">{{ $product->name }}</h5>
 						<div class="optionsED">
 							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/delete') }}"><button type="button" class="btn btn-danger">Defuse</button></a>
+							<form action="/WebServices/activeManagement/activeManagementClient.php" method="post">
+								<input type="hidden" name="productId" value="{{$product->id}}">
+								<a href="{{ url('defuse/'.$product->id) }}"><submit type="button" class="btn btn-danger">Defuse</button></a>
+							</form>
 						</div>
 					</div>
 				</div>
 			</div>
+			@endforeach
 		</div>
-		@endforeach
 	</div>
 @include("inc/admin/modal/confirmDeleteProduct")

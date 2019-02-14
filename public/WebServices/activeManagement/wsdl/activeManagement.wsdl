@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<definitions name="activeManagement"
+	targetNamespace="urn:Active"
+	xmlns:tns="urn:Active"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+	<message name="ActiveRequest">
+		<part name="productId" type="xsd:int" />
+	</message>
+
+	<portType name="ActivePort">
+
+		<operation name="defuse">
+			<input message="tns:ActiveRequest"/>
+		</operation>
+
+	</portType>
+
+	<binding name="ActiveBinding" type="tns:ActivePort">
+
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<operation name="defuse">
+			<soap:operation soapAction="urn:Active#defuse" />
+
+			<input>
+				<soap:body use="encoded" namespace="urn:Active"
+				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+		</operation>
+
+	</binding>
+
+	<service name="activeManagement">
+		<port name="ActivePort" binding="tns:ActiveBinding">
+		<soap:address location="http://localhost/serverCalculator/soapServer.php" />
+		</port>
+	</service>
+
+</definitions>

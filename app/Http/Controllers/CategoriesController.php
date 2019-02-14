@@ -65,7 +65,7 @@ class CategoriesController extends Controller
 
 	public function store(Request $request, $userId)
     {
-		
+
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
@@ -86,7 +86,7 @@ class CategoriesController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $category->id.".".$extension;
-			$foldPath = 'storage/images/categories';
+			$foldPath = '/storage/images/categories';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -119,7 +119,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -150,7 +150,7 @@ class CategoriesController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $category->id.".".$extension;
-			$foldPath = 'storage/images/categories';
+			$foldPath = '/storage/images/categories';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -166,7 +166,7 @@ class CategoriesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from /storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

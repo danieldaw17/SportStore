@@ -62,7 +62,7 @@ class ProductsManagementController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -116,7 +116,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageFront->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -135,7 +135,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageBack->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -154,7 +154,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageSideL->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -173,7 +173,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageSideR->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -302,7 +302,7 @@ class ProductsManagementController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -360,7 +360,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageFront->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 
 			//check if exists a previous file with the same name
 			$fullPath = $foldPath."/".$imageName;
@@ -390,7 +390,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageBack->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 
 			//check if exists a previous file with the same name
 			$fullPath = $foldPath."/".$imageName;
@@ -420,7 +420,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageSideL->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 
 			//check if exists a previous file with the same name
 			$fullPath = $foldPath."/".$imageName;
@@ -450,7 +450,7 @@ class ProductsManagementController extends Controller
 
 			$extension = $request->imageSideR->extension();
 			$imageName = $product->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 
 			//check if exists a previous file with the same name
 			$fullPath = $foldPath."/".$imageName;
@@ -559,7 +559,7 @@ class ProductsManagementController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from /storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -595,6 +595,16 @@ class ProductsManagementController extends Controller
 		}
 		$product->active=false;
 		$product->save();
-		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products");
+		return back();
+    }
+
+	public function defuse($productId)
+	{
+		if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+		$product->active=false;
+		$product->save();
+		return back();
     }
 }

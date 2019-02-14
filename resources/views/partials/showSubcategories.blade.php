@@ -13,7 +13,7 @@
 		<h1> {{$categoryName}}</h1>
 	</div>
 	<div class="row probootstrap-gutter60">
-		@if (isset($sub_categories))
+		@if (count($sub_categories)> 1)
 			@foreach ($sub_categories as $sub_category)
 			<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 				<a href="{{ url('sub_categories/'.$sub_category->id) }}">
