@@ -36,36 +36,58 @@ My cart
 	        <th>Size</th>
 	        <th>Price</th>{{-- price unitary --}}
 	        <th>Quantity</th>
-
+			
 	    </tr>
 
-	    	@foreach($Cart::content() as $item)
+	    	@foreach( Cart::content() as $item)
 	    	<td>1</td>
 	    	
-	    	<td><a href="{{route()}}<img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td>
-	    	<td>{{--$product['name']--}}</td> {{-- title sql title product --}}
+	    	<td>{{$item->model->name}}</td> 
 	    	<td>
-	    		<span class="well"> XL {{--$product['size']--}}</span>
+	    		
 	    	</td>
 	    	<td>
-	    		<span id="unitPrice">10 {{--$product['basePrice']--}}</span>
+	    		<span id="unitPrice">{{$item->options->size}}</span>
+	    	</td>
+	    	<td>
+	    		<span class="well">{{$item->model->basePrice}}€</span>
+
 	    	</td>
 	    	<td>
 	    		<div class="quantityButton"><strong><a href="#" onclick="add(), total()">+</a></strong></div>
-	    		<span id="quantity">5{{--$product['qty']--}}</span>
+	    		<span id="quantity">{{$item->qty}}</span>
 	    		<div class="quantityButton"><strong><a href="#" onclick="rest(),total()">-</a></strong></div>
+	    		<form action="{{route('cart.destroy',$item->rowId)}}" method="POST">
+	    			@csrf
+	    			{{ method_field('DELETE')}}
+
+				<button type="submit" class="btn btn-danger">remove</button></a>
+					</form>
 
 	    	</td>
+	    	
 		<tr>
-
-
-	    {{---@endforeach--}}
+	    @endforeach
 	    <tr>
-	    	<th>TOTAL:</th>
+	    	<th>Subtotal:</th>
 			<td>
-	    		<span id="total">0{{--$totalprice--}}</span>
+	    		<span id="total">{{Cart::subtotal()}}€</span>
 	    	</td>
 		</tr>
+		<tr>
+	    	<th>Tax:</th>
+			<td>
+	    		<span id="total">{{Cart::tax()}}€</span>
+	    	</td>
+		</tr>
+		<tr>
+	    	<th>Total:</th>
+			<td>
+	    		<span id="total">{{Cart::total()}}€</span>
+	    	</td>
+		</tr>
+
+
 
 	</table>
 	<hr>
@@ -79,6 +101,7 @@ My cart
 	<div class="alert alert-danger">
 		No items in Cart
 	</div>
+	<a class="btn btn-success" href="{{url('/')}}" role="button">Continue Shopping</a>
 @endif
 
 @stop

@@ -39,5 +39,6 @@
 		<script src="{{ url('js/login.js') }}"></script>
 		<script src="{{ url('js/cart.js') }}"></script>
 		@yield("js")
+		@yield('extra-js');
 	</body>
 </html>
