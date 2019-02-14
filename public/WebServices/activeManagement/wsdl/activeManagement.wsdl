@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<definitions name="activeManagement"
+<definitions name="ActiveService"
 	targetNamespace="urn:Active"
 	xmlns:tns="urn:Active"
 	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
@@ -14,30 +14,35 @@
 
 	<portType name="ActivePort">
 
-		<operation name="defuse">
-			<input message="tns:ActiveRequest"/>
+		<operation name="active">
+			<input message="tns:ActiveRequest" />
 		</operation>
 
 	</portType>
 
 	<binding name="ActiveBinding" type="tns:ActivePort">
-
 		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
 
-		<operation name="defuse">
-			<soap:operation soapAction="urn:Active#defuse" />
+		<operation name="active">
+			<soap:operation soapAction="urn:Active#active" />
 
 			<input>
 				<soap:body use="encoded" namespace="urn:Active"
 				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
 			</input>
+
+			<output>
+				<soap:body use="encoded" namespace="urn:Active"
+				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
 		</operation>
+
 
 	</binding>
 
-	<service name="activeManagement">
+	<service name="ActiveService">
 		<port name="ActivePort" binding="tns:ActiveBinding">
-		<soap:address location="http://localhost/serverCalculator/soapServer.php" />
+			<soap:address location="http://localhost.sportstore/WebServices/activeManagement/activeManagement.php" />
 		</port>
 	</service>
 

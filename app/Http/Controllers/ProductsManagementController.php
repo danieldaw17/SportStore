@@ -600,11 +600,12 @@ class ProductsManagementController extends Controller
 
 	public function defuse($productId)
 	{
+		return "llego aquí";
 		if (!$product = Product::find($productId)) {
 			abort(404);
 		}
 		$product->active=false;
 		$product->save();
-		return back();
+
     }
 }
