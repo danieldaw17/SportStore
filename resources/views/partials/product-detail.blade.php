@@ -59,11 +59,20 @@
 		</p>
 		{{-- pasar el producto al carro de la compra --}}
 		@if ($stockAvailable==true)
-			<a class="btn btn-success" href="{{route('product.addToCart', array('productId' =>$product->id))}}">Add to cart</a>
+		<form action="{{ route('cart.store') }}" method ="POST">
+			@csrf
+			<input type="hidden" name="id" value="{{$product->id}}">
+			<input type="hidden" name="name" value="{{$product->name}}">
+			<input type="hidden" name="price" value="{{$product->basePrice}}">
+			<input type="hidden" name="stock" value="{{$stock->size}}">
+		<button type="submit" class="button button-success">Add to cart</button>
+			</form>
+			
 		@endif
 
 	</div>
 </div>
+
 @include("inc/modal/imgProduct")
 @stop
 

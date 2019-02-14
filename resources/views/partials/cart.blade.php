@@ -11,6 +11,22 @@ My cart
 @section("content")
 
 {{--@if(session()->has('cart'))--}}
+@if(session()->has('success_message'))
+	<div class="alert alert-success">
+		{{session()->get('success_message')}}
+	</div>
+@endif
+@if(count($errors)>0)
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+@endif
+@if (Cart::count()>0)
+<h2>{{ Cart::count() }} item(s) in the shopping Cart</h2>
 <div class="datos">
 	<table>
 	    <tr>
@@ -23,14 +39,11 @@ My cart
 
 	    </tr>
 
-	    	{{---@foreach($products as $product)--}}
-	    	{{---@}}
-
-	    	{{--
-	    	@foreach($products as $product)--}}
+	    	@foreach($Cart::content() as $item)
 	    	<td>1</td>
-	    	<td>{{$product['name']}}</td>
-	    	<td><img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td> {{-- title sql title product --}}
+	    	
+	    	<td><a href="{{route()}}<img src="{{ url('img/product.png') }}" alt="Product image" title="title product" class="imgCart"></td>
+	    	<td>{{--$product['name']--}}</td> {{-- title sql title product --}}
 	    	<td>
 	    		<span class="well"> XL {{--$product['size']--}}</span>
 	    	</td>
@@ -50,22 +63,22 @@ My cart
 	    <tr>
 	    	<th>TOTAL:</th>
 			<td>
-	    		<span id="total">{{$totalprice}}</span>
+	    		<span id="total">0{{--$totalprice--}}</span>
 	    	</td>
 		</tr>
 
 	</table>
 	<hr>
+	
+
 	<div class="container">
 	<button type="button" class="btn btn-success">Check-out</button>
 	</div>
 </div>
-{{--@else}}
-	<div class="container">
-		<div class="alert alert-warning">
-    	<strong>Warning!</strong>No items added to the cart
-  		</div>
+@else
+	<div class="alert alert-danger">
+		No items in Cart
 	</div>
-@endif--}}
+@endif
 
 @stop

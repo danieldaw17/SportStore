@@ -1,5 +1,6 @@
 <?php
 use App\Address;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -135,16 +136,12 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 	Route::get('/product/{productId}', 'FrontController@showProduct');
 
 
-Route::get('/myCart', function() {
-	return view('partials.cart');
+
+
+Route::get('mycart','CartController@index')->name('cart.index');
+Route::post('mycart','CartController@store')->name('cart.store');
+
+Route::get('empty',function(){
+	Cart::destroy();
+
 });
-
-Route::get('shopping-cart',[
-	'uses' => 'ProductController@getCart',
-	'as' => 'product.shoppingCart'
-]);
-
-Route::get('mycart/{id}', [
-	'uses' => 'ProductController@getAddToCart',
-	'as' => 'product.addToCart'
-]);
