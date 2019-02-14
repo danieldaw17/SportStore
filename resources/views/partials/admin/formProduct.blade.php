@@ -13,7 +13,7 @@ New product
 
 
 <div id="formProduct">
-  @if(isset($product))
+  @if(!isset($product))
     <h1>Edit product</h1>
     <form method="post" action="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
       {{ csrf_field() }}
