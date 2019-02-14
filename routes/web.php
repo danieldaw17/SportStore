@@ -141,6 +141,7 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 Route::get('mycart','CartController@index')->name('cart.index');
 Route::post('mycart','CartController@store')->name('cart.store');
 Route::delete('mycart/{product}','CartController@destroy')->name('cart.destroy');
+Route::patch('mycart/{product}','CartController@update')->name('cart.update');
 
 
 

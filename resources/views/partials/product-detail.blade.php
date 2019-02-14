@@ -45,7 +45,7 @@
 					@endphp
 				@else
 					@foreach ($stocks as $stock)
-						<option qty="{{$stock->amount}}">{{$stock->size}}</option>
+						<option amount="{{$stock->amount}}">{{$stock->size}}</option>
 					@endforeach
 				@endif
 			</select>

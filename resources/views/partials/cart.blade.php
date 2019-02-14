@@ -54,9 +54,17 @@ My cart
 
 	    	</td>
 	    	<td>
-	    		<div class="quantityButton"><strong><a href="#" onclick="add(), total()">+</a></strong></div>
-	    		<span id="quantity">{{$item->qty}}</span>
-	    		<div class="quantityButton"><strong><a href="#" onclick="rest(),total()">-</a></strong></div>
+	    		
+	    		<select class="quantity" data-id="{{$item->rowId}}">
+				<option selected>{{$item->qty}}</option>
+					<option>1</option>
+	    			<option>2</option>
+					<option>3</option>
+	    			<option>4</option>
+	    			<option>5</option>
+	    			<option>6</option>
+	    		</select>
+	    		
 	    		<form action="{{route('cart.destroy',$item->rowId)}}" method="POST">
 	    			@csrf
 	    			{{ method_field('DELETE')}}
@@ -103,5 +111,40 @@ My cart
 	</div>
 	<a class="btn btn-success" href="{{url('/')}}" role="button">Continue Shopping</a>
 @endif
+@endsection
+@section('extra-js')
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="{{asset('js/app.js')}}"></script>
+<script>
+	(function(){
+
+	 const classname=document.querySelectorAll('.quantity')
+
+	 Array.from(classname).forEach(function(element){
+
+	 	element.addEventListener('change',function(){
+	 		const id=element.getAttribute('data-id')
+	 		axios.patch(`mycart/${id}`, {
+   			 quantity: this.value
+   			 
+  				})
+  			.then(function (response) {
+    		//console.log(response);
+    		window.location.href='{{ route('cart.index')}}';
+  				})
+  			.catch(function (error) {
+   			 console.log(error);
+  				});
+	 	})
+
+	 })
+	})();
+
+
+
+
+
+</script>
+
 
 @stop
