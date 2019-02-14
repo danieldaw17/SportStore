@@ -13,7 +13,7 @@ New product
 
 
 <div id="formProduct">
-  @if(!isset($product))
+  @if(isset($product))
     <h1>Edit product</h1>
     <form method="post" action="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}" enctype="multipart/form-data" onchange="showFields()" onsubmit="return validateFormProduct();">
       {{ csrf_field() }}
@@ -175,107 +175,213 @@ New product
         <span id="errorWeight"></span>
       </div>
       {{-- Stock --}}
-      <div class="space">
-        <div class="col-xs-12 ">
-          <nav>
-            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockL" role="tab" aria-controls="nav-home" aria-selected="true">Stock L</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XL</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXL</a>
-            </div>
-          </nav>
-          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-            {{-- XXS --}}
-            <div class="tab-pane fade show active info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="XXS" name="XXS" class="form-control" placeholder="XXS">
-                </div>
-                <span id="errorXXS"></span>
-              </div>
-            </div>
-            {{-- XS --}}
-            <div class="tab-pane fade show info" id="stockXS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="XS" name="XS" class="form-control" placeholder="XS">
-                </div>
-                <span id="errorXS"></span>
-              </div>
-            </div>
-            {{-- S --}}
-            <div class="tab-pane fade show info" id="stockS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="S" name="S" class="form-control" placeholder="S">
-                </div>
-                <span id="errorS"></span>
-              </div>
-            </div>
-            {{-- M --}}
-            <div class="tab-pane fade show info" id="stockM" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="M" name="M" class="form-control" placeholder="M">
-                </div>
-                <span id="errorM"></span>
-              </div>
-            </div>
-            {{-- L --}}
-            <div class="tab-pane fade show info" id="stockL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="L" name="L" class="form-control" placeholder="L">
-                </div>
-                <span id="errorL"></span>
-              </div>
-            </div>
-            {{-- XL --}}
-            <div class="tab-pane fade show info" id="stockXL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="XL" name="XL" class="form-control" placeholder="XL">
-                </div>
-                <span id="errorXL"></span>
-              </div>
-            </div>
-            {{-- XXL --}}
-            <div class="tab-pane fade show info" id="stockXXL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="XXL">
-                </div>
-                <span id="errorXXL"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+	<div class="space">
+	  <div class="col-xs-12 ">
+		<nav>
+		  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockL" role="tab" aria-controls="nav-home" aria-selected="true">Stock L</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XL</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXL</a>
+		  </div>
+		</nav>
+		<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+		  {{-- XXS --}}
+		  <div class="tab-pane fade show info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="XXS")
+					   <input type="text" id="XXS" name="XXS" class="form-control" value="{{$stock->amount}}">
+					   @php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="text" id="XXS" name="XXS" class="form-control" placeholder="Stock XXS">
+			  @endif
+			  </div>
+			  <span id="errorXXS"></span>
+			</div>
+		  </div>
+		  {{-- XS --}}
+		  <div class="tab-pane fade show info" id="stockXS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="XS")
+					   <input type="text" id="XS" name="XS" class="form-control" value="{{$stock->amount}}">
+					   @php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="text" id="XS" name="XS" class="form-control" placeholder="Stock XS">
+			  @endif
+
+			  </div>
+			  <span id="errorXS"></span>
+			</div>
+		  </div>
+		  {{-- S --}}
+		  <div class="tab-pane fade show info" id="stockS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				 $exist = false;
+			 @endphp
+			 @foreach ($stocks as $stock)
+
+				 @if ($stock->size=="S")
+					  <input type="text" id="S" name="S" class="form-control" value="{{$stock->amount}}">
+					  @php
+						  $exist = true;
+						  break;
+					  @endphp
+				 @endif
+			 @endforeach
+			 @if ($exist==false)
+			 <input type="text" id="S" name="S" class="form-control" placeholder="Stock S">
+			 @endif
+			  </div>
+			  <span id="errorS"></span>
+			</div>
+		  </div>
+		  {{-- M --}}
+		  <div class="tab-pane fade show info" id="stockM" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="M")
+					   <input type="text" id="M" name="M" class="form-control" value="{{$stock->amount}}">
+					   @php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="text" id="M" name="M" class="form-control" placeholder="Stock M">
+			  @endif
+			  </div>
+			  <span id="errorM"></span>
+			</div>
+		  </div>
+		  {{-- L --}}
+		  <div class="tab-pane fade show info" id="stockL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				 $exist = false;
+			 @endphp
+			 @foreach ($stocks as $stock)
+
+				 @if ($stock->size=="L")
+					  <input type="text" id="L" name="L" class="form-control" value="{{$stock->amount}}">
+					  @php
+						  $exist = true;
+						  break;
+					  @endphp
+				 @endif
+			 @endforeach
+			 @if ($exist==false)
+			 <input type="text" id="L" name="L" class="form-control" placeholder="Stock L">
+			 @endif
+			  </div>
+			  <span id="errorL"></span>
+			</div>
+		  </div>
+		  {{-- XL --}}
+		  <div class="tab-pane fade show info" id="stockXL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="XL")
+					   <input type="text" id="XL" name="XL" class="form-control" value="{{$stock->amount}}">
+					   @php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="text" id="XL" name="XL" class="form-control" placeholder="Stock XL">
+			  @endif
+			  </div>
+			  <span id="errorXL"></span>
+			</div>
+		  </div>
+		  {{-- XXL --}}
+		  <div class="tab-pane fade show info" id="stockXXL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				@php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="XXL")
+					   <input type="text" id="XXL" name="XXL" class="form-control" value="{{$stock->amount}}">
+					   @php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="Stock XXL">
+			  @endif
+			  </div>
+			  <span id="errorXXL"></span>
+			</div>
+		  </div>
+		</div>
+	  </div>
+  </div>
       <input type="submit" name="sendProduct" value="Update" class="btn btn-default waves-effect waves-light">
     </form>
   @else
@@ -428,155 +534,108 @@ New product
         <span id="errorWeight"></span>
       </div>
       {{-- Stock --}}
-      <div class="space">
-        <div class="col-xs-12 ">
-          <nav>
-            <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-              <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockL" role="tab" aria-controls="nav-home" aria-selected="true">Stock L</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XL</a>
-              <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXL</a>
-            </div>
-          </nav>
-          <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
-            {{-- XXS --}}
-            <div class="tab-pane fade show active info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  		@foreach ($stocks as $stock)
-							@if ($stock->size=="XXS")
-								<input type="text" id="XXS" name="XXS" class="form-control" value="{{$stock->amount}}">
-								break;
-							@endif
 
-							<input type="text" id="XXS" name="XXS" class="form-control" placeholder="Stock XXS">
-						@endforeach
-                </div>
-                <span id="errorXXS"></span>
-              </div>
-            </div>
-            {{-- XS --}}
-            <div class="tab-pane fade show info" id="stockXS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="XS")
-						   <input type="text" id="XS" name="XS" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="XS" name="XS" class="form-control" placeholder="Stock XS">
-				  @endforeach
-                </div>
-                <span id="errorXS"></span>
-              </div>
-            </div>
-            {{-- S --}}
-            <div class="tab-pane fade show info" id="stockS" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="S")
-						   <input type="text" id="S" name="S" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="S" name="S" class="form-control" placeholder="Stock S">
-				  @endforeach
-                </div>
-                <span id="errorS"></span>
-              </div>
-            </div>
-            {{-- M --}}
-            <div class="tab-pane fade show info" id="stockM" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="M")
-						   <input type="text" id="M" name="M" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="M" name="M" class="form-control" placeholder="Stock M">
-				  @endforeach
-                </div>
-                <span id="errorM"></span>
-              </div>
-            </div>
-            {{-- L --}}
-            <div class="tab-pane fade show info" id="stockL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="L")
-						   <input type="text" id="L" name="L" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="L" name="L" class="form-control" placeholder="Stock L">
-				  @endforeach
-                </div>
-                <span id="errorL"></span>
-              </div>
-            </div>
-            {{-- XL --}}
-            <div class="tab-pane fade show info" id="stockXL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="XL")
-						   <input type="text" id="XL" name="XL" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="XL" name="XL" class="form-control" placeholder="Stock XL">
-				  @endforeach
-                </div>
-                <span id="errorXL"></span>
-              </div>
-            </div>
-            {{-- XXL --}}
-            <div class="tab-pane fade show info" id="stockXXL" role="tabpanel" aria-labelledby="nav-home-tab">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend">
-                    <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-				  @foreach ($stocks as $stock)
-					  @if ($stock->size=="XXL")
-						   <input type="text" id="XXL" name="XXL" class="form-control" value="{{$stock->amount}}">
-						  break;
-					  @endif
-
-					  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="Stock XXL">
-				  @endforeach
-                </div>
-                <span id="errorXXL"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+	<div class="space">
+	  <div class="col-xs-12 ">
+		<nav>
+		  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+			<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockL" role="tab" aria-controls="nav-home" aria-selected="true">Stock L</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XL</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXL" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXL</a>
+		  </div>
+		</nav>
+		<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+		  {{-- XXS --}}
+		  <div class="tab-pane fade show active info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="XXS" name="XXS" class="form-control" placeholder="XXS">
+			  </div>
+			  <span id="errorXXS"></span>
+			</div>
+		  </div>
+		  {{-- XS --}}
+		  <div class="tab-pane fade show info" id="stockXS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="XS" name="XS" class="form-control" placeholder="XS">
+			  </div>
+			  <span id="errorXS"></span>
+			</div>
+		  </div>
+		  {{-- S --}}
+		  <div class="tab-pane fade show info" id="stockS" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="S" name="S" class="form-control" placeholder="S">
+			  </div>
+			  <span id="errorS"></span>
+			</div>
+		  </div>
+		  {{-- M --}}
+		  <div class="tab-pane fade show info" id="stockM" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="M" name="M" class="form-control" placeholder="M">
+			  </div>
+			  <span id="errorM"></span>
+			</div>
+		  </div>
+		  {{-- L --}}
+		  <div class="tab-pane fade show info" id="stockL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="L" name="L" class="form-control" placeholder="L">
+			  </div>
+			  <span id="errorL"></span>
+			</div>
+		  </div>
+		  {{-- XL --}}
+		  <div class="tab-pane fade show info" id="stockXL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="XL" name="XL" class="form-control" placeholder="XL">
+			  </div>
+			  <span id="errorXL"></span>
+			</div>
+		  </div>
+		  {{-- XXL --}}
+		  <div class="tab-pane fade show info" id="stockXXL" role="tabpanel" aria-labelledby="nav-home-tab">
+			<div class="form-group">
+			  <div class="input-group">
+				<div class="input-group-prepend">
+				  <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+				</div>
+				<input type="text" id="XXL" name="XXL" class="form-control" placeholder="XXL">
+			  </div>
+			  <span id="errorXXL"></span>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
       <input type="submit" name="sendProduct" value="Create" class="btn btn-default waves-effect waves-light">
     </form>
   @endif
