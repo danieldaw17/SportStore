@@ -24,8 +24,9 @@ class CategoriesController extends Controller
 		}
 
         $categories = Category::all();
+        $subcategories = Sub_category::all();
 
-		return view('partials.admin.showCategories', array('userId'=>$userId, 'categories'=>$categories));
+		return view('partials.admin.showCategories', array('userId'=>$userId, 'categories'=>$categories, 'subcategories'=>$subcategories));
     }
 
     /**

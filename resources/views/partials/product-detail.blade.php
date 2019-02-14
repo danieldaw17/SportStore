@@ -25,8 +25,8 @@
 			@endif
 			<div class="smallPictures">
 		    <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url($image->path) }}" alt="Product" title="Product" onclick="changePic(this.src, this.alt, this.title)"></a></div>
+		    </div>
 		@endforeach
-		</div>
 	</div>
 	<div class="col-sm-8">
 		<p><input type="hidden" name="name" value="{{$product->name}}"><strong>{{$product->name}}</strong></p>
@@ -62,10 +62,10 @@
 		</p>
 		{{-- pasar el producto al carro de la compra --}}
 		@if ($stockAvailable==true)
-		
+
 		<button type="submit" class="button button-success">Add to cart</button>
-			
-			
+
+
 		@endif
 
 	</div>

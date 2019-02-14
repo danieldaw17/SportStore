@@ -133,7 +133,8 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 	Route::get('sub_categories/{subCategoryId}', 'FrontController@showProducts');
 
 	// Muestra detalle del producto
-	Route::get('/product/{productId}', 'FrontController@showProduct');
+	Route::get('product/{productId}', 'FrontController@showProduct');
+
 
 
 
@@ -149,3 +150,7 @@ Route::get('empty',function(){
 	Cart::destroy();
 
 });
+// Muestra resultados de la busqueda
+Route::get('search', 'SearchController@search');
+Route::post('search', 'SearchController@search');
+Route::get('ajax_subcat','SearchController@ajaxSubcategories');

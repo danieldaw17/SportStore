@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers\Auth;
+
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -18,7 +19,7 @@ class RegisterController extends Controller
     | provide this functionality without requiring any additional code.
     |
     */
-  
+
     use RegistersUsers;
 
     /**
@@ -26,7 +27,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/profile';
 
     /**
      * Create a new controller instance.
@@ -44,14 +45,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    
-    public function validator(array $data)
+    protected function validator(array $data)
     {
         return Validator::make($data, [
-            'email' => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed'
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-        return redirect("/");
     }
 
     /**
@@ -62,10 +61,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Return User::create([
-            'email' => $data('email'),
-            'password'=>Hash::make($data['password']),
-
-      ]);
+        return User::create([
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
     }
 }
