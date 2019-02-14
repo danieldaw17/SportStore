@@ -37,13 +37,11 @@
 					</div>
 					<div class="contentProduct">
 						<h5 class="titleProduct">{{ $product->name }}</h5>
+
 						<div class="optionsED">
+							<form action="http:"
 							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-							<form action="http://localhost.sportstore/WebServices/activeManagement/activeManagementClient.php" method="post">
-								<input type="hidden" name="productId" value="{{$product->id}}">
-								<input type="hidden" name="operation" value="defuse">
-								<input type="submit" class="btn btn-danger" value="Defuse">
-							</form>
+							<a href="{{ url('/api/product/'.$product->id.'/defuse')}}"><button type="button" class="btn btn-danger">Defuse</button></a>
 						</div>
 					</div>
 				</div>
