@@ -1,7 +1,7 @@
 @extends("layouts.noadmin.layout")
 
 @section("title")
-{{-- Pasar nombre de la subcategoria --}} Clothes
+{{$subCategoryName}}
 @stop
 
 @section("content")

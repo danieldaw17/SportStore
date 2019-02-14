@@ -30,7 +30,7 @@
 					</a></li>
 				{{-- Si no existe la sesion del usuario--}}
 				@if (!Auth::check())
-					<li id="lastLi"><a href="#" data-toggle="modal" data-target="#loginModal"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
+					<li id="lastLi"><a href="#" id="login"><img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader"></a></li>
 
 				@else
 					<li class="dropdown login" id="lastLi">
