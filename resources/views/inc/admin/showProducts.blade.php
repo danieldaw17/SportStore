@@ -42,8 +42,8 @@
 					</div>
 				</div>
 			</div>
-			@endforeach
+
 		</div>
-	@endforeach
+		@endforeach
 </div>
 @include("inc/admin/modal/confirmDeleteProduct")

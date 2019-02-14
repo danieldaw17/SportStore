@@ -232,7 +232,7 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="M" name="M" class="form-control" placeholder="m">
+                  <input type="text" id="M" name="M" class="form-control" placeholder="M">
                 </div>
                 <span id="errorM"></span>
               </div>
@@ -448,8 +448,14 @@ New product
                 <div class="input-group">
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
-                  </div>
-                  <input type="text" id="XXS" name="XXS" class="form-control" placeholder="Stock XXS">
+                  		@foreach ($stocks as $stock)
+							@if ($stock->size=="XXS")
+								<input type="text" id="XXS" name="XXS" class="form-control" value="{{$stock->amount}}">
+								break;
+							@endif
+
+							<input type="text" id="XXS" name="XXS" class="form-control" placeholder="Stock XXS">
+						@endforeach
                 </div>
                 <span id="errorXXS"></span>
               </div>
@@ -461,7 +467,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XS" name="XS" class="form-control" placeholder="Stock XS">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="XS")
+						   <input type="text" id="XS" name="XS" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="XS" name="XS" class="form-control" placeholder="Stock XS">
+				  @endforeach
                 </div>
                 <span id="errorXS"></span>
               </div>
@@ -473,7 +486,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="S" name="S" class="form-control" placeholder="Stock S">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="S")
+						   <input type="text" id="S" name="S" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="S" name="S" class="form-control" placeholder="Stock S">
+				  @endforeach
                 </div>
                 <span id="errorS"></span>
               </div>
@@ -485,7 +505,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="M" name="M" class="form-control" placeholder="Stock M">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="M")
+						   <input type="text" id="M" name="M" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="M" name="M" class="form-control" placeholder="Stock M">
+				  @endforeach
                 </div>
                 <span id="errorM"></span>
               </div>
@@ -497,7 +524,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="L" name="L" class="form-control" placeholder="Stock L">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="L")
+						   <input type="text" id="L" name="L" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="L" name="L" class="form-control" placeholder="Stock L">
+				  @endforeach
                 </div>
                 <span id="errorL"></span>
               </div>
@@ -509,7 +543,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XL" name="XL" class="form-control" placeholder="Stock XL">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="XL")
+						   <input type="text" id="XL" name="XL" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="XL" name="XL" class="form-control" placeholder="Stock XL">
+				  @endforeach
                 </div>
                 <span id="errorXL"></span>
               </div>
@@ -521,7 +562,14 @@ New product
                   <div class="input-group-prepend">
                     <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
                   </div>
-                  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="Stock XXL">
+				  @foreach ($stocks as $stock)
+					  @if ($stock->size=="XXL")
+						   <input type="text" id="XXL" name="XXL" class="form-control" value="{{$stock->amount}}">
+						  break;
+					  @endif
+
+					  <input type="text" id="XXL" name="XXL" class="form-control" placeholder="Stock XXL">
+				  @endforeach
                 </div>
                 <span id="errorXXL"></span>
               </div>
