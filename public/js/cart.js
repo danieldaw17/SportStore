@@ -1,10 +1,19 @@
 // Add one more
 function add(){
 
-	var text = document.getElementById("quantity");
+
+	const classname = document.getElementById("quantity").texto;
+
+	Array.from(classname).forEach(function(element){
+		element.addEventListener('onClick',function(){
+			alert('changed');	
+		})
+
+	})
+	/*var text = document.getElementById("quantity");
 	var quantity = document.getElementById("quantity").innerHTML;
 	quantity = parseInt(quantity);
-	text.innerHTML = quantity + 1;
+	text.innerHTML = quantity + 1;*/
 
 }
 

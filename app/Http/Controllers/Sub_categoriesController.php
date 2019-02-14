@@ -59,17 +59,33 @@ class Sub_CategoriesController extends Controller
 		}
 
 		$validateData = $request->validate([
-			'name' => 'required|unique:sub_categories|max:30',
-            'imagePath' => 'required|max:100',
+			'name' => 'required|unique:sub_categories|max:30'
 	  	]);
 
-		$subCategory = new Sub_category();
+		$sub_category = new Sub_category();
 
-		$subCategory->name = $request->input('name');
-		$subCategory->imagePath = $request->input('imagePath');
-		$subCategory->categoryId = $request->input('categoryId');
+		$sub_category->name = $request->input('name');
+		$sub_category->imagePath = "";
+		$sub_category->categoryId = $request->input('categoryId');
+		$sub_category->save();
 
-		$subCategory->save();
+		if ($request->hasFile('image')) {
+
+			$extension = $request->image->extension();
+			$imageName = $sub_category->id.".".$extension;
+			$foldPath = 'storage/images/subcategories';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$sub_category->imagePath = $fullPath;
+			$sub_category->save();
+		} else {
+			return "no image";
+		}
+
 		return redirect("user/$userId/categories/$categoryId/sub_categories");
 	}
 
@@ -85,8 +101,7 @@ class Sub_CategoriesController extends Controller
 		}
 
 		$validateData = $request->validate([
-			'name' => 'required|unique:sub_categories|max:30',
-            'imagePath' => 'required|max:100',
+			'name' => 'required|unique:sub_categories|max:30'
 	  	]);
 
 		$subCategory->name = $request->input('name');

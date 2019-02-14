@@ -28,8 +28,6 @@
 				</a>
 			</div>
 			@endforeach
-		@else
-			parguela
 		@endif
 	</div>
 @stop

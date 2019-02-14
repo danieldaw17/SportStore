@@ -42,7 +42,7 @@ class CategoriesController extends Controller
 			abort(404);
 		}
 
-        return view('partials.admin.formCategory', array('userId'=>$userId));
+		return view('partials.admin.formCategory', array('userId'=>$userId));
     }
 
 	/**
@@ -66,23 +66,38 @@ class CategoriesController extends Controller
 
 	public function store(Request $request, $userId)
     {
+		
 		if(!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
 
 		$validateData = $request->validate([
 			'name' => 'required|max:30',
-			'imagePath' => 'required|max:100',
 			'taxes' => 'required|numeric'
 	  	]);
 
         $category = new Category();
-		$subCategory->name = $request->input('name');
-		$subCategory->imagePath = $request->input('imagePath');
-		$subCategory->taxes = $request->input('taxes');
+		$category->name = $request->name;
+		$category->taxes = $request->taxes;
+		$category->imagePath = "";
 
 		$category->save();
-		return redirect("user/$userId/categories");
+
+		if ($request->hasFile('image')) {
+
+			$extension = $request->image->extension();
+			$imageName = $category->id.".".$extension;
+			$foldPath = 'storage/images/categories';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$category->imagePath = $fullPath;
+			$category->save();
+		}
+		return redirect("user/$userId/Categories");
     }
 
     /**
@@ -98,7 +113,7 @@ class CategoriesController extends Controller
 			abort(404);
 		}
 
-		if (!$category = Sub_category::find($categoryId)) {
+		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
         return view('partials.admin.formCategory', array('userId'=>$userId, 'category'=>$category));
@@ -120,19 +135,35 @@ class CategoriesController extends Controller
 		if (!$category = Category::find($categoryId)) {
 			abort(404);
 		}
-
 		$validateData = $request->validate([
 			'name' => 'required|max:30',
-			'imagePath' => 'required|max:100',
 			'taxes' => 'required|numeric'
 	  	]);
 
-		$subCategory->name = $request->input('name');
-		$subCategory->imagePath = $request->input('imagePath');
-		$subCategory->taxes = $request->input('taxes');
+		$category->name = $request->input('name');
+		$category->taxes = $request->input('taxes');
+
+
+		if ($request->hasFile('image')) {
+			if (file_exists($category->imagePath)) {
+				unlink($category->imagePath);
+			}
+
+			$extension = $request->image->extension();
+			$imageName = $category->id.".".$extension;
+			$foldPath = 'storage/images/categories';
+			if (!is_dir($foldPath)) {
+				mkdir($foldPath, 0777, true);
+
+			}
+			$request->image->move($foldPath, $imageName);
+			$fullPath = $foldPath."/".$imageName;
+			$category->imagePath = $fullPath;
+			$category->save();
+		}
 
 		$category->save();
-		return redirect("user/$userId/categories");
+		return redirect("user/$userId/Categories");
     }
 
     /**

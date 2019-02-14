@@ -14,7 +14,7 @@ New categorie
   @if (isset($category))
     <h1>Edit category</h1>
     {{-- pasar action --}}
-    <form method="post" action="{{ url('user/'.$userId.'/Categories/'.$category->id.'/edit') }}" onsubmit="return validateFormCategory();" enctype="multipart/form-data">
+    <form method="post" action="{{ url('/user/'.$userId.'/Categories/'.$category->id.'/edit') }}" onsubmit="return validateFormCategory();" enctype="multipart/form-data">
       {{ csrf_field() }}
       {{ method_field('PUT') }}
       {{-- Name --}}
@@ -33,7 +33,7 @@ New categorie
           <div class="input-group-prepend">
             <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
           </div>
-          <input type="file" id="imagePath" name="imagePath" class="form-control">
+          <input type="file" id="imagePath" name="image" class="form-control" accept="image/x-png,image/gif,image/jpeg,image/jpg">
         </div>
         <span id="errorImageCategory"></span>
       </div>
@@ -60,7 +60,7 @@ New categorie
     </form>
   @else
     <h1>New category</h1>
-    <form method="post" action="{{ url('user/'.$userId.'/Categories/create') }}" onsubmit="return validateFormCategory();"  enctype="multipart/form-data">
+    <form method="post" action="{{ url('/user/'.$userId.'/Categories/create') }}" onsubmit="return validateFormCategory();"  enctype="multipart/form-data">
       {{ csrf_field() }}
       {{-- Name --}}
       <div class="form-group">
@@ -78,7 +78,7 @@ New categorie
           <div class="input-group-prepend">
             <span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
           </div>
-          <input type="file" id="imagePath" name="imagePath" class="form-control">
+          <input type="file" id="imagePath" name="image" class="form-control" accept="image/x-png,image/gif,image/jpeg,image/jpg">
         </div>
         <span id="errorImageCategory"></span>
       </div>
