@@ -1,7 +1,7 @@
 <div class="modal fade" id="registerModal">
 	<div class="modal-dialog">
 	    <div class="modal-content">
-	    	<form method="post" action="{{url('login')}}" onsubmit="return validateLogin();">
+	    	<form method="post" action="{{url('register')}}" onsubmit="return validateRegister();">
 				{{ csrf_field() }}
 		    	<div id="registerForm">
 					<div class="modal-header">
@@ -40,7 +40,7 @@
 							</div>
 						</div>
 						<div>
-							<p class="text-center register-text">I remembered my account <a href="#" onclick="showFormLogin()">Login</a></p>
+							<p class="text-center register-text">I remembered my account <a href="#" id="showFormLogin">Login</a></p>
 						</div>
 					</div>
 					<div class="modal-footer text-center">

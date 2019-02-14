@@ -31,7 +31,7 @@
 							</div>
 						</div>
 						<div>
-							<p class="text-center register-text">¿Dont have an account? <a href="#" data-toggle="modal" data-target="#registerModal">Sign up</a></p>
+							<p class="text-center register-text">¿Dont have an account? <a href="#" id="register">Sign up</a></p>
 						</div>
 					</div>
 					<div class="modal-footer text-center">

@@ -91,22 +91,17 @@ function validateRegister(){
 
 }
 
-function showFormRegister(){
+$(document).on('click', '#login', function(){
+	$('#loginModal').modal('show');
+});
 
-	var loginForm = document.getElementById("loginForm");
-	var registerForm = document.getElementById("registerForm");
+$(document).on('click', '#register', function(){
+	$('#loginModal').modal('hide');
+	$('#registerModal').modal('show');
+});
 
-	registerForm.style.display="block";
-	loginForm.style.display="none";
+$(document).on('click', '#showFormLogin', function(){
+	$('#loginModal').modal('show');
+	$('#registerModal').modal('hide');
+});
 
-}
-
-function showFormLogin(){
-
-	var loginForm = document.getElementById("loginForm");
-	var registerForm = document.getElementById("registerForm");
-
-	registerForm.style.display="none";
-	loginForm.style.display="block";
-
-}
