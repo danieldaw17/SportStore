@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Response;
+use Illuminate\Support\Facades\Input;
 use App\Product;
 use App\Category;
 use App\Sub_category;
@@ -597,4 +599,61 @@ class ProductsManagementController extends Controller
 		$product->save();
 		return redirect("user/$userId/Categories/$categoryId/Sub_categories/$subCategoryId/Products");
     }
+
+    public function deactivated($userId){
+
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$images = Image::all();
+		$products = Product::all()->where('desactivate', '=', 0);
+
+		return view('partials.admin.deactivated', array('products'=>$products, 'images'=>$images));
+
+    }
+
+    public function activate($userId, $productId){
+
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+    	if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+
+		$product->desactivate = 1;
+		//$product->save();
+
+		return view('partials.admin.deactivated')->with('message', 'Correctly activated'); 
+
+    }
+
+    public function checkStock($userId){
+
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		return view('partials.admin.checkStock');
+
+    }
+
+    public function postStock($userId){
+
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+		$stock = Input::get('stock');
+		$stocks = Stock::where('amount', '<', $stock)->get();
+		$stocks = $stocks->distinct('productId');
+		$images = Image::all();
+		$products = Product::all();
+
+		return view('partials.admin.checkStock', array('products'=>$products, 'images'=>$images));
+
+    }
+
 }

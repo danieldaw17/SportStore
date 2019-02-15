@@ -176,3 +176,8 @@ span[id^='error']{
     margin-right: 5%;
     margin-bottom: 40%;
 }
+
+.activated {
+    width: 100%;
+    margin-right: 5%;
+}

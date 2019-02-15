@@ -1,11 +1,7 @@
 @extends("layouts.noadmin.layout")
 
-@section("styles")
-
-@stop
-
 @section("title")
-results
+Results
 @stop
 
 @section("content")

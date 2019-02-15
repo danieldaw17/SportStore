@@ -46,6 +46,16 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 	Route::get('user/{userId}/deliveries/{deliveryId}/delete', 'DeliveriesController@destroy');
 
+// PRODUCTS DEACTIVATED
+	// Productos desactivados
+	Route::get('user/{userId}/deactivated', 'ProductsManagementController@deactivated');
+	// Activar producto
+	Route::get('user/{userId}/product/{productId}/activate', 'ProductsManagementController@activate');
+
+// PRODUCTS WITH LITTLE STOCK
+	// Productos con stock menor a "x"
+	Route::get('user/{userId}/checkStock', 'ProductsManagementController@checkStock');
+	Route::post('user/{userId}/checkStock', 'ProductsManagementController@checkStock');
 
 //PRODUCT ROUTES
 
@@ -155,3 +165,5 @@ Route::get('empty',function(){
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@search');
 Route::get('ajax_subcat','SearchController@ajaxSubcategories');
+
+

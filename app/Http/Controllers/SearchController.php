@@ -37,13 +37,10 @@ class SearchController extends Controller
         	$product = $product->where('brandId', '=', $brand);
         }
         if($gender != "0"){
-        	$product = $product->where('gender', '=', '$gender');
+        	$product = $product->where('gender', '=', $gender);
         }
 
         $product = $product->paginate(5);
-        /*
-        $product = Product::where('name','LIKE','%'.$text.'%')->orWhere('description','LIKE','%'.$text.'%')->paginate(3);
-        */
         // Retorno vista si devuelve resultados
         if(count($product) > 0){
             return view('partials.results', array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav,'images'=>$images))->withDetails($product);
