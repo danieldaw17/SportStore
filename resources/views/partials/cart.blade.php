@@ -101,7 +101,7 @@ My cart
 	
 
 	<div class="container">
-	<button type="button" class="btn btn-success">Check-out</button>
+	<a href="{{route('checkout.index')}}" class="btn btn-success">Check-out</button></a>
 	</div>
 </div>
 @else
