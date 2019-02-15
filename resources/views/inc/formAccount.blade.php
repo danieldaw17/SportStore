@@ -2,14 +2,19 @@
 {{-- Change nickname and email --}}
 {{-- pasar action --}}
 <div id="changeEmail">
-  <form method="post" action="" onsubmit="return validateAccount();">
+  <form method="post" action="{{ url('profile/account') }}" onsubmit="return validateAccount();">
+	  @csrf
     {{-- Nick --}}
     <div class="form-group">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="list-group-item"><i class="fa fa-user prefix grey-text fa-1g" aria-hidden="true"></i></span>
         </div>
-      <input type="text" id="nickInfoProfile" name="nick" class="form-control" placeholder="Nickname">
+		@if ($user->nick==null)
+      		<input type="text" name="nick" id="nickInfoProfile" name="nick" class="form-control" placeholder="Nickname">
+		@else
+			<input type="text" nick="nick" id="nickInfoProfile" name="nick" class="form-control" value="{{$user->nick}}">
+		@endif
       </div>
       <span id="errorNickInfoProfile"></span>
     </div>
@@ -19,7 +24,11 @@
         <div class="input-group-prepend">
           <span class="list-group-item"><i class="fa fa-envelope prefix grey-text fa-1g" aria-hidden="true"></i></span>
         </div>
-      <input type="text" id="emailInfoProfile" name="email" class="form-control" placeholder="Email">
+		@if ($user->email==null)
+      		<input type="text" name="email" id="emailInfoProfile" name="email" class="form-control" placeholder="Email">
+		@else
+			<input type="text" name="email" id="emailInfoProfile" name="email" class="form-control" value="{{$user->email}}">
+		@endif
       </div>
       <span id="errorEmailInfoProfile"></span>
     </div>

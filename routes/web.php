@@ -135,6 +135,11 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 	// Muestra detalle del producto
 	Route::get('product/{productId}', 'FrontController@showProduct');
 
+	Route::post('profile/billingAddress', 'profileController@saveBillingAddress');
+	Route::post('profile/shippingAddress', 'profileController@saveShippingAddress');
+	Route::post('profile/personalInformation', 'profileController@savePersonalInformation');
+	Route::post('profile/account', 'profileController@saveAccount');
+
 
 
 

@@ -45,9 +45,9 @@ class SearchController extends Controller
         $product = Product::where('name','LIKE','%'.$text.'%')->orWhere('description','LIKE','%'.$text.'%')->paginate(3);
         */
         // Retorno vista si devuelve resultados
-        if(count($product) > 0){
+        if (count($product) > 0) {
             return view('partials.results', array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav,'images'=>$images))->withDetails($product);
-        }else{
+        } else {
         	return view('partials.results',array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav))->with('message', "No product matches your search");
         }
 
