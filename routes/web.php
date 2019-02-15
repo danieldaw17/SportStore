@@ -144,8 +144,9 @@ Route::post('mycart','CartController@store')->name('cart.store');
 Route::delete('mycart/{product}','CartController@destroy')->name('cart.destroy');
 Route::patch('mycart/{product}','CartController@update')->name('cart.update');
 //rutas del checkout
-Route::get('checkout','CheckoutController@index')->name('checkout.index');
+Route::get('checkout','CheckoutController@index')->name('checkout.index')->middleware('auth');
 
+Route::post('checkout','CheckoutController@store')->name('checkout.store');
 
 Route::get('empty',function(){
 	Cart::destroy();

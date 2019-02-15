@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Image;
+use Cart;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +16,8 @@ class CheckoutController extends Controller
      */
     public function index()
     {
-        return view('partials.checkout');
+        $images = Image::all();
+        return view('partials.checkout',array('images'=>$images));
     }
 
     /**
@@ -35,7 +38,26 @@ class CheckoutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $charge = Stripe::charges()->create([
+
+                'amount'=> Cart::total(),
+                'currency' =>'EUR',
+                'source' =>$request->StripeToken,
+                'description'=>'Order',
+                'receipt_email'=>$request->email,
+                'metadata' =>[
+                    //'contents'=>$contents,
+                    //'quantity'=>Cart::instance('default')->count(),
+                ],
+
+            ]);
+                //succesful
+            return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
+
+        } catch (Exception $e) {
+            
+        }
     }
 
     /**

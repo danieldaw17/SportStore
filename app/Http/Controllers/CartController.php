@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Cart;
+use App\Image;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,8 @@ class CartController extends Controller
     public function index()
     {
        // dd(Cart::content());
-        return view ('partials.cart');
+        $images = Image::all();
+        return view ('partials.cart',array('images' => $images));
     }
 
     /**

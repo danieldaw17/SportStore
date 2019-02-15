@@ -44,7 +44,14 @@ My cart
 	    	
 	    	<td>{{$item->model->name}}</td> 
 	    	<td>
-	    		
+	    		@foreach ($images as $image)
+					@if ($image->productId==$item->model->id && $image->name=="front")
+					<img src="{{ url($image->path) }}" alt="" title="">
+					@php
+					break;
+					@endphp
+					@endif
+				@endforeach
 	    	</td>
 	    	<td>
 	    		<span id="unitPrice">{{$item->options->size}}</span>
