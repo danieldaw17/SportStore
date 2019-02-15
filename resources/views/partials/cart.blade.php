@@ -44,7 +44,14 @@ My cart
 	    	
 	    	<td>{{$item->model->name}}</td> 
 	    	<td>
-	    		
+	    		@foreach ($images as $image)
+					@if ($image->productId==$item->model->id && $image->name=="front")
+					<img src="{{ url($image->path) }}" alt="" title="">
+					@php
+					break;
+					@endphp
+					@endif
+				@endforeach
 	    	</td>
 	    	<td>
 	    		<span id="unitPrice">{{$item->options->size}}</span>
@@ -101,7 +108,7 @@ My cart
 	
 
 	<div class="container">
-	<button type="button" class="btn btn-success">Check-out</button>
+	<a href="{{route('checkout.index')}}" class="btn btn-success">Check-out</button></a>
 	</div>
 </div>
 @else

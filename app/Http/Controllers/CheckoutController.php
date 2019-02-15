@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Cart;
 use App\Image;
+use Cart;
+use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
 
-class CartController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,8 @@ class CartController extends Controller
      */
     public function index()
     {
-       // dd(Cart::content());
         $images = Image::all();
-        return view ('partials.cart',array('images' => $images));
+        return view('partials.checkout',array('images'=>$images));
     }
 
     /**
@@ -39,11 +38,27 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
-        Cart::add($request->id, $request->name, $request->qty ,$request->price, ['size'=> $request->size,'amount'=>$request->amount] )->associate('App\Product');
-        return redirect()->route('cart.index')->with('success_message','Item was added to your cart');
-    }
+        try {
+            $charge = Stripe::charges()->create([
 
+                'amount'=> Cart::total(),
+                'currency' =>'EUR',
+                'source' =>$request->StripeToken,
+                'description'=>'Order',
+                'receipt_email'=>$request->email,
+                'metadata' =>[
+                    //'contents'=>$contents,
+                    //'quantity'=>Cart::instance('default')->count(),
+                ],
+
+            ]);
+                //succesful
+            return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
+
+        } catch (Exception $e) {
+            
+        }
+    }
 
     /**
      * Display the specified resource.
@@ -53,7 +68,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-      
+        //
     }
 
     /**
@@ -76,31 +91,7 @@ class CartController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-
-            'quantity' => 'required|numeric|between:1,10'
-        ]);
-
-
-        if($validator->fails()){
-            session()->flash('errors',collect(['Quantity mush be between 1 and 10']));
-            return responde()->json(['success' => false ],400);
-
-
-        }
-
-
-            Cart::update($id, $request->quantity);
-
-            session()->flash('success_message','Quantity was updated successfully!');
-            return responde()->json(['success' => true ]);
-
-
-
-
-
-
-
+        //
     }
 
     /**
@@ -111,8 +102,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
-
-        return back()->with('success_message','Item has been removed!');
+        //
     }
 }
