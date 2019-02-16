@@ -1,6 +1,6 @@
 <div class="modal fade" id="loginModal">
-	<div class="modal-dialog">
-	    <div class="modal-content">
+	<div  class="modal-dialog">
+	    <div  class="modal-content">
 	    	<form method="post" action="{{url('login')}}" onsubmit="return validateLogin();">
 				{{ csrf_field() }}
 		    	<div id="loginForm">
