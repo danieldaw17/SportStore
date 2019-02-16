@@ -143,10 +143,12 @@ Route::get('mycart','CartController@index')->name('cart.index');
 Route::post('mycart','CartController@store')->name('cart.store');
 Route::delete('mycart/{product}','CartController@destroy')->name('cart.destroy');
 Route::patch('mycart/{product}','CartController@update')->name('cart.update');
-//rutas del checkout
-Route::get('checkout','CheckoutController@index')->name('checkout.index')->middleware('auth');
+//rutas del checkout poner middleware('auth') cuando el usuario login y register esten terminados
+Route::get('checkout','CheckoutController@index')->name('checkout.index');
 
 Route::post('checkout','CheckoutController@store')->name('checkout.store');
+
+Route::get('thankyou','ConfirmationController@index')->name('confirmation.index');
 
 Route::get('empty',function(){
 	Cart::destroy();
