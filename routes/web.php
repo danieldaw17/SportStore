@@ -46,7 +46,6 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 	Route::get('user/{userId}/deliveries/{deliveryId}/delete', 'DeliveriesController@destroy');
 
-
 //PRODUCT ROUTES
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products', 'ProductsManagementController@index');
@@ -60,6 +59,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
 	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
 //BILLING ADDRESS ROUTES
+
 
 //SHIPPING Address
 
@@ -143,7 +143,7 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 
 
 
-//rutas del carrito 
+//rutas del carrito
 Route::get('mycart','CartController@index')->name('cart.index');
 Route::post('mycart','CartController@store')->name('cart.store');
 Route::delete('mycart/{product}','CartController@destroy')->name('cart.destroy');
