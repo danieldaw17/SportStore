@@ -17,7 +17,9 @@
 						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="/logout">Log out</a>
+						<form method="post" action="{{ url('/logout') }}">
+								@csrf
+							<button type="submit" >Log out</button>
 					</div>
 				</li>
 			</ul>
