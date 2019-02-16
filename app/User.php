@@ -2,31 +2,13 @@
 
 namespace App;
 
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
-
-class User extends Model implements
-    AuthenticatableContract,
-    AuthorizableContract,
-    CanResetPasswordContract
+class User extends Authenticatable
 {
-    use Authenticatable, Authorizable, CanResetPassword;
-
-
-    public function invoices() {
-        return $this->hasMany('App\Invoice');
-    }
-
-    public function addresses() {
-        return $this->hasMany('App\Address');
-    }
-
+    use Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -34,7 +16,7 @@ class User extends Model implements
      * @var array
      */
     protected $fillable = [
-         'email', 'password',
+        'name', 'email', 'password',
     ];
 
     /**
@@ -46,8 +28,11 @@ class User extends Model implements
         'password', 'remember_token',
     ];
     
-     public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = bcrypt($password);
+    public function invoices() {
+        return $this->hasMany('App\Invoice');
+    }
+
+    public function addresses() {
+        return $this->hasMany('App\Address');
     }
 }
