@@ -58,7 +58,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 	Route::put('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/edit', 'ProductsManagementController@update');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
-
+	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
 //BILLING ADDRESS ROUTES
 
 //SHIPPING Address
@@ -134,6 +134,11 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 
 	// Muestra detalle del producto
 	Route::get('product/{productId}', 'FrontController@showProduct');
+
+	Route::post('profile/billingAddress', 'profileController@saveBillingAddress');
+	Route::post('profile/shippingAddress', 'profileController@saveShippingAddress');
+	Route::post('profile/personalInformation', 'profileController@savePersonalInformation');
+	Route::post('profile/account', 'profileController@saveAccount');
 
 
 

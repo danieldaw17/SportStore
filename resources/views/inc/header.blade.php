@@ -24,9 +24,9 @@
 					@endforeach
 				@endif
 				<li><a href="{{ route('cart.index') }}"><img src="{{ url('img/shopping-cart.png') }}" alt="Shopping cart" title="Shopping cart" class="imgHeader">
-					@if(Cart::content()->count()>0)
+					{{--@if(Cart::content()->count()>0)
 <span class="badge badge-warning">{{Cart::content()->count()}}</span>
-					@endif
+					@endif*--}}
 					</a></li>
 				{{-- Si no existe la sesion del usuario--}}
 				@if (!Auth::check())

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\UploadedFile;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\storage;
 use App\Sport;
 use App\Product;
 use Auth;
@@ -42,7 +42,7 @@ class SportsController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -67,7 +67,7 @@ class SportsController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $sport->id.".".$extension;
-			$foldPath = 'storage/images/sports';
+			$foldPath = '/storage/images/sports';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -99,7 +99,7 @@ class SportsController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -129,7 +129,7 @@ class SportsController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $sport->id.".".$extension;
-			$foldPath = 'storage/images/sports';
+			$foldPath = '/storage/images/sports';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 			}
@@ -144,7 +144,7 @@ class SportsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from /storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

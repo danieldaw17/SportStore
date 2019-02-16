@@ -15,7 +15,7 @@ class CreateAddressesTable extends Migration
     {
         Schema::create('addresses', function (Blueprint $table) {
             $table->increments('id');
-			$table->enum('roadType', ['paseo', 'calle', 'avenida', 'callejon']);
+			$table->enum('roadType', ['Alley', 'Road', 'Avenue', 'BackRoad']);
 			$table->string('roadName',70);
 			$table->string('city',40);
 			$table->string('province',40);

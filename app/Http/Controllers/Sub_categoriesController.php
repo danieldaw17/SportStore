@@ -73,7 +73,7 @@ class Sub_CategoriesController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $sub_category->id.".".$extension;
-			$foldPath = 'storage/images/subcategories';
+			$foldPath = '/storage/images/subcategories';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 

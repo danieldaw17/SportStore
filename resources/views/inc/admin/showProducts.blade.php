@@ -1,3 +1,4 @@
+
 <div class="textHeader">
 	<h1>Products</h1>
 </div>
@@ -41,7 +42,8 @@
 					</div>
 				</div>
 			</div>
+
 		</div>
-	@endforeach
+		@endforeach
 </div>
 @include("inc/admin/modal/confirmDeleteProduct")
