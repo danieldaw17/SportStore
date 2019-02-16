@@ -12,6 +12,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 //SPORT ROUTES
 	Route::get('user/{userId}/sports', 'SportsController@index');
@@ -109,7 +110,7 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 // NO ADMIN ROUTES (SIN USUARIO, VISITANTE)
 
 	// Carga las categorias y subcategorias en el nav
-	Route::get('/', 'indexController@getCategorias');
+	Route::get('/', 'indexController@getCategorias')->name('funciona');
 
 	// Muestra subcategorias
 	Route::get('categories/{categoryId}', 'FrontController@showSubcategories');
@@ -151,6 +152,6 @@ Route::get('ajax_subcat','SearchController@ajaxSubcategories');
 
 
 
-Auth::routes();
+
 
 Route::get('/home', 'HomeController@index')->name('home');

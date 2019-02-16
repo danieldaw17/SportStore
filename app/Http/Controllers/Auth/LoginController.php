@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 use Auth;
+use Cart;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -39,6 +40,7 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
+        Cart::instance('default')->destroy();
         return redirect("");
     }
 }

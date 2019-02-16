@@ -1,8 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
+use Session;
 use App\Image;
 use Cart;
+use Auth;
 use Stripe;
 use App\Category;
 use App\Sub_category;
@@ -21,9 +23,18 @@ class CheckoutController extends Controller
     public function index()
     {
         $images = Image::all();
-		$categoriesNav = Category::all();
-    	$sub_categoriesNav = Sub_category::all();
-        return view('partials.checkout',array('images'=>$images, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+        if (!Auth::check()) {
+                $loginRequire = true;
+                session(['loginRequire' => $loginRequire]);
+                return redirect('/');
+        } else {
+            if(session()->has('loginRequire')){
+                Session::forget('loginRequire');
+            }
+			$categoriesNav = Category::all();
+	    	$sub_categoriesNav = Sub_category::all();
+            return view('partials.checkout',array('images'=>$images, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+        }
     }
 
     /**
@@ -44,6 +55,7 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
+
         $contents=Cart::content()->map(function($item){
             return $item->model->shortDescription.','.$item->qty;
 
@@ -68,7 +80,9 @@ class CheckoutController extends Controller
 
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
             return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
+
         } catch (CardErrorException $e) {
+
             return back()->withErrors('Error! ' . $e->getMessage());
         }
     }

@@ -5,9 +5,12 @@ use Cart;
 use App\Image;
 use App\Category;
 use App\Sub_category;
+use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Redirect;
+use Auth;
 
 class CartController extends Controller
 {
@@ -34,7 +37,6 @@ class CartController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -45,7 +47,9 @@ class CartController extends Controller
     {
 
         Cart::add($request->id, $request->name, $request->qty ,$request->price, ['size'=> $request->size,'amount'=>$request->amount] )->associate('App\Product');
-        return redirect()->route('cart.index')->with('success_message','Item was added to your cart');
+        $product = Product::find($request->id);
+        return redirect('sub_categories/'.$product->subCategoryId);
+
     }
 
 
