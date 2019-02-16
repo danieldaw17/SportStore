@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Image;
 use Cart;
 use Stripe;
+use App\Category;
+use App\Sub_category;
 use App\Http\Requests\CheckoutRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +21,9 @@ class CheckoutController extends Controller
     public function index()
     {
         $images = Image::all();
-        return view('partials.checkout',array('images'=>$images));
+		$categoriesNav = Category::all();
+    	$sub_categoriesNav = Sub_category::all();
+        return view('partials.checkout',array('images'=>$images, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
     }
 
     /**
@@ -61,7 +65,7 @@ class CheckoutController extends Controller
             ]);
                 //succesful payment
             Cart::instance('default')->destroy();
-                
+
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
             return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
         } catch (CardErrorException $e) {

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Cart;
 use App\Image;
+use App\Category;
+use App\Sub_category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +20,9 @@ class CartController extends Controller
     {
        // dd(Cart::content());
         $images = Image::all();
-        return view ('partials.cart',array('images' => $images));
+		$categoriesNav = Category::all();
+    	$sub_categoriesNav = Sub_category::all();
+        return view ('partials.cart',array('images' => $images, 'categoriesNav'=>$categoriesNav, 'sub_categoriesNav'=>$sub_categoriesNav));
     }
 
     /**
@@ -39,7 +43,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         Cart::add($request->id, $request->name, $request->qty ,$request->price, ['size'=> $request->size,'amount'=>$request->amount] )->associate('App\Product');
         return redirect()->route('cart.index')->with('success_message','Item was added to your cart');
     }
@@ -53,7 +57,7 @@ class CartController extends Controller
      */
     public function show($id)
     {
-      
+
     }
 
     /**

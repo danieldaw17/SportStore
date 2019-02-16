@@ -72,7 +72,7 @@ class ProductsManagementController extends Controller
 		if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
-		$validateData = $request->validate([
+		/*$validateData = $request->validate([
 			'name' => 'required|max:100',
     		'description' => 'required',
     		'shortDescription' => 'required|max:50',
@@ -89,7 +89,7 @@ class ProductsManagementController extends Controller
 			'L'=> 'integer|nullable',
 			'XL'=> 'integer|nullable',
 			'XXL'=> 'integer|nullable'
-	  	]);
+	  	]);*/
 
 		$product = new Product();
         $product->name = $request->input('name');
@@ -395,7 +395,7 @@ class ProductsManagementController extends Controller
 			'XL'=> 'integer|nullable',
 			'XXL'=> 'integer|nullable'
 	  	]);
-		
+
         $product->name = $request->input('name');
 		$product->description = $request->input('description');
 		$product->shortDescription = $request->input('shortDescription');
