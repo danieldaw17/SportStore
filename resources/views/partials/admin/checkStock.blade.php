@@ -15,22 +15,21 @@ Check stock
 @include("inc/admin/headerProductManagement")
 
 {{-- Show products --}}
-
-	<form action="" method='POST'>
-		{{ csrf_field() }}
-		<div class="form-group">
-			<div class="input-group">
-				<div class="input-group-prepend">
-					<span class="list-group-item"><span class="fas fa-utensil-spoon" aria-hidden="true"></span></span>
-				</div>
-				<input type='text' name='stock' id='stock' class="form-control" value="">
-			</div>
-		</div>
-	</form>
-	<div id="resultSearch">
-		
+	<input type='text' name='search' id='search' class="form-control" placeholder="Introduce stock">
+	<div class="table-responsive">
+		<table class="table table-striped table-bordered">
+			<thead>
+				<tr>
+					<th>Product</th>
+					<th>Size</th>
+					<th>Amount</th>
+					<th>Change</th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
 	</div>
-
 @stop
 
 @section("js")

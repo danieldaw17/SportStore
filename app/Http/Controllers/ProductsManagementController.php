@@ -607,7 +607,7 @@ class ProductsManagementController extends Controller
 		}
 
 		$images = Image::all();
-		$products = Product::all()->where('desactivate', '=', 0);
+		$products = Product::all()->where('active', 0);
 
 		return view('partials.admin.deactivated', array('products'=>$products, 'images'=>$images));
 
@@ -623,36 +623,10 @@ class ProductsManagementController extends Controller
 			abort(404);
 		}
 
-		$product->desactivate = 1;
+		$product->active = 1;
 		//$product->save();
 
 		return view('partials.admin.deactivated')->with('message', 'Correctly activated'); 
-
-    }
-
-    public function checkStock($userId){
-
-    	if (!Auth::check() || Auth::user()->role!="root") {
-			abort(404);
-		}
-
-		return view('partials.admin.checkStock');
-
-    }
-
-    public function postStock($userId){
-
-    	if (!Auth::check() || Auth::user()->role!="root") {
-			abort(404);
-		}
-
-		$stock = Input::get('stock');
-		$stocks = Stock::where('amount', '<', $stock)->get();
-		$stocks = $stocks->distinct('productId');
-		$images = Image::all();
-		$products = Product::all();
-
-		return view('partials.admin.checkStock', array('products'=>$products, 'images'=>$images));
 
     }
 

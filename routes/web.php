@@ -54,8 +54,8 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 // PRODUCTS WITH LITTLE STOCK
 	// Productos con stock menor a "x"
-	Route::get('user/{userId}/checkStock', 'ProductsManagementController@checkStock');
-	Route::post('user/{userId}/checkStock', 'ProductsManagementController@checkStock');
+	Route::get('checkStock', 'StocksController@searchStock');
+	Route::get('checkStock/action', 'StocksController@action')->name('checkStock.action');
 
 //PRODUCT ROUTES
 
