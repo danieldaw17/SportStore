@@ -38,7 +38,7 @@
 					<h5 class="titleProduct">{{ $product->name }}</h5>
 					<div class="optionsED">
 						<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-						<a href="#deleteProduct" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
+						<a href="{{ url('') }}" data-toggle="modal"><button type="submit" class="btn btn-danger">Delete</button></a>
 					</div>
 				</div>
 			</div>

@@ -12,7 +12,7 @@ class ApiProductController extends Controller
 	{
 		$product = Product::find($productId);
 		if ($product==null) {
-			return (string)false;
+			return (string) false;
 		}
 		$product->active=false;
 		return (string)$product->save();
