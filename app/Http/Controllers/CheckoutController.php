@@ -67,8 +67,8 @@ class CheckoutController extends Controller
 
 
         })->values()->toJson();
-        try {
-            /*$charge = Stripe::charges()->create([
+        try {/*
+            $charge = Stripe::charges()->create([
 
                 'amount'=> Cart::total(),
                 'currency' =>'EUR',

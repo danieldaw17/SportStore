@@ -68,7 +68,7 @@
                         @if($shippingAddress != null )
                         <input type="text" class="form-control" id="shippingAddress" name="shippingaddress" value="{{ $shippingAddress->roadName }}" readonly>
                         @else
-                        <input type="text" class="form-control text-danger" id="shippingAddress" name="shippingaddress" value="You need to go to your profile a set up your shipping address" readonly >
+                        <input type="text" class="form-control text-danger" id="shippingAddress" name="shippingaddress" value="No shipping address set up! go to your profile and establish one" readonly >
                         @endif
                     </div>
                     <div class="form-group">
@@ -76,7 +76,7 @@
                         @if($billingAddress!=null )
                         <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="{{ $billingAddress->roadName }}" readonly >
                         @else
-                        <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="You need to go to your profile and set up your billing address" readonly >
+                        <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="No billing address set up! go to your profile and establish one " readonly >
                         @endif
                     </div>
                        <div class="half-form">
@@ -147,28 +147,7 @@
                     <button type="submit" id="complete-order" class="btn btn-success btn-block">Complete Order</button>
 
           </form>
-                    <div class="container">
-                      </div>
-
-                   <div class="mt-32">or</div>
-                    <div class="mt-32">
-                        <h2>Pay with PayPal</h2>
-
-                        <form method="post" id="paypal-payment-form" action="{{--route('checkout.paypal')--}}">
-                            @csrf
-                            <div class="form-group">
-                                <section>
-                                    <div class="bt-drop-in-wrapper">
-                                        <div id="bt-dropin"></div>
-                                    </div>
-                                </section>
-                            </div>
-
-                            <input id="nonce" name="payment_method_nonce" type="hidden" />
-                            <button class="btn btn-primary " type="submit"><span>Pay with PayPal</span></button>
-                        </form>
-                    </div>
-
+                     
             </div>
         </div>
     </div>
