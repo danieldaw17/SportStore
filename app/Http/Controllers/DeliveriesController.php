@@ -115,7 +115,7 @@ class DeliveriesController extends Controller
 		$delivery->price = $request->input('price');
 
 		$delivery->save();
-		return redirect("user/$userId/deiveries");
+		return redirect("user/$userId/deliveries");
     }
 
     /**
@@ -135,7 +135,7 @@ class DeliveriesController extends Controller
 		}
 
 		$delivery->delete();
-		return redirect("user/$userId/deiveries");
+		return redirect("user/$userId/deliveries");
     }
 
 }
