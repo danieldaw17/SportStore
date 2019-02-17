@@ -46,7 +46,7 @@ My cart
 	    	<td>
 	    		@foreach ($images as $image)
 					@if ($image->productId==$item->model->id && $image->name=="front")
-					<img src="{{ url($image->path) }}" alt="" title="">
+					<img src="{{ url($image->path) }}" alt="{{$image->name}}" class="imgCart">
 					@php
 					break;
 					@endphp

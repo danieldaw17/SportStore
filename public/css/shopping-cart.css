@@ -22,10 +22,6 @@
     background-color: #D8F0EF;
 }
 
-.imgCartModal {
-    width: 65%;
-}
-
 .autoWidth {
     float: left;
 }
@@ -37,16 +33,14 @@
 @media (max-width: 986px){
     .imgCart {
         width: 100%;
-        float: left;
-        height: 8%;
+        height: auto;
     }
 }
 
 @media (min-width: 987px){
     .imgCart {
         width: 20%;
-        float: left;
-        height: 17%;
+        height: auto;
     }
 }
 

@@ -88,7 +88,7 @@ class StocksTableSeeder extends Seeder
         $s = new Stock();
         $s->amount = 2;
         $s->size = 'XL';
-        $s->productId = L;
+        $s->productId = 3;
         $s->save();
         
         $s = new Stock();
@@ -124,7 +124,7 @@ class StocksTableSeeder extends Seeder
         $s = new Stock();
         $s->amount = 26;
         $s->size = 'L';
-        $s->productId = ;4
+        $s->productId = 4;
         $s->save();
         
         $s = new Stock();
