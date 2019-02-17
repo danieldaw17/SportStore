@@ -691,7 +691,8 @@ class ProductsManagementController extends Controller
 		return back();
     }
 
-    public function desactivated($userId){
+	//show deactivated products
+    public function deactivated($userId){
 
     	if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
@@ -700,12 +701,12 @@ class ProductsManagementController extends Controller
 		$images = Image::all();
 		$products = Product::all()->where('active', 0);
 
-		return view('partials.admin.desactivated', array('products'=>$products, 'images'=>$images));
+		return view('partials.admin.deactivated', array('products'=>$products, 'images'=>$images));
 
     }
 
+	//activate products
     public function activate($userId, $productId){
-
     	if (!Auth::check() || Auth::user()->role!="root") {
 			abort(404);
 		}
@@ -715,9 +716,9 @@ class ProductsManagementController extends Controller
 		}
 
 		$product->active = 1;
-		//$product->save();
+		$product->save();
 
-		return view('partials.admin.desactivated')->with('message', 'Correctly activated');
+		return back();
 
     }
 
