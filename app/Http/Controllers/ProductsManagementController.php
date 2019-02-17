@@ -234,7 +234,16 @@ class ProductsManagementController extends Controller
 			$image->save();
 		}
 
+        if ($request->input('null')!="") {
 
+			$stock = new Stock();
+
+			$stock->size = '-';
+			$stock->amount = $request->input('null');
+			$stock->productId = $product->id;
+			$stock->save();
+		}
+        
 		if ($request->input('XXS')!="") {
 
 			$stock = new Stock();

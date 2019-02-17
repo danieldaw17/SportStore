@@ -416,12 +416,6 @@ class StocksTableSeeder extends Seeder
         $s->save();
         
         $s = new Stock();
-        $s->amount = 62;
-        $s->size = 'XSS';
-        $s->productId = 31;
-        $s->save();
-        
-        $s = new Stock();
         $s->amount = 35;
         $s->size = 'XSS';
         $s->productId = 32;
