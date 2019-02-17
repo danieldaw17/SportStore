@@ -25,6 +25,7 @@ class CreateProductsTable extends Migration
 			$table->integer('shifts')->nullable();
 			$table->integer('wheelsAmount')->nullable();
 			$table->float('weight', 7,2)->nullable();
+			$table->boolean('active')->default(true);
 
 			$table->integer('subCategoryId')->unsigned();
 			$table->foreign('subCategoryId')->references('id')->on('sub_categories');

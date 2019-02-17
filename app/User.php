@@ -1,23 +1,14 @@
 <?php
 
 namespace App;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
-    public function invoices() {
-        return $this->hasMany('App\Invoice');
-    }
-
-    public function addresses() {
-        return $this->hasMany('App\Address');
-    }
-
 
     /**
      * The attributes that are mass assignable.
@@ -25,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'nick', 'lastName', 'image'
+    'email', 'password',
     ];
 
     /**
@@ -36,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    public function invoices() {
+        return $this->hasMany('App\Invoice');
+    }
+
+    public function addresses() {
+        return $this->hasMany('App\Address');
+    }
 }

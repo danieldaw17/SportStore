@@ -31,9 +31,7 @@ select {
 	width: 100%;
 }
 
-#genderGroup, #suplementGroup, #volumeGroup, #shiftGroup, #wheelsGroup, #weightGroup, #sizeGroup{
-	display: none;
-}
+
 
 #inputFile {
 	height: 39px;
@@ -84,4 +82,3 @@ select {
 		height: 70px;
 	}
 }
-

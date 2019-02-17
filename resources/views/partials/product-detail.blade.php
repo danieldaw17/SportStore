@@ -6,48 +6,71 @@
 
 @section("title")
 {{-- Pasar titulo del producto --}}
-Producto
+{{$product->name}}
 @stop
 
 @section("content")
+<script>
+
+	loadAmount(null);
+</script>
+<form action="{{ route('cart.store') }}" method ="POST">
+	@csrf
 <div class="row">
 	<div class="col-sm-4">
-		<a href="#" data-toggle="modal" data-target="#imgProductModal" ><img class="imgProduct" id="imgProduct" src="{{ url('img/product.png') }}" alt="Product" title="Product" onclick="imgBigProduct(this.src, this.alt, this.title)" /></a>
-        <div class="smallPictures">
-                <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url('img/product.png') }}" alt="Product" title="Product" onclick="changePic(this.src, this.alt, this.title)"></a></div>
-                <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url('img/product2.png') }}" alt="Product2" title="Product2" onclick="changePic(this.src, this.alt, this.title)"></a></div>
-                <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url('img/product3.png') }}" alt="Product3" title="Product3" onclick="changePic(this.src, this.alt, this.title)"></a></div>
-                <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url('img/product4.png') }}" alt="Product4" title="Product4" onclick="changePic(this.src, this.alt, this.title)"></a></div>
-        </div>
+		<input type="hidden" name="id" value="{{$product->id}}">
+		@foreach ($images as $image)
+			@if ($image->name=="front")
+			<a name="image" href="#" data-toggle="modal" data-target="#imgProductModal" ><img class="imgProduct" id="imgProduct" src="{{ url($image->path) }}" alt="Product" title="Product" onclick="imgBigProduct(this.src, this.alt, this.title)" /></a>
+			@endif
+			<div class="smallPictures">
+		    <div class="col-3 float-left"><a href="#imgProduct"><img class="imgSmall" src="{{ url($image->path) }}" alt="Product" title="Product" onclick="changePic(this.src, this.alt, this.title)"></a></div>
+		    </div>
+		@endforeach
 	</div>
 	<div class="col-sm-8">
-		<h2>Title product</h2>
-		<p class="description"><strong>Description: </strong>{{$product['description']</p>
-		<p><strong>Prize: {{$product['price']}} </strong>10€</p>
+		<p><input type="hidden" name="name" value="{{$product->name}}"><strong>{{$product->name}}</strong></p>
+		<p  name="description" class="description"><strong>Description: </strong>{{$product->description}}</p>
+		<p><input type="hidden" name="price" value="{{$product->basePrice}}"><strong>{{$product->asEuros()}}</strong></p>
 		<p>
 			<strong>Size: </strong>
-			<select>
-				<option>XXL</option>	
-				<option>XL</option>	
-				<option>L</option>	
-				<option>M</option>	
-				<option>S</option>	
-				<option>XS</option>	
+			<select name="size" id="size" onChange="loadAmount(this, event)";>
+				<option>Select a size</option>
+				@php
+					$stockAvailable=true;
+				@endphp
+				@if (count($stocks) < 1)
+					@php
+						$stockAvailable=false;
+					@endphp
+				@else
+					@foreach ($stocks as $stock)
+						<option amount="{{$stock->amount}}">{{$stock->size}}</option>
+					@endforeach
+				@endif
 			</select>
+			<span>
+				@if ($stockAvailable==false)
+					There is not any stock available. I am sorry
+				@endif
+			</span>
 		</p>
 		<p>
 			<strong>Quantity: </strong>
-			<select>
-				<option>1</option>	
-				<option>2</option>	
-				<option>3</option>	
-				<option>4</option>	
+			<input name="qty" id="amount" type="number">
 			</select>
 		</p>
 		{{-- pasar el producto al carro de la compra --}}
-		<a class="btn btn-success" href="{{route('product.addToCart',['productId' =>$product->id])}}">Add to cart</a>
+		@if ($stockAvailable==true)
+
+		<button type="submit" class="button button-success">Add to cart</button>
+
+
+		@endif
+
 	</div>
 </div>
+</form>
 @include("inc/modal/imgProduct")
 @stop
 

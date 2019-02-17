@@ -2,3 +2,29 @@
 	margin-top: 1%;
 	margin-bottom: 1%;
 }
+
+.submitSearch {
+	background: transparent;
+    margin-left: -29%;
+    margin-top: 5%;
+}
+
+.submitSearch:focus {
+	outline: 0 none;
+}
+
+.widthField {
+	margin-top: 1%;
+	margin-left: 1%;
+	width: 23.75%;
+}
+
+.widthField:last-child {
+	margin-right: 1%;
+}
+
+.widthText {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+}

@@ -12,6 +12,8 @@
 		<link rel="stylesheet" type="text/css" href="{{ url('css/shopping-cart.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/header.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ url('css/admin/searcher.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/products.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ url('css/searcher.css') }}">
 		<link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 		@yield("styles")
 	</head>
@@ -36,7 +38,9 @@
 		<script src="{{ url('js/popper.js') }}"></script>
 		<script src="{{ url('js/bootstrap.min.js') }}"></script>
 		<script src="{{ url('js/login.js') }}"></script>
+		<script src="{{ url('js/searcher.js') }}"></script>
 		<script src="{{ url('js/cart.js') }}"></script>
 		@yield("js")
+		@yield("extra-js")
 	</body>
 </html>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Invoice_line;
-
+use Cart;
 class Invoice_linesController extends Controller
 {
 
@@ -15,27 +15,34 @@ class Invoice_linesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $userId, $invoice, $invoiceId)
+    public function store($invoiceId)
     {
-		if (!Auth::check() || Auth::user()->id!=$userId) {
-			abort(404);
+
+
+		if (Cart::content()->count()>0) {
+			foreach (Cart::content() as $item) {
+				$invoice_line = new Invoice_line();
+				$invoice_lines = Invoice_line::where('invoiceId', $invoiceId)->get();
+				if (count($invoice_lines)<1) {
+					$numberLine = 0;
+				} else {
+					$numberLine = Invoice_line::max('line')->where('invoiceId', $invoiceId)->get();
+				}
+
+				$numberLine++;
+				$invoice_line->amount = $item->qty;
+				$invoice_line->basePrice = $item->subtotal;
+				$invoice_line->invoiceId = $invoiceId;
+				$invoice_line->line = $numberLine;
+				$invoice_line->productId = $item->model->id;
+
+				$invoice_line->save();
+			}
+
+			return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
+		} else {
+			return redirec('/');
 		}
-
-		$validateData = $request->validate([
-  		   'amount' => 'required|integer',
-  		   'basePrice' => 'required|numeric'
-	  	]);
-
-		$numberLine = Invoice_line::max('line')->where('invoiceId', $invoiceId)->get();
-		$numberLine++;
-
-		$invoice_line = new Invoice_line();
-
-		$invoice_line->line = $numberLine;
-		$invoice_line->amount = $request->input('amount');
-		$invoice_line->basePrice = $request->input('basePrice');
-
-        $invoice_line->save();
 	}
 
     /**

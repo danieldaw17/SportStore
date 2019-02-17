@@ -5,7 +5,7 @@
 @stop
 
 @section("title")
-Subcategories
+{{$categoryName}}
 @stop
 
 @section("content")
@@ -13,24 +13,21 @@ Subcategories
 		<h1> {{$categoryName}}</h1>
 	</div>
 	<div class="row probootstrap-gutter60">
-		@if (isset($sub_categories))
+		@if (count($sub_categories)> 1)
 			@foreach ($sub_categories as $sub_category)
 			<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
-				<a href="{{ url('category/subcategorie/products') }}">
+				<a href="{{ url('sub_categories/'.$sub_category->id) }}">
 					<div class="service hover_service text-center">
 						<div class="imgProduct">
-							{{-- Pasar datos de la imagen --}}
-							<img src="{{ url('img/login.png') }}" alt="" title="">
+							<img src="{{$sub_category->imagePath}}" alt="{{$sub_category->name}}" title="{{$sub_category->name}}">
 						</div>
 						<div class="text">
-							<h3>Subcategorie title</h3>
+							<h3>{{$sub_category->name}}</h3>
 						</div>
 					</div>
 				</a>
 			</div>
 			@endforeach
-		@else
-			parguela
 		@endif
 	</div>
 @stop

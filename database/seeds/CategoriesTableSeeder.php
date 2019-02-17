@@ -17,26 +17,26 @@ class CategoriesTableSeeder extends Seeder
 
         $c = new Category();
         $c->name = 'Clothes';
-        $c->imagePath = 'storage/images/categories/1.jpg';
+        $c->imagePath = '/storage/images/categories/1.jpg';
         $c->taxes = 21;
         $c->save();
 
         $c = new Category();
         $c->name = 'Vehicles';
-        $c->imagePath = 'storage/images/categories/2.jpg';
+        $c->imagePath = '/storage/images/categories/2.jpg';
         $c->taxes = 21;
         $c->save();
 
         $c = new Category();
         $c->name = 'Accesories';
-        $c->imagePath = 'storage/images/categories/3.jpg';
+        $c->imagePath = '/storage/images/categories/3.jpg';
         $c->taxes = 21;
         $c->save();
 
         $c = new Category();
         $c->name = 'Supplements';
         $c->taxes = 4;
-        $c->imagePath = 'storage/images/categories/4.jpg';
+        $c->imagePath = '/storage/images/categories/4.jpg';
         $c->save();
 
     }

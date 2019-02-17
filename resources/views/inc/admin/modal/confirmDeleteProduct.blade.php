@@ -9,7 +9,7 @@
                 Are you sure you want to delete the product?
             </div>
             <div class="modal-footer">
-                <a href="{{ url('user/3/products/3/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
+                <a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>
             </div>
         </div>
     </div>

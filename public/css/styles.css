@@ -6,6 +6,7 @@
 .imgProduct img {
 	width: 100%;
 	min-height: 150px;
+	max-height: 150px;
 }
 
 .logo {
@@ -27,7 +28,7 @@
 
 .navbar {
 	background-color: #85C1E9;
-	box-shadow: 0 1px 5px 0 #ccc; 
+	box-shadow: 0 1px 5px 0 #ccc;
 }
 
 .navbar-nav {
@@ -170,3 +171,51 @@ span[id^='error']{
 	}
 }
 
+.noResults{
+	width: 100%;
+    margin-right: 5%;
+    margin-bottom: 40%;
+}
+
+/**
+ * The CSS shown here will not be introduced in the Quickstart guide, but shows
+ * how you can use CSS to style your Element's container.
+ */
+.StripeElement {
+  background-color: white;
+
+  padding: 16px 16px;
+
+  border: 1px solid #ccc;
+
+}
+
+.StripeElement--focus {
+
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
+#card-errors{
+	color:#fa755a;
+
+}
+
+.activated {
+    width: 100%;
+    margin-right: 5%;
+}
+
+.buttonChangeStock {
+    margin: 0 auto;
+    display: block;
+}
+
+#search {
+	margin-bottom: 2%;
+}

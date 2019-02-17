@@ -29,4 +29,8 @@ class Product extends Model
 	public function invoice_lines() {
 		return $this->hasMany('App\Invoice_line');
 	}
+
+	public function asEuros() {
+  		return '€' . number_format($this->basePrice, 2);
+		}
 }

@@ -1,5 +1,6 @@
 <?php
 use App\Address;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,7 @@ use App\Address;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 //SPORT ROUTES
 	Route::get('user/{userId}/sports', 'SportsController@index');
@@ -45,6 +47,16 @@ use App\Address;
 
 	Route::get('user/{userId}/deliveries/{deliveryId}/delete', 'DeliveriesController@destroy');
 
+// PRODUCTS DEACTIVATED
+	// Productos desactivados
+	Route::get('user/{userId}/deactivated', 'ProductsManagementController@deactivated');
+	// Activar producto
+	Route::get('user/{userId}/product/{productId}/activate', 'ProductsManagementController@activate');
+
+// PRODUCTS WITH LITTLE STOCK
+	// Productos con stock menor a "x"
+	Route::get('checkStock', 'StocksController@searchStock');
+	Route::get('checkStock/action', 'StocksController@action')->name('checkStock.action');
 
 //PRODUCT ROUTES
 
@@ -57,8 +69,9 @@ use App\Address;
 	Route::put('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/edit', 'ProductsManagementController@update');
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
-
+	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
 //BILLING ADDRESS ROUTES
+
 
 //SHIPPING Address
 
@@ -88,33 +101,18 @@ use App\Address;
 	Route::get('user/{userId}/Invoices', 'InvoicesController@index');
 	Route::get('user/{userId}/Invoices/{invoiceId}', 'InvoicesController@show');
 
-	Route::post('user/{userId}/Invoices', 'InvoicesController@store');
+	Route::get('generateInvoice/delivery/{deliveryId}', 'InvoicesController@store');
 
 //INVOICELINES ROUTES
 	Route::get('user/{userId}/Invoices', 'Invoice_linesController@index');
 	Route::get('user/{userId}/Invoices/{invoiceId}', 'Invoice_linesController@show');
 
-	Route::post('user/{userId}/Invoices{invoiceId}/Invoice_lines/create', 'Invoice_linesController@store');
+	Route::get('generateInvoiceLines/{invoiceId}', 'Invoice_linesController@store');
 
 
-//LOGIN ROUTES
-	//Route::post('login', 'LoginController@store');
+;
 
 
-// AUTH ROUTES
-    $this->get('login', 'Auth\LoginController@showLoginForm')->name('login');
-    $this->post('login', 'Auth\LoginController@login');
-    $this->get('logout', 'Auth\LoginController@logout')->name('logout');
-
-    // Registration Routes...
-    $this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-    $this->post('register', 'Auth\RegisterController@register');
-
-    // Password Reset Routles...
-    $this->get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-    $this->post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-    $this->get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-    $this->post('password/reset', 'Auth\ResetPasswordController@reset');
 
 
 Route::get('user/{userId}', 'UsersController@index');
@@ -123,7 +121,7 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 // NO ADMIN ROUTES (SIN USUARIO, VISITANTE)
 
 	// Carga las categorias y subcategorias en el nav
-	Route::get('/', 'indexController@getCategorias');
+	Route::get('/', 'indexController@getCategorias')->name('funciona');
 
 	// Muestra subcategorias
 	Route::get('categories/{categoryId}', 'FrontController@showSubcategories');
@@ -134,17 +132,31 @@ Route::get('user/{userId}/productManagement', 'UsersController@productManagement
 	// Muestra detalle del producto
 	Route::get('product/{productId}', 'FrontController@showProduct');
 
+	Route::post('profile/billingAddress', 'profileController@saveBillingAddress');
+	Route::post('profile/shippingAddress', 'profileController@saveShippingAddress');
+	Route::post('profile/personalInformation', 'profileController@savePersonalInformation');
+	Route::post('profile/account', 'profileController@saveAccount');
 
-Route::get('/myCart', function() {
-	return view('partials.cart');
+
+
+
+//rutas del carrito
+Route::get('mycart','CartController@index')->name('cart.index');
+Route::post('mycart','CartController@store')->name('cart.store');
+Route::delete('mycart/{product}','CartController@destroy')->name('cart.destroy');
+Route::patch('mycart/{product}','CartController@update')->name('cart.update');
+//rutas del checkout poner middleware('auth') cuando el usuario login y register esten terminados
+Route::get('checkout','CheckoutController@index')->name('checkout.index');
+
+Route::post('checkout','CheckoutController@store')->name('checkout.store');
+
+Route::get('thankyou','ConfirmationController@index')->name('confirmation.index');
+
+Route::get('empty',function(){
+	Cart::destroy();
+
 });
-
-Route::get('shopping-cart',[
-	'uses' => 'ProductController@getCart',
-	'as' => 'product.shoppingCart'
-]);
-
-Route::get('mycart/{id}', [
-	'uses' => 'ProductController@getAddToCart',
-	'as' => 'product.addToCart'
-]);
+// Muestra resultados de la busqueda
+Route::get('search', 'SearchController@search');
+Route::post('search', 'SearchController@search');
+Route::get('ajax_subcat','SearchController@ajaxSubcategories');
