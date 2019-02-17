@@ -15,6 +15,8 @@ class CreateInvoicesTable extends Migration
     {
         Schema::create('invoices', function (Blueprint $table) {
             $table->increments('id');
+			$table->float('basePrice', 7,2);
+			$table->float('taxes', 7,2);
 			$table->float('totalPrice', 7,2);
 			$table->string('paymentMethod');
             $table->timestamps();
