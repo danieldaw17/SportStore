@@ -12,7 +12,7 @@
                             <ul>
 
                                 <li>SPORTSTORE INC.</li>
-                                <li>C/ de los Justos y Pastores 70</li>
+                                <li>C/ Santo Justo y Pastor 70</li>
                                 <li>Manises 46940, Valencia</li>
                                 <li><a href="tel:+34962299337">Tel: 962299337</a></li>
                                 <li><a href="mailto:admin@sportstore.com">admin@sportstore.com</a></li>

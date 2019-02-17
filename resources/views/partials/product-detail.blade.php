@@ -37,18 +37,26 @@
 			<select name="size" id="size" onChange="loadAmount(this, event)";>
 				<option>Select a size</option>
 				@php
-					$stockAvailable=true;
+					$stockAvailable=false;
 				@endphp
-				@if (count($stocks) < 1)
-					@php
-						$stockAvailable=false;
+				@foreach($stocks as $stock)
+				
+				@if($stock->amount == 0)
+                <option amount="{{$stock->amount}}" class="empty" disabled>{{$stock->size}} EMPTY</option>
+                @elseif($stock->amount <= 20)
+                @php
+						$stockAvailable=true;
 					@endphp
-				@else
-					@foreach ($stocks as $stock)
-						<option amount="{{$stock->amount}}">{{$stock->size}}</option>
-					@endforeach
-				@endif
+                <option amount="{{$stock->amount}}" class="left" >{{$stock->size}}  {{$stock->amount}}LEFT</option>
+                @else
+                @php
+						$stockAvailable=true;
+					@endphp
+                <option amount="{{$stock->amount}}" class="available">{{$stock->size}} AVAILABLE</option>
+                @endif
+				@endforeach
 			</select>
+			
 			<span>
 				@if ($stockAvailable==false)
 					There is not any stock available. I am sorry

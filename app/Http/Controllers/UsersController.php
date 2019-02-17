@@ -19,7 +19,9 @@ class UsersController extends Controller
 		}
 
 		if (Auth::user()->role=="root") {
-			return view('partials.admin.userManagement');
+            $users=User::all();
+            $addresses=Address::all();
+			return view('partials.admin.userManagement',array('users'=>$users , 'addresses'=>$addresses));
 
 		} else if (Auth::user()->role=="user") {
 			$type = DB::select(DB::raw("SHOW COLUMNS FROM Addresses WHERE Field = 'roadType'"))[0]->Type;
