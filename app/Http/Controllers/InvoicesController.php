@@ -76,7 +76,7 @@ class InvoicesController extends Controller
 
 			return redirect('generateInvoiceLines/'.$invoice->id);
 		} else {
-			return redirec('/');
+			return redirect('/');
 		}
 
 
