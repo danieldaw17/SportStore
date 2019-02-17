@@ -7,6 +7,7 @@ use Cart;
 use Auth;
 use Stripe;
 use App\Category;
+use App\Http\Controllers\Address;
 use App\Sub_category;
 use App\Http\Requests\CheckoutRequest;
 use Illuminate\Http\Request;
@@ -62,7 +63,7 @@ class CheckoutController extends Controller
 
         })->values()->toJson();
         try {
-            $charge = Stripe::charges()->create([
+            /*$charge = Stripe::charges()->create([
 
                 'amount'=> Cart::total(),
                 'currency' =>'EUR',
@@ -74,12 +75,14 @@ class CheckoutController extends Controller
                     'quantity'=>Cart::instance('default')->count(),
                 ],
 
-            ]);
+            ]);*/
                 //succesful payment
-            Cart::instance('default')->destroy();
+
+            //Cart::instance('default')->destroy();
 
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
-            return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
+			return redirect('generateInvoice/delivery/1');
+            //return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
 
         } catch (CardErrorException $e) {
 

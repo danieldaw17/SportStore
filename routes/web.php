@@ -90,13 +90,13 @@ Auth::routes();
 	Route::get('user/{userId}/Invoices', 'InvoicesController@index');
 	Route::get('user/{userId}/Invoices/{invoiceId}', 'InvoicesController@show');
 
-	Route::post('user/{userId}/Invoices', 'InvoicesController@store');
+	Route::get('generateInvoice/delivery/{deliveryId}', 'InvoicesController@store');
 
 //INVOICELINES ROUTES
 	Route::get('user/{userId}/Invoices', 'Invoice_linesController@index');
 	Route::get('user/{userId}/Invoices/{invoiceId}', 'Invoice_linesController@show');
 
-	Route::post('user/{userId}/Invoices{invoiceId}/Invoice_lines/create', 'Invoice_linesController@store');
+	Route::get('generateInvoiceLines/{invoiceId}', 'Invoice_linesController@store');
 
 
 ;
@@ -149,9 +149,3 @@ Route::get('empty',function(){
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@search');
 Route::get('ajax_subcat','SearchController@ajaxSubcategories');
-
-
-
-
-
-Route::get('/home', 'HomeController@index')->name('home');
