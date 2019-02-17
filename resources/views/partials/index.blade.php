@@ -14,11 +14,7 @@ Index
 	@include("inc/relevants")
 
 
-	@if (session()->has('loginRequire'))
-		<h1>loginRequire</h1>
-	@else
-		<h1>NO loginRequire</h1>
-	@endif
+	
 @stop
 
 @section("js")

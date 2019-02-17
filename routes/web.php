@@ -70,10 +70,11 @@ Auth::routes();
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
 	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
-//BILLING ADDRESS ROUTES
 
+// STOCK ROUTES
 
-//SHIPPING Address
+	Route::get('makeOrder/{productId}/edit', 'StocksController@edit');
+	Route::put('makeOrder/{productId}/edit', 'StocksController@update');
 
 //CATEGORY ROUTES
 	Route::get('user/{userId}/Categories', 'CategoriesController@index');
@@ -111,12 +112,10 @@ Auth::routes();
 
 
 ;
-
-
-
-
 Route::get('user/{userId}', 'UsersController@index');
 Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
+Route::get('user/{userId}/editUser', 'UsersController@userManagement');
+Route::get('confirmEmail','profileController@verifiedEmail');
 
 // NO ADMIN ROUTES (SIN USUARIO, VISITANTE)
 
@@ -160,3 +159,7 @@ Route::get('empty',function(){
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@search');
 Route::get('ajax_subcat','SearchController@ajaxSubcategories');
+
+
+// Detalles del pedido
+Route::get('MyOrders/{invoiceId}', 'UsersController@invoiceDetails');

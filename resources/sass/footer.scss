@@ -1,0 +1,19 @@
+.sponsor {
+  margin: 2px;
+  max-width: 35%;
+  height: auto;
+}
+
+img:first {
+  float: left;
+}
+
+#social {
+  i {
+    font-size: 20px;
+    width: 25px;
+  }
+  li {
+    display: inline-block;
+  }
+}

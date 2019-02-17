@@ -16,10 +16,10 @@ class ProductsTableSeeder extends Seeder
         //Semilla de productos
 
         $p = new Product;
-        $p->name = 'CAMISETA DE FÚTBOL ACADEMY HOMBRE ROJO';
-        $p->description = 'Concebido para futbolistas que controlan la mayoría de los gestos técnicos y desplazamientos sobre el terreno, en los entrenamientos y partidos.
-        Esta camiseta de fútbol con mangas raglán ofrece una gran libertad de movimientos.';
-        $p->shortDescription = 'Camiseta futbol rojo ';
+        $p->name = 'RED FOOTBALL SHIRT';
+        $p->description = 'Designed for players who control most of the technical gestures and movements on the field, in training and games.
+        This football shirt with raglan sleeves offers great freedom of movement';
+        $p->shortDescription = 'Red man academy soccer t-shirt';
         $p->basePrice = '19.99';
         $p->gender = 'man';
         $p->subCategoryId = '1';
@@ -28,10 +28,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CAMISETA DE FÚTBOL OFICIAL OLYMPIQUE DE LYON 2ª EQUIPACIÓN HOMBRE 2018/2019';
-        $p->description = 'Concebido para futbolistas que dominan la mayoría de gestos técnicos y desplazamientos.
-        Esta camiseta de fútbol es la réplica de la camiseta oficial del Olympique de Lyon..';
-        $p->shortDescription = 'Camiseta futbol azul ';
+        $p->name = 'BLUE FOOTBALL SHIRT';
+        $p->description = 'Designed for players who master most technical gestures and travel.
+        This football shirt is the replica of the official shirt of Olympique de Lyon.';
+        $p->shortDescription = 'Official soccer t-shirt olympique de lyon 2nd equipment man 2018/2019';
         $p->basePrice = '69.99';
         $p->gender = 'man';
         $p->subCategoryId = '1';
@@ -40,10 +40,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CAMISETA DE FÚTBOL KIPSTA F500 MUJER NEGRO BLANCO';
-        $p->description = 'Nuestro equipo de apasionados por el fútbol ha diseñado esta camiseta de fútbol F500 para entrenamientos y partidos.Ponla a prueba 4 veces por semana.
-        Esta camiseta de fútbol F500 es un básico de nuestra colección dedicada a las jugadoras de fútbol. Aun más transpirable, con gran libertad de movimientos para solo pienses en el juego.';
-        $p->shortDescription = 'Camiseta futbol negro/blanco';
+        $p->name = 'FOOTBALL SHIRT BLACK/WHITE';
+        $p->description = 'Our team of football fans has designed this F500 football jersey for training and matches. Put it to the test 4 times a week.
+        This football shirt F500 is a basic version of our collection of soccer players. Even more breathable, with great freedom of movement to just think about the game.';
+        $p->shortDescription = 'Kipsta F500 football tee black white woman';
         $p->basePrice = '8.99';
         $p->gender = 'woman';
         $p->subCategoryId = '1';
@@ -52,10 +52,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CAMISETA TENIS NIKE DRY TOP TEAM AZUL';
-        $p->description = 'Concebido para jugar al tenis con tiempo cálido. Producto también adecuado para otros deportes de raqueta: bádminton, pádel, squash, ping pong.
-        Esta camiseta Nike Court Dry Team ofrece un estilo actualizado para esta nueva temporada, con un tejido muy técnico Dri-Fit para mantener el cuerpo seco y cómodo en la cancha.';
-        $p->shortDescription = 'Camiseta tennis azul';
+        $p->name = 'BLUE TENNIS SHIRT';
+        $p->description = 'Designed to play tennis in warm weather. Product also suitable for other racquet sports: badminton, paddle tennis, squash, ping pong.
+        This Nike Court Dry Team jersey offers an updated style for this new season, with a very technical Dri-Fit fabric to keep the body dry and comfortable on the court.';
+        $p->shortDescription = 'Tennis t-shirt nike dry top team blue';
         $p->basePrice = '39.99';
         $p->gender = 'man';
         $p->subCategoryId = '1';
@@ -64,10 +64,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'TOP DE TENIS MUJER PURE BLANCO';
-        $p->description = 'Concebido para los entrenamientos de los jugadores de baloncesto de nivel perfeccionamiento.
-        Camiseta diseñada para jugar al baloncesto. Muy ligera y muy suave, evacua rápidamente la sudoración gracias al tejido transpirable. Mantendrá el cuerpo seco durante el entrenamiento.';
-        $p->shortDescription = 'Camiseta tennis blanco';
+        $p->name = 'WHITE TENNIS SHIRT';
+        $p->description = 'Designed for the training of advanced level basketball players.
+        T-shirt designed to play basketball. Very light and very soft, quickly removes sweating thanks to the breathable fabric. It will keep the body dry during training.';
+        $p->shortDescription = 'Woman tennis top pure white';
         $p->basePrice = '6.99';
         $p->gender = 'man';
         $p->subCategoryId = '1';
@@ -76,10 +76,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CAMISETA BALONCESTO HOMBRE FAST BROOKLYN NEGRO';
-        $p->description = 'Concebido para los entrenamientos de los jugadores de baloncesto de nivel perfeccionamiento.
-        Camiseta diseñada para jugar al baloncesto. Muy ligera y muy suave, evacua rápidamente la sudoración gracias al tejido transpirable. Mantendrá el cuerpo seco durante el entrenamiento.';
-        $p->shortDescription = 'Camiseta baloncesto negro';
+        $p->name = 'BLACK BASKETBALL JERSEY';
+        $p->description = 'Designed for the training of advanced level basketball players.
+        T-shirt designed to play basketball. Very light and very soft, quickly removes sweating thanks to the breathable fabric. It will keep the body dry during training.';
+        $p->shortDescription = 'Basketball t-shirt man fast brooklyn black';
         $p->basePrice = '6.99';
         $p->gender = 'man';
         $p->subCategoryId = '1';
@@ -88,10 +88,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CAMISETA FAST DE BALONCESTO MUJER NIVEL PERFECCIONAMIENTO CLEVELAND AZUL';
-        $p->description = 'Nuestros equipos de diseño han desarrollado esta camiseta para los entrenamientos de las jugadoras de baloncesto.
-        Camiseta concebida para la práctica del baloncesto. Muy ligero y muy suave, evacua rápidamente la sudoración gracias al tejido transpirable. Conserva el cuerpo seco durante la práctica.';
-        $p->shortDescription = 'Camiseta baloncesto azul';
+        $p->name = 'BLUE BASKETBALL JERSEY';
+        $p->description = 'Our design teams have developed this shirt for the training of the basketball players.
+        T-shirt conceived for the practice of basketball. Very light and very soft, quickly removes sweating thanks to the breathable fabric. Keep the body dry during practice.';
+        $p->shortDescription = 'Fast basketball t-shirt woman cleveland blue perception level';
         $p->basePrice = '9.99';
         $p->gender = 'woman';
         $p->subCategoryId = '1';
@@ -100,10 +100,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'BAÑADOR DE NATACIÓN UNA PIEZA PARA MUJER VEGA FALDITA NEGRO';
-        $p->description = 'Concebido para nadadoras de nivel iniciación que necesitan libertad de movimientos y comodidad.
-        Un bañador de natación que aúna comodidad y sujeción con forma de faldita. Los rellenos desmontables aportan un toque femenino muy favorecedor.';
-        $p->shortDescription = 'Bañador natacion negro';
+        $p->name = 'SWIMMING SWIMSUIT BLACK';
+        $p->description = 'Designed for beginning level swimmers who need freedom of movement and comfort.
+        A swimming trunks that combines comfort and support in the shape of a skirt. The removable fillings provide a very flattering feminine touch.';
+        $p->shortDescription = 'One piece swimsuit for women vega  black skirt';
         $p->basePrice = '19.99';
         $p->gender = 'woman';
         $p->subCategoryId = '6';
@@ -112,10 +112,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'SUDADERA DE FÚTBOL ADULTO FC BARCELONA 2018/2019';
-        $p->description = 'futbolistas que dominan la mayoría de los gestos técnicos y los desplazamientos.
-        Chaqueta de entrenamiento con los colores del FC Barcelona.La chaqueta se entrega flocada con el sponsor del club (Beko).';
-        $p->shortDescription = 'Sudadera futbol azul';
+        $p->name = 'BLUE SOCCER SWEATSHIRT';
+        $p->description = 'Footballers who dominate most of the technical gestures and movements.
+        Training jacket with the colors of FC Barcelona. The jacket is delivered flocked with the club sponsor (Beko).';
+        $p->shortDescription = 'FC Barcelona adult football sweatshirt 2018/2019';
         $p->basePrice = '49.99';
         $p->gender = 'man';
         $p->subCategoryId = '2';
@@ -124,10 +124,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'SUDADERA 520 CAPUCHA GIMNASIA STRETCHING MUJER ROSA CLARO JASPEADO';
-        $p->description = 'Concebido para mantener el cuerpo abrigado antes, durante y después de la sesión de gimnasia y pilates.
-        Bolsillo delante, capucha envolvente para abrigar al finalizar la sesión.';
-        $p->shortDescription = 'Sudadera gimnasia rosa';
+        $p->name = 'PINK GYM SWEATSHIRT';
+        $p->description = 'Conceived to keep the body warm before, during and after the session of gymnastics and pilates.
+        Front pocket, wraparound hood to wrap at the end of the session.';
+        $p->shortDescription = 'Sweatshirt 520 hood gymnastics stretching women light pink jaspered';
         $p->basePrice = '12.99';
         $p->gender = 'woman';
         $p->subCategoryId = '2';
@@ -136,10 +136,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'CALCETINES DE BALONCESTO HOMBRE/MUJER NIVEL EXPERTO SO900 MID NEGRO GRIS';
-        $p->description = 'Nuestros equipos de diseño han creado este calcetín para aportar una protección máxima en las zonas del pie más solicitadas durante la práctica del baloncesto.
-        Calcetines anatómicos de baloncesto concebidos con pads de protección reforzados en zonas estratégicas (tobillo, empeine, planta del pie) para ofrecer una comodidad óptima durante la práctica.';
-        $p->shortDescription = 'Calcetines Baloncesto Gris';
+        $p->name = 'GRAY BASKETBALL SOCKS';
+        $p->description = 'Our design teams have created this sock to provide maximum protection in the most requested areas of the foot during basketball practice.
+        Anatomical basketball socks designed with reinforced protection pads in strategic areas (ankle, instep, sole of the foot) to offer optimal comfort during practice.';
+        $p->shortDescription = 'Basketball socks man/woman expert level s0900 mid black gray';
         $p->basePrice = '6.99';
         $p->gender = 'unisex';
         $p->subCategoryId = '3';
@@ -149,10 +149,10 @@ class ProductsTableSeeder extends Seeder
 
         
         $p = new Product;
-        $p->name = 'CALCETINES DEPORTES ADULTOS DE RAQUETA NIKE LARGOS BASIC BLANCO LOTE DE 3';
-        $p->description= 'Concebido para jugadores de nivel PERFECCIONAMIENTO practicantes de deportes de raqueta.
-        ¡La resistencia de unos calcetines de tenis!';
-        $p->shortDescription= 'Calcetines Blanco';
+        $p->name = 'WHITE TENNIS SOCKS';
+        $p->description= 'Conceived for players of level IMPROVEMENT players of racket sports.
+        The resistance of tennis socks!';
+        $p->shortDescription= 'Socks sports adult of raqueta nike largos basic white lot of 3';
         $p->basePrice= '10.99';
         $p->gender='unisex';
         $p->subCategoryId= '3';
@@ -161,10 +161,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'SP LUCK MASTER BTT';
-        $p->description= 'Concebido para Para los ciclistas BTT que buscan una zapatilla cómoda y resistente, con suela de carbono.
-        Gran durabilidad gracias al tejido microfibra.';
-        $p->shortDescription= 'Zapatos Blanco';
+        $p->name = 'WHITE CYCLING SNEAKERS';
+        $p->description= 'Designed for: For MTB cyclists looking for a comfortable and durable shoe with a carbon sole.
+        Great durability thanks to microfiber fabric.';
+        $p->shortDescription= 'SP LUCK MASTER BTT';
         $p->basePrice= '59.99';
         $p->gender='unisex';
         $p->subCategoryId= '4';
@@ -173,10 +173,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'ZAPATILLAS FÚTBOL SALA X TANGO 18.3 JÚNIOR AMARILLO NEGRO';
+        $p->name = 'YELLOW SOCCER SNEAKERS';
         $p->description= 'Concebido para jóvenes jugadores de fútbol sala que controlan la mayoría de los gestos técnicos en terrenos lisos y buscan ligereza. 
         Estas zapatillas de fútbol sala ofrece una buena comodidad a los jugadores gracias a su exterior de compresión Techfit® con un efecto en envuelve el pie.';
-        $p->shortDescription= 'Zapatos Amarillo';
+        $p->shortDescription= 'Football shoes x tango 18.3 yellow black';
         $p->basePrice= '42.99';
         $p->gender='man';
         $p->subCategoryId= '4';
@@ -185,10 +185,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'ZAPATILLAS DE TENIS MUJER TS990 BLANCO ROSA';
+        $p->name = 'PINK TENNIS SHOES';
         $p->description= 'Concebido para jugadoras intensivas de tenis que practican en todo tipo de superficies con desplazamientos intensos.
         Esta zapatilla de tenis para mujer está provista de una suela resistente de caucho RUBLAST y de un exterior únicamente reforzado en las zonas de desgaste para aunar resistencia y ligereza.';
-        $p->shortDescription= 'Zapatos Rosa';
+        $p->shortDescription= 'Women tennis shoes ts990 white pink';
         $p->basePrice= '44.99';
         $p->gender='woman';
         $p->subCategoryId= '4';
@@ -197,10 +197,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'PANTALONES CORTOS DE TENIS DRY 500 CORTO H AZUL NEGRO';
-        $p->description= 'Concebido para la práctica de tenis con tiempo cálido, adecuado para otros deportes de raqueta (bádminton, pádel, squash, ping pong).
-        Este short de tenis garantiza poder llevar pelotas de forma óptima. Aporta una comodidad máxima gracias al tejido ligero y transpirable, y a la cintura elástica.';
-        $p->shortDescription= 'Pantalones Azul';
+        $p->name = 'BLUE TENNIS TROUSER';
+        $p->description= 'Designed for playing tennis in warm weather, suitable for other racquet sports (badminton, paddle tennis, squash, ping pong).
+        This tennis short ensures that you can carry balls optimally. It provides maximum comfort thanks to the light and breathable fabric and the elastic waist.';
+        $p->shortDescription= 'Short tennis dry 500 short blue trousers';
         $p->basePrice= '6.99';
         $p->gender='man';
         $p->subCategoryId= '5';
@@ -209,10 +209,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'PANTALÓN B300 BALONCESTO MUJER NIVEL INICIACIÓN GRIS OSCURO';
-        $p->description= 'Este pantalón ha sido concebido para las practicantes de baloncesto, para los entrenamientos, los calentamientos y para antes o después de los partidos.
-        Pantalón concebido para la práctica del baloncesto. El componente aporta calor durante la práctica. Corte femenino para una óptima comodidad.';
-        $p->shortDescription= 'Pantalones Gris';
+        $p->name = 'DARK GRAY BASKETBALL PANTS';
+        $p->description= 'This pants has been designed for women basketball players, for training, warm-ups and for before and after matches.
+        Pants conceived for the practice of basketball. The component provides heat during practice. Female cut for optimal comfort.';
+        $p->shortDescription= 'Basketball pants dark gray woman p100';
         $p->basePrice= '17.99';
         $p->gender='woman';
         $p->subCategoryId= '5';
@@ -221,10 +221,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'SKATEBOARD MID500 BEAR';
+        $p->name = 'WHITE SKATE WITH VINYL';
         $p->description = 'Conceived for young skaters (8-12 years old) who want to make their first tricks (figures): ollie, flip, grind ...
         Do you know how to skate? With the MID500 you can make figures! An economical skateboard and left to learn to make the first figures (not suitable for skaters that measure less than 1.30 m).';
-        $p->shortDescription = 'White skate with vinyl ';
+        $p->shortDescription = 'Skateboard mid500 bear';
         $p->basePrice = '39.99';
         $p->gender = 'unisex';
         $p->wheelsAmount = 4;
@@ -236,10 +236,10 @@ class ProductsTableSeeder extends Seeder
 
 
         $p = new Product;
-        $p->name = 'SKATEBOARD MID500 MONKEY';
+        $p->name = 'SKATE STYLE WITH VARIOUS COLORS';
         $p->description = 'Conceived for young skaters (8-12 years old) who want to make their first tricks (figures): ollie, flip, grind ...
         Do you know how to skate? With the MID500 you can make figures! An economical skateboard and left to learn to make the first figures (not suitable for skaters that measure less than 1.30 m).';
-        $p->shortDescription = 'Skate style with various colors';
+        $p->shortDescription = 'Skateboard mid500 monkey';
         $p->basePrice = '39.99';
         $p->gender = 'unisex';
         $p->wheelsAmount = 4;
@@ -250,10 +250,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'BIKE ROCKRIDER ST 100 GRAY 27,5"';
+        $p->name = 'MOUNTAIN BIKE WITH COLORED STRIPES';
         $p->description = 'evade in the first outings in BTT. Make efforts and have fun before small obstacles in the middle of nature.
         Comfort first and foremost: comfort during practice with a CGF frame with an upright position, 80 mm suspension, ERGOFIT "hamac" saddle with Flex seat post, 27.5 "wheels (26" XS).';
-        $p->shortDescription = 'Mountain bike with colored stripes';
+        $p->shortDescription = 'Bike rockrider st 100 gray 27.5"';
         $p->basePrice = '199.99';
         $p->gender = 'unisex';
         $p->wheelsAmount = 2;
@@ -264,10 +264,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'BICYCLE ROAD CICLYTURISM TRIBAN RC 500 "';
+        $p->name = 'BLACK CARBON ROAD BIKE';
         $p->description = 'the regular practice of road cycling. It guarantees unparalleled comfort to practice more kilometers and more frequently.
         Pedal further and more frequently with our most comfortable road bike ever developed. Discover the disc brakes, the specific geometry and the Shimano Sora group.';
-        $p->shortDescription = 'black carbon road bike';
+        $p->shortDescription = 'Bicycle road ciclyturism triban rc 500"';
         $p->basePrice = '649.99';
         $p->gender = 'unisex';
         $p->shifts =9;
@@ -279,10 +279,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
 
         $p = new Product;
-        $p->name = 'SKATEBOARD FREESTYLE MF ONE YELLOW 2016 "';
+        $p->name = 'YELLOW SCOOTER';
         $p->description = 'Young practitioners who want to discover the first sensations in freestyle scooters.
         A freestyle scooter for everyone!';
-        $p->shortDescription = 'Patinete de color amarillo';
+        $p->shortDescription = 'Freestyle scooter mf one yellow 2016"';
         $p->basePrice = '49.99';
         $p->gender = 'unisex';
         $p->wheelsAmount = 2;
@@ -294,10 +294,10 @@ class ProductsTableSeeder extends Seeder
 
         
         $p = new Product;
-        $p->name = 'ELECTRIC SKATEBOARD ADULT REVOLT R GRAY DARK';
+        $p->name = 'GRAY ELECTRIC SCOOTER ELECTRIC';
         $p->description = 'Conceived for regular long distance journeys in the city. (up to 20 km). Size: from 1.45 m to 1.95 m. From 14 years old.
         THE COMFORT OF THE DOUBLE SUSPENSION AND THE DISC BRAKING TO MOVE IN ELECTRIC MODE.';
-        $p->shortDescription = 'Electric scooter of adult ';
+        $p->shortDescription = 'Dark gray electric scooter R ';
         $p->basePrice = '549.99';
         $p->gender = 'unisex';
         $p->shifts = 3;
@@ -309,10 +309,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'GUANTE DE MUSCULACIÓN 100 DOMYOS NEGRO Y ROJO';
-        $p->description= 'Concebido para la musculación en casa o el gimnasio.
-        Guantes ligeros y resistentes, que evacuan rápidamente la sudoración. Material adherente en la palma, para un mejor agarre.';
-        $p->shortDescription= 'Pantalones Gris';
+        $p->name = 'GRAY GYM PANTS';
+        $p->description= 'Designed for bodybuilding at home or the gym.
+        Lightweight and resistant gloves, that evacuate quickly the perspiration. Adherent material in the palm, for a better grip.';
+        $p->shortDescription= 'Muscle glove 100 domyos black and red';
         $p->basePrice= '5.99';
         $p->gender='unisex';
         $p->subCategoryId= '10';
@@ -321,10 +321,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'ARTENGO GUANTE TÉRMICO MAR';
-        $p->description= 'Concebido para la práctica de deportes de raqueta con TIEMPO FRÍO.
-        Este guante sin costuras evita cualquier punto de molestia. Aporta confort durante la práctica durante el invierno. Los picos de la palma de la mano proporcionan un mejor agarre de la raqueta.';
-        $p->shortDescription= 'Guantes Azul';
+        $p->name = 'BLUE TENNIS GLOVES';
+        $p->description= 'Designed for the practice of racquet sports with COLD WEATHER.
+        This seamless glove avoids any point of discomfort. It provides comfort during the practice during the winter. The peaks of the palm provide a better grip of the racket.';
+        $p->shortDescription= 'Artengo thermal gloves';
         $p->basePrice= '8.99';
         $p->gender='unisex';
         $p->subCategoryId= '10';
@@ -333,10 +333,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'GAFAS DE CICLISMO ADULTO ROADR 500 CATEGORÍA 3 AMARILLO/VERDE FLUORESCENTE';
-        $p->description= 'Concebido para ciclistas que practican con tiempo soleado. Gafas de ciclismo categoría 3. Cristales 100% Anti-UV
-        Ideal para rostros delgados y medianos. Las ROADR 500 protegen eficazmente de las agresiones exteriores (viento, polvo). Montura y cristales optimizados para evitar la formación de vaho';
-        $p->shortDescription= 'Gafas amarillo';
+        $p->name = 'YELLOW CYCLING GLASSES';
+        $p->description= 'Designed for cyclists who practice in sunny weather. Cycling glasses category 3. Crystals 100% Anti-UV
+        Ideal for thin and medium faces. The ROADR 500 effectively protects against external aggressions (wind, dust). Frame and glasses optimized to prevent fogging.';
+        $p->shortDescription= 'Cycling glasses adult road 500 category 3 yellow / green fluorescent';
         $p->basePrice= '13.99';
         $p->gender='man';
         $p->subCategoryId= '11';
@@ -345,10 +345,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'GAFAS DE NATACIÓN B-FIT BLANCO NEGRO';
-        $p->description= 'Concebido para los nadadores nivel experto que quieren entrenarse o mantenerse en forma.
-        CONFORT y ESTABILIDAD óptimas para nadar. ¡Las gafas perfectas para tus entrenamientos!';
-        $p->shortDescription= 'Gafas blanco';
+        $p->name = 'WHITE SWIMMING GOGGLES';
+        $p->description= 'Designed for expert level swimmers who want to train or stay fit.
+        COMFORT and STABILITY optimal for swimming. The perfect glasses for your workouts!';
+        $p->shortDescription= 'B-FIT WHITE BLACK SWIMMING GOGGLES';
         $p->basePrice= '14.99';
         $p->gender='woman';
         $p->subCategoryId= '11';
@@ -357,10 +357,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'CASCO BICI URBANA 500 NEGRO';
-        $p->description= 'Concebido para proteger durante los desplazamiento y paseos urbanos, por calles, carriles bici y parques.
-        ¡Lleva casco sin molestias! Casco aireado y cómodo, se adapta a la cabeza gracias a la rueda de ajuste. Alumbrado opcional para mayor seguridad.';
-        $p->shortDescription= 'Casco negro';
+        $p->name = 'BLACK CICLYNG BIKE';
+        $p->description= 'Conceived to protect during the displacements and urban walks, by streets, cycle lanes and parks.
+        Wear a helmet without discomfort! Airy and comfortable helmet, adapts to the head thanks to the adjustment wheel. Optional lighting for greater security.';
+        $p->shortDescription= 'Helmet urban bike 500 black';
         $p->basePrice= '19.99';
         $p->gender='man';
         $p->subCategoryId= '12';
@@ -369,10 +369,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'CASCO BTT ST 100 BLANCO';
-        $p->description= 'Concebido para Concebido para proteger la cabeza durante las primeras travesías en BTT.
-        El casco de BTT ROCKRIDER ST 100 es fácil de ajustar y cómodo y te protege la cabeza de los golpes. Valorarás sus 9 agujeros de aireación, más grandes, para más ventilación.';
-        $p->shortDescription= 'Casco blanco';
+        $p->name = 'WHITE CYCLING HELMET';
+        $p->description= 'Conceived for Conceived to protect the head during the first crossings in BTT.
+        The ROCKRIDER ST 100 BTT helmet is easy to adjust and comfortable and protects your head from bumps. You will value its 9 larger ventilation holes for more ventilation.';
+        $p->shortDescription= 'Helmet btt st 100 white';
         $p->basePrice= '19.99';
         $p->gender='man';
         $p->subCategoryId= '12';
@@ -381,10 +381,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'TARMAK STRONG 700 MEN/WOMEN LEFT/RIGHT THUMB SUPPORT - BLACK';
+        $p->name = 'THUMB SUPPORT';
         $p->description= 'The Strong 700 thumb support was designed for getting back into sport after spraining your thumb or suffering osteoarthritis.
         This thumb support holds your thumb tightly during training sessions and matches without getting in the way. Play on any surface without worrying about your painful thumb.';
-        $p->shortDescription= 'THUMB SUPPORT';
+        $p->shortDescription= 'Tarmak strong 700 men/women left/right thumb support - black';
         $p->basePrice= '12.99';
         $p->gender='unisex';
         $p->subCategoryId= '13';
@@ -393,10 +393,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'TARMAK SOFT 500 LEFT/RIGHT KNEE KNEECAP SUPPORT - BLACK';
+        $p->name = 'KNEE CAP BLACK';
         $p->description= 'Soft 500 kneecap support designed for returning to sport after kneecap problems
         This kneecap support has a comfortable knit that wicks perspiration away so that you can exercise without worrying about your knees. The silicone ring stabilises your kneecap.';
-        $p->shortDescription= 'Knee cap black';
+        $p->shortDescription= 'Tarmak soft 500 left/right knee kneecap support - black';
         $p->basePrice= '12.99';
         $p->gender='unisex';
         $p->subCategoryId= '13';
@@ -405,9 +405,9 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'ADIDAS TOP GLIDER FOOTBALL 2018 WORLD CUP T5';
+        $p->name = 'WHITE SOCCER BALL';
         $p->description= 'Designed for football players who can perform most technical football moves on the pitch and are looking for a comfortable and durable ball.';
-        $p->shortDescription= 'Football ball white';
+        $p->shortDescription= 'Adidas top glidder football 2018 world cup t5';
         $p->basePrice= '17.99';
         $p->gender='unisex';
         $p->subCategoryId= '14';
@@ -416,10 +416,10 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'TARMAK R700 DELUXE ADULT SIZE 7 BASKETBALL - ORANGE GREAT BALL FEEL';
+        $p->name = 'ORANGE BASKETBALL BALL';
         $p->description= 'Designed for playing basketball indoors/outdoors for players aged 13 years upwards.
         This size 7 basketball is one of a kind. Its polyurethane cover gives it an excellent ball feel';
-        $p->shortDescription= 'Basketball ball';
+        $p->shortDescription= 'Tarmak R700 deluxe size 7 basketball - orange great ball feel';
         $p->basePrice= '17.99';
         $p->gender='unisex';
         $p->subCategoryId= '14';
@@ -428,13 +428,13 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'EVOWHEY PROTEIN 2.0';
+        $p->name = 'PROTEIN FOOD SUPPLEMENT';
         $p->description= 'WPC Concentrated Whey Protein. Now with more protein and without soy lecithin!';
-        $p->shortDescription= 'Protein food supplement';
+        $p->shortDescription= 'Evowhey protein 2.0';
         $p->basePrice= '9.90';
         $p->gender='unisex';
         $p->typeSupplement='Protein suplement';
-        //$p->volume='23x33';
+        $p->volume='23x33';
         $p->weight='500';
         $p->subCategoryId= '15';
         $p->brandId= '10';
@@ -442,13 +442,13 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'MICROWAVED MONOHYDRATE CREATINE POWDER';
+        $p->name = 'POWDERCREATINE SUPPLEMENT';
         $p->description= 'Micronized Creatine Monohydrate. Ideal for high intensity activities.';
-        $p->shortDescription= 'Creatine supplement';
+        $p->shortDescription= 'Microwaved monohydrate creatine';
         $p->basePrice= '7.90';
         $p->gender='unisex';
         $p->typeSupplement='Muscle development';
-        //$p->volume='19x26';
+        $p->volume='19x26';
         $p->weight='500';
         $p->subCategoryId= '16';
         $p->brandId= '10';
@@ -456,13 +456,13 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'HYDROLYZED COLLAGEN + MAGNESIUM 2.0 POWDER';
+        $p->name = 'FOOD SUPPLEMENT OF HYDROLYZATE AND MAGNESIUM';
         $p->description= 'Hydrolyzed collagen of bovine origin with magnesium and vitamin C. No fish!';
-        $p->shortDescription= 'Food supplement of hydrolyzate and magnesium';
+        $p->shortDescription= 'Hydrolyzed collagen + magnesium 2.0 powder';
         $p->basePrice= '6.90';
         $p->gender='unisex';
         $p->typeSupplement='Food suplement';
-        //$p->volume='14x20';
+        $p->volume='14x20';
         $p->weight='150';
         $p->subCategoryId= '17';
         $p->brandId= '10';
@@ -470,13 +470,13 @@ class ProductsTableSeeder extends Seeder
         $p->save();
         
         $p = new Product;
-        $p->name = 'Muscletech Hydroxycut Hardcore ELITE 110 cap';
+        $p->name = 'SUPPLEMENT FOR WEIGHT LOSS AND THERMOGENIC';
         $p->description= 'Loss of weight Extreme energy greater concentration ... It is the most powerful thermogenic that guarantees real results with an innovative formula that uses body fat and converts it into energy. Intense workouts that will help you to have a defined body Hydroxycut Hardcore Elite contains key ingredients developed exclusively by MUSCLETECH With Hydroxycut Hardcore® Elite you will obtain powerful effective and real results.';
-        $p->shortDescription= 'Supplement for weight loss and thermogenic';
+        $p->shortDescription= 'Muscletech Hydroxycut Hardcore ELITE 110 cap';
         $p->basePrice= '21.00';
         $p->gender='unisex';
         $p->typeSupplement='weight control';
-        //$p->volume='19x26';
+        $p->volume='19x26';
         $p->weight='500';
         $p->subCategoryId= '18';
         $p->brandId= '10';

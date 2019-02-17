@@ -32,9 +32,18 @@
       </div>
       <span id="errorEmailInfoProfile"></span>
     </div>
-    <p>If you want to change the password, <a href="#" onclick="showFormChangePassword()">click here</a></p>
+
     <input type="submit" name="sendChangeEmail" value="Send changes" class="btn btn-default waves-effect waves-light">
+
   </form>
+</br>
+  @if ($user->email_verified_at==null)
+  <a href="{{url('confirmEmail')}}">
+  <button class="btn btn-warning">CONFIRM EMAIL</button>
+  </a>
+  @else
+  <button class="btn btn-success" disabled="disabled">EMAIL CONFIRMED</button>
+  @endif
 </div>
 {{-- Change passwords --}}
 {{-- pasar action --}}
@@ -72,5 +81,14 @@
     </div>
     <p>If you want to change the email, <a href="#" onclick="showFormChangeEmail()">click here</a></p>
     <input type="submit" name="sendChangePass" value="Send changes" class="btn btn-default waves-effect waves-light">
+
   </form>
+</br>
+  @if ($user->email_verified_at==null)
+  <a href="{{url('confirmEmail')}}">
+  <button class="btn btn-warning">CONFIRM EMAIL</button>
+  </a>
+  @else
+  <button  class="btn btn-success" disabled="disabled">EMAIL CONFIRMED</button>
+  @endif
 </div>

@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Address;
+use App\Product;
+use App\Invoice;
+use App\Invoice_line;
 use App\User;
 use DB;
+use App\Category;
+//use App\Http\Controllers\Address;
+use App\Sub_category;
 
 class UsersController extends Controller
 {
@@ -19,7 +25,9 @@ class UsersController extends Controller
 		}
 
 		if (Auth::user()->role=="root") {
-			return view('partials.admin.userManagement');
+            $users=User::all();
+            $addresses=Address::all();
+			return view('partials.admin.userManagement',array('users'=>$users , 'addresses'=>$addresses));
 
 		} else if (Auth::user()->role=="user") {
 			$type = DB::select(DB::raw("SHOW COLUMNS FROM Addresses WHERE Field = 'roadType'"))[0]->Type;
@@ -36,17 +44,30 @@ class UsersController extends Controller
 
 			$user = User::find(Auth::user()->id);
 
+			$invoices = Invoice::where('userId', Auth::user()->id)->get();
+			$categoriesNav = Category::all();
+    		$sub_categoriesNav = Sub_category::all();
 
-			/*if ($billingAddress==null) {
-				return view('partials.profile', array('roadTypes'=>$roadTypes));
+			return view('partials.profile', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user, 'invoices'=>$invoices));
 
-			} else {*/
-				return view('partials.profile', array('roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user));
-			//}
 		}
 	}
 
 	public function productManagement($userId) {
 		return view('partials.admin.productManagement', array('userId', $userId));
+	}
+
+	public function invoiceDetails($invoiceId){
+		$invoice = Invoice::find($invoiceId);
+		$invoice_lines = Invoice_line::where('invoiceId', $invoiceId)->get();
+		$products = array();
+		$categoriesNav = Category::all();
+		$sub_categoriesNav = Sub_category::all();
+
+		foreach ($invoice_lines as $invoice_line) {
+			$product = Product::where('id', $invoice_line->productId)->first();
+			array_push($products, $product);
+		}
+		return view('partials.order-detail', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'invoice_lines'=>$invoice_lines, 'invoice' => $invoice, 'products'=>$products));
 	}
 }

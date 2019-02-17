@@ -54,4 +54,5 @@
     <p>If you want to change the email, <a href="#" onclick="showFormChangeEmail()">click here</a></p>
     <input type="submit" name="sendChangePass" value="Send changes" class="btn btn-default waves-effect waves-light">
   </form>
+  
 </div>

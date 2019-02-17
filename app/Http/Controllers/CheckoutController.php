@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 use Session;
 use App\Image;
+use App\Address;
+use App\Delivery;
 use Cart;
 use Auth;
 use Stripe;
 use App\Category;
-use App\Http\Controllers\Address;
+//use App\Http\Controllers\Address;
 use App\Sub_category;
 use App\Http\Requests\CheckoutRequest;
 use Illuminate\Http\Request;
@@ -34,7 +36,10 @@ class CheckoutController extends Controller
             }
 			$categoriesNav = Category::all();
 	    	$sub_categoriesNav = Sub_category::all();
-            return view('partials.checkout',array('images'=>$images, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+            $shippingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'shipping')->first();
+            $billingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'billing')->first();
+            $deliveries = Delivery::all();
+            return view('partials.checkout',array('images'=>$images, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'shippingAddress'=>$shippingAddress,'billingAddress'=>$billingAddress,'deliveries'=>$deliveries));
         }
     }
 
@@ -57,7 +62,7 @@ class CheckoutController extends Controller
     public function store(CheckoutRequest $request)
     {
 
-        $contents=Cart::content()->map(function($item){
+       $contents=Cart::content()->map(function($item){
             return $item->model->shortDescription.','.$item->qty;
 
 
@@ -81,8 +86,8 @@ class CheckoutController extends Controller
             //Cart::instance('default')->destroy();
 
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
-			return redirect('generateInvoice/delivery/1');
-            //return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
+			return redirect('generateInvoice/delivery/'.$request->deliveryId);
+
 
         } catch (CardErrorException $e) {
 

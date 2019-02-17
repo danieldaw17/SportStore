@@ -6,8 +6,16 @@
 
 @section ('js')
 <script src="https://js.stripe.com/v3/"></script>
-
-@endsection
+  @if($shippingAddress == null || $billingAddress==null )
+    <script>
+      $('#complete-order').hide();
+    </script>
+  @else
+    <script>
+      $('#complete-order').show();
+    </script>
+  @endif
+@stop
 @section("title","checkout")
 
 
@@ -56,44 +64,65 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="{{old('address')}}" required >
+                        <label for="shippingaddress">Shipping address</label>
+                        @if($shippingAddress != null )
+                        <input type="text" class="form-control" id="shippingAddress" name="shippingaddress" value="{{ $shippingAddress->roadName }}" readonly>
+                        @else
+                        <input type="text" class="form-control text-danger" id="shippingAddress" name="shippingaddress" value="You need to go to your profile a set up your shipping address" readonly >
+                        @endif
                     </div>
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required >
-                        </div>
-                        <div class="form-group">
-                            <label for="province">Province</label>
-                            <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required >
-                        </div>
-                    </div> <!-- end half-form -->
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="postalcode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('email')}}" required >
-                        </div>
-                        
+                    <div class="form-group">
+                        <label for="billingaddress">Billing address</label>
+                        @if($billingAddress!=null )
+                        <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="{{ $billingAddress->roadName }}" readonly >
+                        @else
+                        <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="You need to go to your profile and set up your billing address" readonly >
+                        @endif
                     </div>
                        <div class="half-form">
                         <div class="form-group">
-                          <!--insertar los deliveries id para que funcione -->
-                           <select name="deliveryId" multiple required>
-                             {{--@foreach($deliveries as $delivery)--}} 
-                             {{--<option value="{{$delivery->id}}">{{$delivery->name}}</option>--}}
-                             {{--@enforeach--}}
+                         <label for="delivery">Deliveries : </label> <!--insertar los deliveries id para que funcione -->
+                           <select name="deliveryId" required>
+                             @foreach($deliveries as $delivery)
+                             <option value="{{$delivery->id}}">{{$delivery->name}}</option>
+                             @endforeach
                            </select>
                             <!--termina aqui-->
                         </div>
-                        
+
+                    </div>
+                    <!-- DE AQUI HACIA ADELANTE SON COSAS NECESARIAS PARA STRIPE PAYMENTS  -->
+                    <div class="form-group">
+                        <label for="province">province</label>
+                        @if($billingAddress['province'] == null)
+                           <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required>
+                        @else
+                         <input type="text" class="form-control" id="province" name="province" value="{{$billingAddress->province}}" readonly>
+                        @endif
+                    </div>
+                     <div class="form-group">
+                        <label for="city">city</label>
+                        @if ($billingAddress['city'] == null)
+                            <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="city" name="city" value="{{$billingAddress->city}}" readonly>
+
+                        @endif
                     </div>
 
-                     <!-- end half-form -->
+                    <div class="form-group">
+                        <label for="postalcode">postalcode</label>
+                        @if ($billingAddress['zipCode'] == null)
+                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('postalcode')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$billingAddress->zipCode}}" readonly>
+
+                        @endif
+                    </div>
+
+                 <!-- end half-form -->
                     <div class="checkout-section">
-                
+
                     <h2>Payment details</h2>
                       <div class="form-group">
                           <label for="name_on_card">Name on Card</label>
@@ -110,17 +139,17 @@
 
                             <!-- Used to display form errors. -->
                          <div id="card-errors" role="alert">
-                             
+
                          </div>
 
                     </div>
-                </div>    
+                </div>
                     <button type="submit" id="complete-order" class="btn btn-success btn-block">Complete Order</button>
 
           </form>
-                    <div class="container"> 
+                    <div class="container">
                       </div>
-                    
+
                    <div class="mt-32">or</div>
                     <div class="mt-32">
                         <h2>Pay with PayPal</h2>
@@ -139,14 +168,14 @@
                             <button class="btn btn-primary " type="submit"><span>Pay with PayPal</span></button>
                         </form>
                     </div>
-               
+
             </div>
         </div>
     </div>
-    
+
 </div>
-        
-       <div class="col-sm-1"></div>     
+
+       <div class="col-sm-1"></div>
         <div class="col-sm-4">
             <div class="checkout-table-container">
                 <h2>Your Order</h2>
@@ -159,7 +188,7 @@
                                 <div class="checkout-table-img">
                                     @foreach ($images as $image)
                                         @if ($image->productId==$item->model->id && $image->name=="front")
-                                            <img src="{{ url($image->path) }}" alt="" title="">
+                                            <img src="{{ url($image->path) }}" alt="{{$image->name}}" class="imgCart">
                                          @php
                                         break;
                                         @endphp
@@ -173,14 +202,14 @@
                         </div> <!-- end checkout-table -->
 
                         <div class="checkout-table-row-right">
-                           <strong>quantity:</strong> <div class="checkout-table-quantity">{{ $item->qty }}</div>
+                           <strong>quantity:</strong><div class="checkout-table-quantity">{{ $item->qty }}</div>
                         </div>
                     </div>
                     <hr> <!-- end checkout-table-row -->
                   @endforeach
 
                 </div> <!-- end checkout-table -->
-    
+
                 <div class="checkout-totals">
                     <div class="checkout-totals-left">
                        <strong> Subtotal</strong> {{ Cart::subtotal()}} <br>
@@ -190,11 +219,11 @@
 
                     <div class="checkout-totals-right">
                         <br>
-                       
+
                              <br>
                             <hr>
                           <br>
-                     
+
                          <br>
                         <span class="checkout-totals-total">{{--presentPrice($newTotal)--}}</span>
 
@@ -207,7 +236,7 @@
 </div>
 @section('extra-js')
 
-<script >
+<script>
     (function(){
         // Create a Stripe client.
 var stripe = Stripe('pk_test_ujRSjoDzk8qHV5PDAZ11erVG');
@@ -235,7 +264,7 @@ var style = {
 };
 
 // Create an instance of the card Element.
-var card = elements.create('card', 
+var card = elements.create('card',
     {style: style,
       hidePostalCode: true
 });
@@ -262,7 +291,7 @@ form.addEventListener('submit', function(event) {
 
   var options = {
     name: document.getElementById('name_on_card').value,
-     address_line1: document.getElementById('address').value,
+     address_line1: document.getElementById('billingAddress').value,
       address_city: document.getElementById('city').value,
       address_state: document.getElementById('province').value,
       address_zip: document.getElementById('postalcode').value

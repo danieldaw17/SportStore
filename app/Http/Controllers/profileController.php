@@ -9,6 +9,7 @@ use App\Invoice;
 use App\Invoice_line;
 use App\Address;
 use App\User;
+use Carbon\Carbon;
 
 class profileController extends Controller
 {
@@ -82,12 +83,23 @@ public function saveAccount(Request $request) {
 	if (!$user = User::find($userId)) {
 		abort(404);
 	}
+$user->nick = $request->nick;
+$user->email = $request->email;
 
-	$user->nick = $request->nick;
-	$user->email = $request->email;
+$user->save();
+return back();
+}
 
-	$user->save();
-	return back();
+public function verifiedEmail(){
+    $userId = Auth::user()->id;
+    if (!$user = User::find($userId)) {
+		abort(404);
+	}
+    $mytime=Carbon::now();
+    
+    $user->email_verified_at=$mytime->toDateTimeString();
+    $user->save();
+    return back();
 }
 
 }

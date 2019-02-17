@@ -18,3 +18,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('product/{productId}/defuse', 'ApiProductController@defuse');
+Route::get('product/{productId}/activate', 'ApiProductController@activate');

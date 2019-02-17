@@ -1,8 +1,8 @@
 // Show shipping address
-function showShippingAddress(){
+function showShippingAddress(contador){
 
-	var view = document.getElementById("viewShippingAddress");
-	var show = document.getElementById("shippingAddress");
+	var view = document.getElementById("viewShippingAddress"+contador);
+	var show = document.getElementById("shippingAddress"+contador);
 
 	show.style.display = "block";
 	view.innerHTML = "";
@@ -11,11 +11,11 @@ function showShippingAddress(){
 }
 
 // Hide shipping address
-function hideShippingAddress(){
+function hideShippingAddress(contador){
 
-	var view = document.getElementById("viewShippingAddress");
-	var hide = document.getElementById("hideShippingAddress");
-	var show = document.getElementById("shippingAddress");
+	var view = document.getElementById("viewShippingAddress"+contador);
+	var hide = document.getElementById("hideShippingAddress"+contador);
+	var show = document.getElementById("shippingAddress"+contador);
 
 	hide.style.display = "block";
 	show.style.display = "none";
@@ -24,10 +24,10 @@ function hideShippingAddress(){
 }
 
 // Show billing address
-function showBillingAddress(){
+function showBillingAddress(contador){
 
-	var view = document.getElementById("viewBillingAddress");
-	var show = document.getElementById("billingAddress");
+	var view = document.getElementById("viewBillingAddress"+contador);
+	var show = document.getElementById("billingAddress"+contador);
 
 	show.style.display = "block";
 	view.innerHTML = "";
@@ -36,11 +36,11 @@ function showBillingAddress(){
 }
 
 // Hide shipping address
-function hideBillingAddress(){
+function hideBillingAddress(contador){
 
-	var view = document.getElementById("viewBillingAddress");
-	var hide = document.getElementById("hideBillingAddress");
-	var show = document.getElementById("billingAddress");
+	var view = document.getElementById("viewBillingAddress"+contador);
+	var hide = document.getElementById("hideBillingAddress"+contador);
+	var show = document.getElementById("billingAddress"+contador);
 
 	hide.style.display = "block";
 	show.style.display = "none";

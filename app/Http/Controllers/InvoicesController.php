@@ -67,16 +67,20 @@ class InvoicesController extends Controller
 		if (Cart::content()->count()>0) {
 			$invoice = new Invoice();
 			$invoice->totalPrice = Cart::total();
-			$invoice->deliveryId = 1;
+			$invoice->deliveryId = $deliveryId;
 			$invoice->paymentMethod = "Stripe";
 			$invoice->userId = Auth::user()->id;
+			$invoice->basePrice = Cart::subtotal();
+			$invoice->taxes = Cart::tax();
+			$invoice->basePrice = Cart::subtotal();
+			$invoice->totalPrice = Cart::total();
 			$invoice->shippingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'shipping')->first()->id;
 			$invoice->billingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'billing')->first()->id;
 			$invoice->save();
 
 			return redirect('generateInvoiceLines/'.$invoice->id);
 		} else {
-			return redirec('/');
+			return redirect('/');
 		}
 
 

@@ -44,7 +44,7 @@ Products deactivated
 						<div class="contentProduct">
 							<h5 class="titleProduct">{{ $product->name }}</h5>
 							<div class="optionsED">
-								<a href="{{ url('user/'.Auth::user()->id.'/product/'.$product->id.'/activate') }}"><button type="button" class="btn btn-success">Activate</button></a>
+								<a><button productId="{{$product->id}}" type="button" class="btn btn-success" id="activateButton">Activate</button></a>
 							</div>
 						</div>
 					</div>
@@ -53,5 +53,8 @@ Products deactivated
 		@endforeach
 		</div>
 	@endif
+@stop
 
+@section("js")
+<script src="/js/admin/activateAjax.js"></script>
 @stop
