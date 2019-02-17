@@ -86,7 +86,7 @@ class CheckoutController extends Controller
             //Cart::instance('default')->destroy();
 
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
-			return redirect('generateInvoice/delivery/1');
+			return redirect('generateInvoice/delivery/'.$request->deliveryId);
             
 
         } catch (CardErrorException $e) {

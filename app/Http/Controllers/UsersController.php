@@ -8,6 +8,9 @@ use Auth;
 use App\Address;
 use App\User;
 use DB;
+use App\Category;
+//use App\Http\Controllers\Address;
+use App\Sub_category;
 
 class UsersController extends Controller
 {
@@ -41,7 +44,10 @@ class UsersController extends Controller
 				return view('partials.profile', array('roadTypes'=>$roadTypes));
 
 			} else {*/
-				return view('partials.profile', array('roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user));
+				$categoriesNav = Category::all();
+        		$sub_categoriesNav = Sub_category::all();
+
+				return view('partials.profile', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user));
 			//}
 		}
 	}

@@ -6,7 +6,7 @@
 
 @section ('js')
 <script src="https://js.stripe.com/v3/"></script>
-  <!--@if($shippingAddress == null || $billingAddress==null )
+  @if($shippingAddress == null || $billingAddress==null )
     <script>
       $('#complete-order').hide();
     </script>
@@ -14,7 +14,7 @@
     <script>
       $('#complete-order').show();
     </script>
-  @endif-->
+  @endif
 @stop
 @section("title","checkout")
 
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group">
                         <label for="billingaddress">Billing address</label>
-                        @if($billingAddress != null )
+                        @if($billingAddress!=null )
                         <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="{{ $billingAddress->roadName }}" readonly >
                         @else 
                         <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="You need to go to your profile and set up your billing address" readonly >
@@ -94,27 +94,29 @@
                     <!-- DE AQUI HACIA ADELANTE SON COSAS NECESARIAS PARA STRIPE PAYMENTS  -->
                     <div class="form-group">
                         <label for="province">province</label>
-                        @if ($billingAddress->province != null)
-                            <input type="text" class="form-control" id="province" name="province" value="{{$billingAddress->province}}" readonly>
+                        @if($billingAddress['province'] == null)
+                           <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required>
                         @else
-                            <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required>
+                         <input type="text" class="form-control" id="province" name="province" value="{{$billingAddress->province}}" readonly>
                         @endif
                     </div>
                      <div class="form-group">
                         <label for="city">city</label>
-                        @if ($billingAddress->city != null)
-                            <input type="text" class="form-control" id="city" name="city" value="{{$billingAddress->city}}" readonly>
-                        @else
+                        @if ($billingAddress['city'] == null)
                             <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="city" name="city" value="{{$billingAddress->city}}" readonly>
+                            
                         @endif
                     </div>
 
                     <div class="form-group">
                         <label for="postalcode">postalcode</label>
-                        @if ($billingAddress->zipCode != null)
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$billingAddress->zipCode}}" readonly>
-                        @else
+                        @if ($billingAddress['zipCode'] == null)
                             <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('postalcode')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$billingAddress->zipCode}}" readonly>
+                            
                         @endif
                     </div>
 
