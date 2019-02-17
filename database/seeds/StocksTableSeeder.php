@@ -314,6 +314,18 @@ class StocksTableSeeder extends Seeder
         $s->save();
         
         $s = new Stock();
+        $s->amount = 23;
+        $s->size = 'XSS';
+        $s->productId = 18;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 23;
+        $s->size = 'XSS';
+        $s->productId = 19;
+        $s->save();
+        
+        $s = new Stock();
         $s->amount = 50;
         $s->size = 'L';
         $s->productId = 20;
@@ -335,6 +347,114 @@ class StocksTableSeeder extends Seeder
         $s->amount = 35;
         $s->size = 'S';
         $s->productId = 21;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 53;
+        $s->size = 'L';
+        $s->productId = 22;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 28;
+        $s->size = 'M';
+        $s->productId = 22;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 252;
+        $s->size = 'XSS';
+        $s->productId = 23;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 23;
+        $s->size = 'XSS';
+        $s->productId = 24;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 63;
+        $s->size = 'XSS';
+        $s->productId = 25;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 32;
+        $s->size = 'XSS';
+        $s->productId = 26;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 36;
+        $s->size = 'XSS';
+        $s->productId = 27;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 65;
+        $s->size = 'XSS';
+        $s->productId = 28;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 74;
+        $s->size = 'XSS';
+        $s->productId = 29;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 32;
+        $s->size = 'XSS';
+        $s->productId = 30;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 52;
+        $s->size = 'XSS';
+        $s->productId = 31;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 62;
+        $s->size = 'XSS';
+        $s->productId = 31;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 35;
+        $s->size = 'XSS';
+        $s->productId = 32;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 56;
+        $s->size = 'XSS';
+        $s->productId = 33;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 42;
+        $s->size = 'XSS';
+        $s->productId = 34;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 51;
+        $s->size = 'XSS';
+        $s->productId = 35;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 73;
+        $s->size = 'XSS';
+        $s->productId = 36;
+        $s->save();
+        
+        $s = new Stock();
+        $s->amount = 97;
+        $s->size = 'XSS';
+        $s->productId = 37;
         $s->save();
     }
 }
