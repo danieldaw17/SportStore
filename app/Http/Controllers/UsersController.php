@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Address;
+use App\Invoice;
 use App\User;
 use DB;
 
@@ -36,13 +37,10 @@ class UsersController extends Controller
 
 			$user = User::find(Auth::user()->id);
 
+			$invoices = Invoice::where('userId', Auth::user()->id)->get();
 
-			/*if ($billingAddress==null) {
-				return view('partials.profile', array('roadTypes'=>$roadTypes));
+			return view('partials.profile', array('roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user, 'invoices'=>$invoices));
 
-			} else {*/
-				return view('partials.profile', array('roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user));
-			//}
 		}
 	}
 
