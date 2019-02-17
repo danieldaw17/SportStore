@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Response;
+use Illuminate\Support\Facades\Input;
 use App\Product;
 use App\Category;
 use App\Sub_category;
@@ -689,10 +691,34 @@ class ProductsManagementController extends Controller
 		return back();
     }
 
-	/*public function defuse($productId)
-	{
-		return "llego aquí";
+    public function desactivated($userId){
 
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
 
-    }*/
+		$images = Image::all();
+		$products = Product::all()->where('active', 0);
+
+		return view('partials.admin.desactivated', array('products'=>$products, 'images'=>$images));
+
+    }
+
+    public function activate($userId, $productId){
+
+    	if (!Auth::check() || Auth::user()->role!="root") {
+			abort(404);
+		}
+
+    	if (!$product = Product::find($productId)) {
+			abort(404);
+		}
+
+		$product->active = 1;
+		//$product->save();
+
+		return view('partials.admin.desactivated')->with('message', 'Correctly activated');
+
+    }
+
 }

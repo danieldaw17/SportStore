@@ -47,6 +47,17 @@ Auth::routes();
 
 	Route::get('user/{userId}/deliveries/{deliveryId}/delete', 'DeliveriesController@destroy');
 
+// PRODUCTS DEACTIVATED
+	// Productos desactivados
+	Route::get('user/{userId}/deactivated', 'ProductsManagementController@deactivated');
+	// Activar producto
+	Route::get('user/{userId}/product/{productId}/activate', 'ProductsManagementController@activate');
+
+// PRODUCTS WITH LITTLE STOCK
+	// Productos con stock menor a "x"
+	Route::get('checkStock', 'StocksController@searchStock');
+	Route::get('checkStock/action', 'StocksController@action')->name('checkStock.action');
+
 //PRODUCT ROUTES
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products', 'ProductsManagementController@index');

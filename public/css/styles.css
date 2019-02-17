@@ -28,7 +28,7 @@
 
 .navbar {
 	background-color: #85C1E9;
-	box-shadow: 0 1px 5px 0 #ccc; 
+	box-shadow: 0 1px 5px 0 #ccc;
 }
 
 .navbar-nav {
@@ -183,15 +183,15 @@ span[id^='error']{
  */
 .StripeElement {
   background-color: white;
-  
+
   padding: 16px 16px;
-  
+
   border: 1px solid #ccc;
- 
+
 }
 
 .StripeElement--focus {
-  
+
 }
 
 .StripeElement--invalid {
@@ -203,4 +203,21 @@ span[id^='error']{
 }
 #card-errors{
 	color:#fa755a;
+
 }
+
+.activated {
+    width: 100%;
+    margin-right: 5%;
+}
+
+.buttonChangeStock {
+    margin: 0 auto;
+    display: block;
+}
+
+#search {
+	margin-bottom: 2%;
+}
+
+

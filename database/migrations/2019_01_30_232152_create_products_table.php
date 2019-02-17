@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->increments('id');
 			$table->string('name', 100);
 			$table->text('description');
-			$table->string('shortDescription', 50);
+			$table->string('shortDescription', 70);
 			$table->float('basePrice', 7,2);
 			$table->enum('gender', ['man', 'woman', 'unisex'])->nullable();
 			$table->string('typeSupplement', 50)->nullable();
-			$table->string('volume', 255)->nullable();
+			$table->string('volume', 10)->nullable();
 			$table->integer('shifts')->nullable();
 			$table->integer('wheelsAmount')->nullable();
 			$table->float('weight', 7,2)->nullable();
