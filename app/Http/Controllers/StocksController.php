@@ -76,12 +76,12 @@ class StocksController extends Controller
                                 $output .= '
                                 <td class="text-center">' . $row->size . '</td>
                                 <td class="text-center">' . $row->amount . '</td>
-                                <td><a href="makeOrder/'.$stockId.'/edit"><button type="button" class="btn btn-warning buttonChangeStock">Make an order</button></a></td>
+                                <td><a href="user/1/Categories/'.$categoryId. '/Sub_categories/'.$product->subCategoryId.'/Products/'.$product->id.'/edit"><button type="button" class="btn btn-warning buttonChangeStock">Modify</button></a></td>
                             </tr>
                         ';
                             }
                         }
-                        
+
                         //user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/edit
                     }
                 }

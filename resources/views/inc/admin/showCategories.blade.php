@@ -25,7 +25,7 @@
 						<h3 class="titleProduct">{{ $category->name }}</h3>
 						<div class="optionsED">
 							<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$category->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-							<a href="#deleteCategory" data-toggle="modal"><button type="button" class="btn btn-danger">Delete</button></a>
+							{{--<a href="{{ url('user/'.Auth::user()->id.'/Categories/1/delete') }}"><button type="button" class="btn btn-danger">Delete</button></a>--}}
 						</div>
 					</div>
 				</div>

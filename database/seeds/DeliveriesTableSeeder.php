@@ -13,13 +13,13 @@ class DeliveriesTableSeeder extends Seeder
     {
         $d = new Delivery();
         $d->name = 'SEUR';
-        $d->hoursMax= '50';
+        $d->hoursMax= 50;
         $d->price = 10;
         $d->save();
-        
+
         $d = new Delivery();
         $d->name = 'UPS';
-        $d->hoursMax = '80';
+        $d->hoursMax = 80;
         $d->price = 5;
         $d->save();
     }
