@@ -24,3 +24,20 @@
 .description {
 	text-align: justify;
 }
+.empty{
+    color: red;
+    float:right;
+}
+.almost{
+    color:orange;
+    float:right;
+}
+.empty{
+    color: red;
+}
+.left{
+   color:orange;
+}
+.available{
+    color:green;
+}
