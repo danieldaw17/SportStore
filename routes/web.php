@@ -70,10 +70,11 @@ Auth::routes();
 
 	Route::get('user/{userId}/Categories/{categoryId}/Sub_categories/{subCategoryId}/Products/{productId}/delete', 'ProductsManagementController@destroy');
 	Route::get('defuse/{productId}', 'ProductsManagementController@defuse');
-//BILLING ADDRESS ROUTES
 
+// STOCK ROUTES
 
-//SHIPPING Address
+	Route::get('makeOrder/{productId}/edit', 'StocksController@edit');
+	Route::put('makeOrder/{productId}/edit', 'StocksController@update');
 
 //CATEGORY ROUTES
 	Route::get('user/{userId}/Categories', 'CategoriesController@index');
@@ -111,10 +112,6 @@ Auth::routes();
 
 
 ;
-
-
-
-
 Route::get('user/{userId}', 'UsersController@index');
 Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
 

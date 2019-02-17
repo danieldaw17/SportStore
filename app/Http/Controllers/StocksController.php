@@ -13,54 +13,8 @@ use Auth;
 class StocksController extends Controller
 {
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($userId, $categoryId, $subCategoryId, $productId)
-    {
-        return view('partials.admin.formStock', array('userId'=>$userId, 'categoryId'=>$categoryId, 'subCategoryId'=>$subCategoryId, 'productId'=>$productId));
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-		$validateData = $request->validate([
-			'amount' => 'required',
-			'size' => 'required|max:10',
-			'productId' => 'required'
-	  	]);
-
-        $stock = new Stock();
-
-		$stock->amount = $request->input('amount');
-		$stock->size = $request->input('size');
-		$stock->productId = $request->input('productId');
-
-		$stock->save();
-
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($stockId)
-    {
-		if (!$stock = Stock::find($stockId)) {
-			abort(404);
-		}
-
-		//llamar a vista de editar stock
+    public function edit(){
+        return view('partials.admin.makeOrder');
     }
 
     /**
@@ -77,33 +31,13 @@ class StocksController extends Controller
 		}
 
 		$validateData = $request->validate([
-			'amount' => 'required',
-			'size' => 'required|max:10',
-			'productId' => 'required'
+			'amount' => 'required'
 	  	]);
 
 		$stock->amount = $request->input('amount');
-		$stock->size = $request->input('size');
-		$stock->productId = $request->input('productId');
 
 		$stock->save();
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($stockId)
-    {
-		if (!$stock = Stock::find($stockId)) {
-			abort(404);
-		}
-
-		$stock->delete();
-    }
-
 
     public function searchStock(){
 
@@ -135,13 +69,14 @@ class StocksController extends Controller
                         ';
                         foreach ($products as $product) {
                             if($row->productId == $product->id){
+                                $stockId = Stock::where('productId', $product->id)->where('size', $row->size)->first()->id;
                                 $sub_category = Sub_category::find($product->subCategoryId);
                                 $categoryId = $sub_category->categoryId;
                                 $output .= '<td>' . $product->name . '</td>';
                                 $output .= '
                                 <td class="text-center">' . $row->size . '</td>
                                 <td class="text-center">' . $row->amount . '</td>
-                                <td><a href="user/1/Categories/'.$categoryId. '/Sub_categories/'.$product->subCategoryId.'/Products/'.$product->id.'/edit"><button type="button" class="btn btn-warning buttonChangeStock">Modify</button></a></td>
+                                <td><a href="makeOrder/'.$stockId.'/edit"><button type="button" class="btn btn-warning buttonChangeStock">Make an order</button></a></td>
                             </tr>
                         ';
                             }

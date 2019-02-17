@@ -220,4 +220,19 @@ span[id^='error']{
 	margin-bottom: 2%;
 }
 
+#optionsDelivery {
+	width: 5%;
+}
 
+#newDelivery {
+	margin-right: 10%;
+}
+
+.deliveryText {
+	margin-left: -6%;
+}
+
+.newDelivery {
+	margin-top: 2%;
+	margin-bottom: 2%;
+}
