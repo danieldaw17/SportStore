@@ -51,4 +51,9 @@ class UsersController extends Controller
 	public function productManagement($userId) {
 		return view('partials.admin.productManagement', array('userId', $userId));
 	}
+    
+    public function userManagement($userId) {
+        $user = User::find($userId);
+		return view('partials.admin.userEdit', array('user', $user));
+	}
 }

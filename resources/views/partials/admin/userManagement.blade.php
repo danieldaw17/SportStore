@@ -10,11 +10,7 @@ User management
 @stop
 
 @section("content")
-<div class="menuManagement" id="menuUserManagement">
-    <ul>
-        <li><a href="#newUser" onclick="showFormUser()">New user</a></li>
-    </ul>
-</div>
+<h1>USER LIST</h1>
 <div class="datos" id="tableUsers">
     <table>
         <tr>
@@ -25,8 +21,6 @@ User management
             <th>Email</th>
             <th>Shipping address</th>
             <th>Billing address</th>
-            <th>Edit</th>
-            <th>Delete</th>
         </tr>
         @php
         $contador=1;
@@ -36,20 +30,20 @@ User management
             <td>
                 {{$contador}}
             </td>
-            <td>$user->nick</td>
-            <td>$user->name</td>
-            <td>$user->lastName</td>
-            <td>$user->email</td>
+            <td>{{$user->nick}}</td>
+            <td>{{$user->name}}</td>
+            <td>{{$user->lastName}}</td>
+            <td>{{$user->email}}</td>
             <td><a href="#viewShippingAddress{{$contador}}" id="viewShippingAddress{{$contador}}" onclick="showShippingAddress({{$contador}})">View</a>
                 <div class="addresses" id="shippingAddress{{$contador}}">
-                   @foreach($addresses as $address)
-                   @if($address->userId==$users->id && $typeAddress=='shipping')
-                    - Road type: $address->roadType<br>
-                    - Road name: $address->roadName<br>
-                    - City: $address->City<br>
-                    - Province: $address->province<br>
-                    - Zip code: $address->zipCode<br>
-                    - Country: $address->country<br>
+                    @foreach($addresses as $address)
+                    @if($address->userId==$user->id && $address->typeAddress=='shipping')
+                    - Road type: {{$address->roadType}}<br>
+                    - Road name: {{$address->roadName}}<br>
+                    - City: {{$address->City}}<br>
+                    - Province: {{$address->province}}<br>
+                    - Zip code: {{$address->zipCode}}<br>
+                    - Country: {{$address->country}}<br>
                     @endif
                     @endforeach
                     <div class="text-center">
@@ -59,19 +53,21 @@ User management
             </td>
             <td><a href="#viewBillingAddress{{$contador}}" id="viewBillingAddress{{$contador}}" onclick="showBillingAddress({{$contador}})">View</a>
                 <div class="addresses" id="billingAddress{{$contador}}">
-                    - Road type: <br>
-                    - Road name: <br>
-                    - City: <br>
-                    - Province: <br>
-                    - Zip code: <br>
-                    - Country: <br>
+                    @foreach($addresses as $address)
+                    @if($address->userId==$user->id && $address->typeAddress=='billing')
+                    - Road type: {{$address->roadType}}<br>
+                    - Road name: {{$address->roadName}}<br>
+                    - City: {{$address->City}}<br>
+                    - Province: {{$address->province}}<br>
+                    - Zip code: {{$address->zipCode}}<br>
+                    - Country: {{$address->country}}<br>
+                    @endif
+                    @endforeach
                     <div class="text-center">
                         <a href="#viewBillingAddress{{$contador}}" id="hideBillingAddress{{$contador}}" class="hideAddress" onclick="hideBillingAddress({{$contador}})">Hide</a>
                     </div>
                 </div>
             </td>
-            <td><a href="#editUser" onclick="showFormUser()"><i class="far fa-edit"></i></a></td>
-            <td><a href="#deleteUser" data-toggle="modal"><i class="far fa-trash-alt"></i></a></td>
         </tr>
         @php
         $contador++;
