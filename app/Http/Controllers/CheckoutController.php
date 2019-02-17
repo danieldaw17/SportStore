@@ -68,7 +68,7 @@ class CheckoutController extends Controller
 
         })->values()->toJson();
         try {
-            $charge = Stripe::charges()->create([
+            /*$charge = Stripe::charges()->create([
 
                 'amount'=> Cart::total(),
                 'currency' =>'EUR',
@@ -80,14 +80,14 @@ class CheckoutController extends Controller
                     'quantity'=>Cart::instance('default')->count(),
                 ],
 
-            ]);
+            ]);*/
                 //succesful payment
 
             //Cart::instance('default')->destroy();
 
             //return back()->with('success_message','Thank you!, Your payment has been succesfully accepted');
 			return redirect('generateInvoice/delivery/'.$request->deliveryId);
-            
+
 
         } catch (CardErrorException $e) {
 

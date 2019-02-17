@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Address;
+use App\Invoice;
 use App\User;
 use DB;
 use App\Category;
@@ -41,16 +42,12 @@ class UsersController extends Controller
 
 			$user = User::find(Auth::user()->id);
 
+			$invoices = Invoice::where('userId', Auth::user()->id)->get();
+			$categoriesNav = Category::all();
+    		$sub_categoriesNav = Sub_category::all();
 
-			/*if ($billingAddress==null) {
-				return view('partials.profile', array('roadTypes'=>$roadTypes));
+			return view('partials.profile', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user, 'invoices'=>$invoices));
 
-			} else {*/
-				$categoriesNav = Category::all();
-        		$sub_categoriesNav = Sub_category::all();
-
-				return view('partials.profile', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'roadTypes'=>$roadTypes, 'billingAddress'=>$billingAddress, 'shippingAddress'=>$shippingAddress, 'user'=>$user));
-			//}
 		}
 	}
 

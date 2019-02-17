@@ -17,6 +17,7 @@ My profile
         <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#infoShippingAdress" role="tab" aria-controls="nav-profile" aria-selected="false">Shipping address</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#infoBillingAdress" role="tab" aria-controls="nav-contact" aria-selected="false">Billing address</a>
         <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#infoAccount" role="tab" aria-controls="nav-contact" aria-selected="false">Account</a>
+		<a class="nav-item nav-link" id="nav-myOrders-tab" data-toggle="tab" href="#myOrders" role="tab" aria-controls="nav-contact" aria-selected="false">My Orders</a>
       </div>
     </nav>
     <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
@@ -36,6 +37,12 @@ My profile
       <div class="tab-pane fade info" id="infoAccount" role="tabpanel" aria-labelledby="nav-contact-tab">
         @include("inc.formAccount")
       </div>
+
+	  {{-- My orders --}}
+	  <div class="tab-pane fade info" id="myOrders" role="tabpanel" aria-labelledby="nav-myOrders-tab">
+        @include("inc.showOrders")
+	</div>
+
     </div>
   </div>
 </div>

@@ -10,7 +10,7 @@
     <script>
       $('#complete-order').hide();
     </script>
-  @else 
+  @else
     <script>
       $('#complete-order').show();
     </script>
@@ -67,7 +67,7 @@
                         <label for="shippingaddress">Shipping address</label>
                         @if($shippingAddress != null )
                         <input type="text" class="form-control" id="shippingAddress" name="shippingaddress" value="{{ $shippingAddress->roadName }}" readonly>
-                        @else 
+                        @else
                         <input type="text" class="form-control text-danger" id="shippingAddress" name="shippingaddress" value="You need to go to your profile a set up your shipping address" readonly >
                         @endif
                     </div>
@@ -75,7 +75,7 @@
                         <label for="billingaddress">Billing address</label>
                         @if($billingAddress!=null )
                         <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="{{ $billingAddress->roadName }}" readonly >
-                        @else 
+                        @else
                         <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="You need to go to your profile and set up your billing address" readonly >
                         @endif
                     </div>
@@ -89,7 +89,7 @@
                            </select>
                             <!--termina aqui-->
                         </div>
-                        
+
                     </div>
                     <!-- DE AQUI HACIA ADELANTE SON COSAS NECESARIAS PARA STRIPE PAYMENTS  -->
                     <div class="form-group">
@@ -106,7 +106,7 @@
                             <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required>
                         @else
                         <input type="text" class="form-control" id="city" name="city" value="{{$billingAddress->city}}" readonly>
-                            
+
                         @endif
                     </div>
 
@@ -116,13 +116,13 @@
                             <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('postalcode')}}" required>
                         @else
                         <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$billingAddress->zipCode}}" readonly>
-                            
+
                         @endif
                     </div>
 
                  <!-- end half-form -->
                     <div class="checkout-section">
-                
+
                     <h2>Payment details</h2>
                       <div class="form-group">
                           <label for="name_on_card">Name on Card</label>
@@ -139,17 +139,17 @@
 
                             <!-- Used to display form errors. -->
                          <div id="card-errors" role="alert">
-                             
+
                          </div>
 
                     </div>
-                </div>    
+                </div>
                     <button type="submit" id="complete-order" class="btn btn-success btn-block">Complete Order</button>
 
           </form>
-                    <div class="container"> 
+                    <div class="container">
                       </div>
-                    
+
                    <div class="mt-32">or</div>
                     <div class="mt-32">
                         <h2>Pay with PayPal</h2>
@@ -168,14 +168,14 @@
                             <button class="btn btn-primary " type="submit"><span>Pay with PayPal</span></button>
                         </form>
                     </div>
-               
+
             </div>
         </div>
     </div>
-    
+
 </div>
-        
-       <div class="col-sm-1"></div>     
+
+       <div class="col-sm-1"></div>
         <div class="col-sm-4">
             <div class="checkout-table-container">
                 <h2>Your Order</h2>
@@ -209,7 +209,7 @@
                   @endforeach
 
                 </div> <!-- end checkout-table -->
-    
+
                 <div class="checkout-totals">
                     <div class="checkout-totals-left">
                        <strong> Subtotal</strong> {{ Cart::subtotal()}} <br>
@@ -219,11 +219,11 @@
 
                     <div class="checkout-totals-right">
                         <br>
-                       
+
                              <br>
                             <hr>
                           <br>
-                     
+
                          <br>
                         <span class="checkout-totals-total">{{--presentPrice($newTotal)--}}</span>
 
@@ -264,7 +264,7 @@ var style = {
 };
 
 // Create an instance of the card Element.
-var card = elements.create('card', 
+var card = elements.create('card',
     {style: style,
       hidePostalCode: true
 });

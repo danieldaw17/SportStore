@@ -10,11 +10,17 @@ class ApiProductController extends Controller
 {
     public function defuse($productId)
 	{
+
 		$product = Product::find($productId);
 		if ($product==null) {
-			return (string)false;
+			$response = array('deactivated' => false);
+			return json_encode($response);
 		}
+
 		$product->active=false;
-		return (string)$product->save();
+		$product->save();
+
+		$response = array('deactivated' => true);
+		return json_encode($response);
 	}
 }
