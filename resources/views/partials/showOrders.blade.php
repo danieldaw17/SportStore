@@ -14,9 +14,6 @@
 {{-- Menu options management --}}
 @include("inc/admin/headerProductManagement")
 
-{{-- Searcher --}}
-
-
 {{-- Show orders --}}
 @include("inc/admin/showOrders")
 

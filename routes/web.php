@@ -157,3 +157,7 @@ Route::get('empty',function(){
 Route::get('search', 'SearchController@search');
 Route::post('search', 'SearchController@search');
 Route::get('ajax_subcat','SearchController@ajaxSubcategories');
+
+
+// Detalles del pedido
+Route::get('MyOrders/{invoiceId}', 'UsersController@invoiceDetails');

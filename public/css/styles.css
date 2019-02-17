@@ -236,3 +236,7 @@ span[id^='error']{
 	margin-top: 2%;
 	margin-bottom: 2%;
 }
+
+.spaceOrder {
+	margin-bottom: -5%;
+}

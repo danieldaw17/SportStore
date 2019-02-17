@@ -6,7 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Address;
+use App\Product;
 use App\Invoice;
+use App\Invoice_line;
 use App\User;
 use DB;
 use App\Category;
@@ -53,5 +55,19 @@ class UsersController extends Controller
 
 	public function productManagement($userId) {
 		return view('partials.admin.productManagement', array('userId', $userId));
+	}
+
+	public function invoiceDetails($invoiceId){
+		$invoice = Invoice::find($invoiceId);
+		$invoice_lines = Invoice_line::where('invoiceId', $invoiceId)->get();
+		$products = array();
+		$categoriesNav = Category::all();
+		$sub_categoriesNav = Sub_category::all();
+
+		foreach ($invoice_lines as $invoice_line) {
+			$product = Product::where('id', $invoice_line->productId)->first();
+			array_push($products, $product);
+		}
+		return view('partials.order-detail', array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav,'invoice_lines'=>$invoice_lines, 'invoice' => $invoice, 'products'=>$products));
 	}
 }
