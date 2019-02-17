@@ -1,6 +1,7 @@
 
 <div class="textHeader">
 	<h1>Products</h1>
+	<span id="deactivated"></span>
 </div>
 <div class="row probootstrap-gutter60 alignSpace">
 	<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
@@ -38,7 +39,7 @@
 					<h5 class="titleProduct">{{ $product->name }}</h5>
 					<div class="optionsED">
 						<a href="{{ url('user/'.Auth::user()->id.'/Categories/'.$categoryId.'/Sub_categories/'.$subCategoryId.'/Products/'.$product->id.'/edit') }}"><button type="button" class="btn btn-success">Edit</button></a>
-						<a href="{{ url('') }}" data-toggle="modal"><button type="submit" class="btn btn-danger">Delete</button></a>
+						<a><button productId="{{$product->id}}" type="button" class="btn btn-danger" id="deactivatedButton">Deactivated</button></a>
 					</div>
 				</div>
 			</div>
@@ -46,4 +47,7 @@
 		</div>
 		@endforeach
 </div>
-@include("inc/admin/modal/confirmDeleteProduct")
+
+@section("js")
+<script src="/js/admin/defuseAjax.js"></script>
+@stop
