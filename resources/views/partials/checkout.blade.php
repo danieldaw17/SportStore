@@ -49,7 +49,11 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Name</label>
+                        @if (auth()->user())
+                          <input type="text" class="form-control" id="name" name="name" value="{{ auth()->user()->name }}" readonly>
+                        @else
                         <input type="text" class="form-control" id="name" name="name" value="{{old('name')}}" required >
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="address">Address</label>
@@ -73,7 +77,21 @@
                             <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('email')}}" required >
                         </div>
                         
-                    </div> <!-- end half-form -->
+                    </div>
+                       <div class="half-form">
+                        <div class="form-group">
+                          <!--insertar los deliveries id para que funcione -->
+                           <select name="deliveryId" multiple required>
+                             {{--@foreach($deliveries as $delivery)--}} 
+                             {{--<option value="{{$delivery->id}}">{{$delivery->name}}</option>--}}
+                             {{--@enforeach--}}
+                           </select>
+                            <!--termina aqui-->
+                        </div>
+                        
+                    </div>
+
+                     <!-- end half-form -->
                     <div class="checkout-section">
                 
                     <h2>Payment details</h2>
