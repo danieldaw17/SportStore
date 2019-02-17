@@ -159,7 +159,7 @@
                                 <div class="checkout-table-img">
                                     @foreach ($images as $image)
                                         @if ($image->productId==$item->model->id && $image->name=="front")
-                                            <img src="{{ url($image->path) }}" alt="" title="">
+                                            <img src="{{ url($image->path) }}" alt="{{$image->name}}" class="imgCart">
                                          @php
                                         break;
                                         @endphp
@@ -173,7 +173,7 @@
                         </div> <!-- end checkout-table -->
 
                         <div class="checkout-table-row-right">
-                           <strong>quantity:</strong> <div class="checkout-table-quantity">{{ $item->qty }}</div>
+                           <strong>quantity:</strong><div class="checkout-table-quantity">{{ $item->qty }}</div>
                         </div>
                     </div>
                     <hr> <!-- end checkout-table-row -->
