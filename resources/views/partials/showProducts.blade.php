@@ -28,7 +28,7 @@
 						<img src="{{ url($image->path) }}" alt="" title="">
 					</div>
 					<div class="contentProduct">
-						<h3 class="titleProduct">{{$product->name}}</h3>
+						<h5 class="titleProduct">{{$product->name}}</h5>
 						<p class="descriptionProduct">{{$product->shortDescription}}</p>
 						<p class="prizeProduct">{{$product->basePrice}} €</p>
 					</div>
