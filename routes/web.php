@@ -116,6 +116,7 @@ Auth::routes();
 Route::get('user/{userId}', 'UsersController@index');
 Route::get('user/{userId}/productManagement', 'UsersController@productManagement');
 Route::get('user/{userId}/editUser', 'UsersController@userManagement');
+Route::get('confirmEmail','profileController@verifiedEmail');
 
 // NO ADMIN ROUTES (SIN USUARIO, VISITANTE)
 
