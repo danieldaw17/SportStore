@@ -23,4 +23,20 @@ class ApiProductController extends Controller
 		$response = array('deactivated' => true);
 		return json_encode($response);
 	}
+
+	public function activate($productId)
+	{
+
+		$product = Product::find($productId);
+		if ($product==null) {
+			$response = array('activated' => false);
+			return json_encode($response);
+		}
+
+		$product->active=true;
+		$product->save();
+
+		$response = array('avtivated' => true);
+		return json_encode($response);
+	}
 }

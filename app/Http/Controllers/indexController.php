@@ -17,7 +17,7 @@ class indexController extends Controller
 		$sub_categoriesNav=Sub_category::all();
 		$brands=Brand::all();
 		$genders=Product::distinct()->select('gender')->get();
-		$productsTopNews = Product::orderBy('created_at', 'desc')->take(6)->paginate(2);
+		$productsTopNews = Product::orderBy('created_at', 'desc')->take(6)->get();
 		$productsTopPrices = Product::orderBy('basePrice', 'asc')->take(6)->get();
 		return view('partials.index', array('categoriesNav'=> $categoriesNav,'sub_categoriesNav'=>$sub_categoriesNav, 'productsTopNews'=>$productsTopNews, 'productsTopPrices'=>$productsTopPrices, 'images'=>$images, 'brands'=>$brands, 'genders'=>$genders));
     }

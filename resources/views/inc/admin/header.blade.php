@@ -10,7 +10,6 @@
 			<ul class="navbar-nav headerAdmin">
 				<li><a href="{{ url('user/'.Auth::user()->id) }}">User management</a></li>
 				<li><a href="{{ url('user/'.Auth::user()->id.'/Categories') }}">Product management</a></li>
-				<li><a href="{{ url('user/'.Auth::user()->id.'/orders') }}">Orders</a></li>
 				<li class="dropdown login" id="lastLi">
 					<a href="#" id="navbardrop">
 						<img src="{{ url('img/login.png') }}" alt="Login" title="Login" class="imgHeader">
