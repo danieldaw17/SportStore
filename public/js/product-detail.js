@@ -11,3 +11,11 @@ function imgBigProduct(path, alt, title){
 	document.getElementById("imgBig").alt=alt;
 	document.getElementById("imgBig").title=title;
 }
+
+function loadAmount(event) {
+	var amount = $(':selected', event).attr("amount");
+	$("#amount").attr({
+       "max" : amount,
+       "min" : 1
+    });
+}

@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -46,20 +46,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function store(Request $request){
-        $validateData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email|max:255|unique:users',
-            'password' =>'required|min:6|confirmed',
-            'nick' =>'max:20',
-            'lastName' =>'max:25',
-            'role'=>'max:10'
-
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
-        return redirect("/");
     }
-
-
 
     /**
      * Create a new user instance after a valid registration.
@@ -69,6 +62,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return view ('partials.index',array('option'=>'signUp'));
+        return User::create([
+            'email' => $data['email'],
+            'password' => bcrypt($data['password']),
+        ]);
     }
 }

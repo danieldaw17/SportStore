@@ -6,6 +6,7 @@ use App\Sub_category;
 use App\Product;
 use App\Category;
 use App\Image;
+use App\Stock;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -49,10 +50,12 @@ class FrontController extends Controller
     public function showProduct($productId){
     	$categoriesNav = Category::all();
     	$sub_categoriesNav = Sub_category::all();
+		$images = Image::where('productId', $productId)->get();
+		$stocks = Stock::where('productId', $productId)->get();
 		if (!$product = Product::find($productId)) {
 			abort(404);
 		}
-		return view ('partials.product-detail', array('product'=> $product, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
+		return view ('partials.product-detail', array('product'=> $product, 'sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav, 'images'=>$images, 'stocks'=>$stocks));
 	}
 
 }

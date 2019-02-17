@@ -22,7 +22,7 @@ class ImagesController extends Controller
    }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -50,7 +50,7 @@ class ImagesController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $image->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 
@@ -83,7 +83,7 @@ class ImagesController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in /storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -110,7 +110,7 @@ class ImagesController extends Controller
 
 			$extension = $request->image->extension();
 			$imageName = $image->id.".".$extension;
-			$foldPath = 'storage/images/products';
+			$foldPath = '/storage/images/products';
 			if (!is_dir($foldPath)) {
 				mkdir($foldPath, 0777, true);
 			}
@@ -125,7 +125,7 @@ class ImagesController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified resource from /storage.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

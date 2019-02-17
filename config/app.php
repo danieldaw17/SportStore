@@ -139,6 +139,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -190,6 +192,8 @@ return [
 
     'aliases' => [
 
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,

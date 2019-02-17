@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<definitions name="ProductService"
+	targetNamespace="urn:Product"
+	xmlns:tns="urn:Product"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns="http://schemas.xmlsoap.org/wsdl/">
+
+	<message name="ProductRequest">
+		<part name="productId" type="xsd:int" />
+	</message>
+
+	<message name="ProductResponse">
+		<part name="response" type="xsd:int" />
+	</message>
+
+	<portType name="ProductPort">
+
+		<operation name="defuse">
+			<input message="tns:ProductRequest" />
+			<output message="tns:ProductResponse" />
+		</operation>
+
+	</portType>
+
+	<binding name="ProductBinding" type="tns:ProductPort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<operation name="defuse">
+			<soap:operation soapAction="urn:Product#defuse" />
+
+			<input>
+				<soap:body use="encoded" namespace="urn:Product"
+				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</input>
+
+			<output>
+				<soap:body use="encoded" namespace="urn:Product"
+				encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+			</output>
+		</operation>
+	</binding>
+
+	<service name="ProductService">
+		<port name="ProductPort" binding="tns:ProductBinding">
+		<soap:address location="http://sportstore.localhost/WebServices/activeManagement.wsdl" />
+		</port>
+	</service>
+
+</definitions>

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Invoice;
 use App\Invoice_line;
 use Auth;
+use Cart;
+use App\Address;
+use Stripe;
 
 class InvoicesController extends Controller
 {
@@ -52,24 +55,30 @@ class InvoicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $userId, $invoice)
+    public function store($deliveryId)
     {
-		if (!Auth::check() || Auth::user()->id!=$userId) {
-			abort(404);
-		}
 
-		$validateData = $request->validate([
+		/*$validateData = $request->validate([
 			'totalPrice' => 'required|numeric',
 			'userId' => 'required|integer',
 			'deliveryId' => 'required|integer'
-	  	]);
+	  	]);*/
 
-        $invoice = new Invoice();
-		$invoice->totalPrice = $request->input('totalPrice');
-		$invoice->userId = $request->input('userId');
-		$invoice->deliveryId = $request->input('deliveryId');
+		if (Cart::content()->count()>0) {
+			$invoice = new Invoice();
+			$invoice->totalPrice = Cart::total();
+			$invoice->deliveryId = 1;
+			$invoice->paymentMethod = "Stripe";
+			$invoice->userId = Auth::user()->id;
+			$invoice->shippingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'shipping')->first()->id;
+			$invoice->billingAddress = Address::where('userId', Auth::user()->id)->where('typeAddress', 'billing')->first()->id;
+			$invoice->save();
 
-		$invoice->save();
-		return("user/$userId/invoices");
+			return redirect('generateInvoiceLines/'.$invoice->id);
+		} else {
+			return redirec('/');
+		}
+
+
     }
 }

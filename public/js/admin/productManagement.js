@@ -162,7 +162,7 @@ function validateFormProduct(){
 		var error = document.getElementById("errorPrice");
 		error.innerHTML = textNoBenefits;
 		fieldPrice.focus();
-		return false; 
+		return false;
 	}else if(onlyNumbers.test(valuePrice) == false){
 		var error = document.getElementById("errorPrice");
 		error.innerHTML = textOnlyNumbers;
@@ -200,7 +200,7 @@ function validateFormProduct(){
 			var error = document.getElementById("errorVolume");
 			error.innerHTML = textNoUnder0;
 			fieldVolume.focus();
-			return false; 
+			return false;
 		}else if(onlyNumbers.test(valueVolume) == false){
 			var error = document.getElementById("errorVolume");
 			error.innerHTML = textOnlyNumbers;
@@ -222,7 +222,7 @@ function validateFormProduct(){
 			var error = document.getElementById("errorShifts");
 			error.innerHTML = textNoUnder0;
 			fieldShifts.focus();
-			return false; 
+			return false;
 		}else if(onlyNumbersInt.test(valueShifts) == false){
 			var error = document.getElementById("errorShifts");
 			error.innerHTML = textOnlyNumbersInt;
@@ -246,7 +246,7 @@ function validateFormProduct(){
 			var error = document.getElementById("errorWheelsAmount");
 			error.innerHTML = textNoUnder0;
 			fieldWheelsAmount.focus();
-			return false; 
+			return false;
 		}else if(onlyNumbersInt.test(valueWheelsAmount) == false){
 			var error = document.getElementById("errorWheelsAmount");
 			error.innerHTML = textOnlyNumbersInt;
@@ -263,7 +263,7 @@ function validateFormProduct(){
 			var error = document.getElementById("errorWeight");
 			error.innerHTML = textNoUnder0;
 			fieldWeight.focus();
-			return false; 
+			return false;
 		}else if(onlyNumbers.test(valueWeight) == false){
 			var error = document.getElementById("errorWeight");
 			error.innerHTML = textOnlyNumbers;
@@ -336,7 +336,7 @@ function validateFormCategory(){
 		var error = document.getElementById("errorTaxes");
 		error.innerHTML = textNoUnder0;
 		fieldTaxes.focus();
-		return false; 
+		return false;
 	}else if(onlyNumbers.test(valueTaxes) == false){
 		var error = document.getElementById("errorTaxes");
 		error.innerHTML = textOnlyNumbers;

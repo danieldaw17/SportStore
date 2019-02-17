@@ -1,11 +1,7 @@
 @extends("layouts.noadmin.layout")
 
-@section("styles")
-<link rel="stylesheet" type="text/css" href="{{ url('css/products.css') }}">
-@stop
-
 @section("title")
-{{-- Pasar nombre de la subcategoria --}} Clothes
+{{$subCategoryName}}
 @stop
 
 @section("content")
@@ -25,14 +21,14 @@
 		@endforeach
 		<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">
 			{{-- Pasar id del producto --}}
-			<a href="{{ url('category/subcategorie/product') }}">
+			<a href="{{ url('product/'.$product->id) }}">
 				<div class="service hover_service text-center">
 					<div class="imgProduct">
 						{{-- pasar datos de la imagen --}}
 						<img src="{{ url($image->path) }}" alt="" title="">
 					</div>
 					<div class="contentProduct">
-						<h3 class="titleProduct">{{$product->name}}</h3>
+						<h5 class="titleProduct">{{$product->name}}</h5>
 						<p class="descriptionProduct">{{$product->shortDescription}}</p>
 						<p class="prizeProduct">{{$product->basePrice}} €</p>
 					</div>
