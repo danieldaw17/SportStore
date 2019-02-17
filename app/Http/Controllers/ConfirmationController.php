@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Category;
+//use App\Http\Controllers\Address;
+use App\Sub_category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -17,7 +21,9 @@ class ConfirmationController extends Controller
         if(!session()->has('success_message')){
             return redirect('/');
         }
-        return view('partials.thankyou');
+        $categoriesNav = Category::all();
+        $sub_categoriesNav = Sub_category::all();
+        return view('partials.thankyou',array('sub_categoriesNav'=>$sub_categoriesNav, 'categoriesNav'=>$categoriesNav));
     }
 
     /**

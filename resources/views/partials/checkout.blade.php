@@ -6,8 +6,16 @@
 
 @section ('js')
 <script src="https://js.stripe.com/v3/"></script>
-
-@endsection
+  @if($shippingAddress == null || $billingAddress==null )
+    <script>
+      $('#complete-order').hide();
+    </script>
+  @else
+    <script>
+      $('#complete-order').show();
+    </script>
+  @endif
+@stop
 @section("title","checkout")
 
 
@@ -56,42 +64,63 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" name="address" value="{{old('address')}}" required >
+                        <label for="shippingaddress">Shipping address</label>
+                        @if($shippingAddress != null )
+                        <input type="text" class="form-control" id="shippingAddress" name="shippingaddress" value="{{ $shippingAddress->roadName }}" readonly>
+                        @else
+                        <input type="text" class="form-control text-danger" id="shippingAddress" name="shippingaddress" value="You need to go to your profile a set up your shipping address" readonly >
+                        @endif
                     </div>
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required >
-                        </div>
-                        <div class="form-group">
-                            <label for="province">Province</label>
-                            <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required >
-                        </div>
-                    </div> <!-- end half-form -->
-
-                    <div class="half-form">
-                        <div class="form-group">
-                            <label for="postalcode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('email')}}" required >
-                        </div>
-
+                    <div class="form-group">
+                        <label for="billingaddress">Billing address</label>
+                        @if($billingAddress!=null )
+                        <input type="text" class="form-control" id="billingAddress" name="billingaddress" value="{{ $billingAddress->roadName }}" readonly >
+                        @else
+                        <input type="text" class="form-control text-danger" id="billingAddress" name="billingaddress" value="You need to go to your profile and set up your billing address" readonly >
+                        @endif
                     </div>
                        <div class="half-form">
                         <div class="form-group">
-                          <!--insertar los deliveries id para que funcione -->
-                           {{--<select name="deliveryId" multiple required>
+                         <label for="delivery">Deliveries : </label> <!--insertar los deliveries id para que funcione -->
+                           <select name="deliveryId" required>
                              @foreach($deliveries as $delivery)
-                             	<option value="{{$delivery->id}}">{{$delivery->name}}</option>
-                             @enforeach
-						 </select>--}}
+                             <option value="{{$delivery->id}}">{{$delivery->name}}</option>
+                             @endforeach
+                           </select>
                             <!--termina aqui-->
                         </div>
 
                     </div>
+                    <!-- DE AQUI HACIA ADELANTE SON COSAS NECESARIAS PARA STRIPE PAYMENTS  -->
+                    <div class="form-group">
+                        <label for="province">province</label>
+                        @if($billingAddress['province'] == null)
+                           <input type="text" class="form-control" id="province" name="province" value="{{old('province')}}" required>
+                        @else
+                         <input type="text" class="form-control" id="province" name="province" value="{{$billingAddress->province}}" readonly>
+                        @endif
+                    </div>
+                     <div class="form-group">
+                        <label for="city">city</label>
+                        @if ($billingAddress['city'] == null)
+                            <input type="text" class="form-control" id="city" name="city" value="{{old('city')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="city" name="city" value="{{$billingAddress->city}}" readonly>
 
-                     <!-- end half-form -->
+                        @endif
+                    </div>
+
+                    <div class="form-group">
+                        <label for="postalcode">postalcode</label>
+                        @if ($billingAddress['zipCode'] == null)
+                            <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{old('postalcode')}}" required>
+                        @else
+                        <input type="text" class="form-control" id="postalcode" name="postalcode" value="{{$billingAddress->zipCode}}" readonly>
+
+                        @endif
+                    </div>
+
+                 <!-- end half-form -->
                     <div class="checkout-section">
 
                     <h2>Payment details</h2>
@@ -207,7 +236,7 @@
 </div>
 @section('extra-js')
 
-<script >
+<script>
     (function(){
         // Create a Stripe client.
 var stripe = Stripe('pk_test_ujRSjoDzk8qHV5PDAZ11erVG');
@@ -262,7 +291,7 @@ form.addEventListener('submit', function(event) {
 
   var options = {
     name: document.getElementById('name_on_card').value,
-     address_line1: document.getElementById('address').value,
+     address_line1: document.getElementById('billingAddress').value,
       address_city: document.getElementById('city').value,
       address_state: document.getElementById('province').value,
       address_zip: document.getElementById('postalcode').value

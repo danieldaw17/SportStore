@@ -133,7 +133,7 @@ Product
               		<option value="{{$sport->id}}">{{$sport->name}}</option>
 				@endif
             @endforeach
-          </select>
+          </select>w
         </div>
         <span id="errorSport"></span>
       </div>
@@ -222,7 +222,8 @@ Product
 	  <div class="col-xs-12 ">
 		<nav>
 		  <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-			<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
+		  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stock" role="tab" aria-controls="nav-home" aria-selected="true">Without size</a>
+			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
 			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
 			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
 			<a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
@@ -232,6 +233,33 @@ Product
 		  </div>
 		</nav>
 		<div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+      {{-- No Size --}}
+		<div class="tab-pane fade show info" id="stock" role="tabpanel" aria-labelledby="nav-home-tab">
+		  <div class="form-group">
+			<div class="input-group">
+			  <div class="input-group-prepend">
+				<span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+			  </div>
+			  @php
+				  $exist = false;
+			  @endphp
+			  @foreach ($stocks as $stock)
+
+				  @if ($stock->size=="-")
+			<input type="number" id="-" name="null" class="form-control" value="{{$stock->amount}}">
+			@php
+						   $exist = true;
+						   break;
+					   @endphp
+				  @endif
+			  @endforeach
+			  @if ($exist==false)
+			  <input type="number" id="XXS" name="XXS" class="form-control" placeholder="Stock -">
+			  @endif
+			</div>
+			<span id="error -"></span>
+		  </div>
+		</div>
 		  {{-- XXS --}}
 		  <div class="tab-pane fade show info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
 			<div class="form-group">
@@ -611,7 +639,8 @@ Product
 	<div class="col-xs-12 ">
 	  <nav>
 		<div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-		  <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#stock" role="tab" aria-controls="nav-home" aria-selected="true">WITHOUT SIZE</a>
+		  <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XXS</a>
 		  <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockXS" role="tab" aria-controls="nav-home" aria-selected="true">Stock XS</a>
 		  <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockS" role="tab" aria-controls="nav-home" aria-selected="true">Stock S</a>
 		  <a class="nav-item nav-link" id="nav-home-tab" data-toggle="tab" href="#stockM" role="tab" aria-controls="nav-home" aria-selected="true">Stock M</a>
@@ -621,6 +650,18 @@ Product
 		</div>
 	  </nav>
 	  <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+	  {{-- No Size --}}
+		<div class="tab-pane fade show info" id="stock" role="tabpanel" aria-labelledby="nav-home-tab">
+		  <div class="form-group">
+			<div class="input-group">
+			  <div class="input-group-prepend">
+				<span class="list-group-item"><i class="fa fa-edit prefix grey-text fa-1g" aria-hidden="true"></i></span>
+			  </div>
+			<input type="number" id="-" name="null" class="form-control" placeholder="Stock -">
+			</div>
+			<span id="errorXXS"></span>
+		  </div>
+		</div>
 		{{-- XXS --}}
 		<div class="tab-pane fade show info" id="stockXXS" role="tabpanel" aria-labelledby="nav-home-tab">
 		  <div class="form-group">

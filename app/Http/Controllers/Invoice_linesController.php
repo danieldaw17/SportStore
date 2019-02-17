@@ -17,19 +17,18 @@ class Invoice_linesController extends Controller
      */
     public function store($invoiceId)
     {
-
+    		$numberLine=0;
 
 		if (Cart::content()->count()>0) {
 			foreach (Cart::content() as $item) {
 				$invoice_line = new Invoice_line();
 				$invoice_lines = Invoice_line::where('invoiceId', $invoiceId)->get();
 				if (count($invoice_lines)<1) {
-					$numberLine = 0;
+					$numberLine = 1;
 				} else {
-					$numberLine = Invoice_line::max('line')->where('invoiceId', $invoiceId)->get();
+					$numberLine++;
 				}
 
-				$numberLine++;
 				$invoice_line->amount = $item->qty;
 				$invoice_line->basePrice = $item->subtotal;
 				$invoice_line->invoiceId = $invoiceId;
@@ -38,7 +37,7 @@ class Invoice_linesController extends Controller
 
 				$invoice_line->save();
 			}
-
+			Cart::instance('default')->destroy();
 			return redirect()->route('confirmation.index')->with('success_message','Thank you! Your payment has been successfully accepted!');
 		} else {
 			return redirec('/');
